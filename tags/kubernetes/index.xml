@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>kubernetes on clive xiang 的博客</title>
+    <link>http://localhost:1313/tags/kubernetes/</link>
+    <description>Recent content in kubernetes on clive xiang 的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 19 Oct 2020 17:00:42 +0800</lastBuildDate>
+    
+	<atom:link href="http://localhost:1313/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Helm 应用包管理器</title>
+      <link>http://localhost:1313/post/k8s/helm/</link>
+      <pubDate>Mon, 19 Oct 2020 17:00:42 +0800</pubDate>
+      
+      <guid>http://localhost:1313/post/k8s/helm/</guid>
+      <description>3.1 为什么需要 Helm？ K8S 上的应用对象，都是由特定的资源描述组成，包括 deployment、service 等。都保存各自文件中或者集中写到一个</description>
+    </item>
+    
+  </channel>
+</rss>

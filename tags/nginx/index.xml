@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>nginx on clive xiang 的博客</title>
+    <link>http://localhost:1313/tags/nginx/</link>
+    <description>Recent content in nginx on clive xiang 的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 19 Oct 2020 20:25:50 +0800</lastBuildDate>
+    
+	<atom:link href="http://localhost:1313/tags/nginx/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Nginx 常用命令</title>
+      <link>http://localhost:1313/post/nginx/nginx-demo/</link>
+      <pubDate>Mon, 19 Oct 2020 20:25:50 +0800</pubDate>
+      
+      <guid>http://localhost:1313/post/nginx/nginx-demo/</guid>
+      <description>nginx 的使用比较简单，就是几条命令。 常用到的命令如下： nginx -s stop 快速关闭 Nginx，可能不保存相关信息，并迅速终止 web 服务。 nginx -s quit 平稳关闭 Nginx，</description>
+    </item>
+    
+    <item>
+      <title>Https 反向代理</title>
+      <link>http://localhost:1313/post/nginx/nginx-https/</link>
+      <pubDate>Sat, 19 Sep 2020 17:00:42 +0800</pubDate>
+      
+      <guid>http://localhost:1313/post/nginx/nginx-https/</guid>
+      <description>Https 反向代理 一些对安全性要求比较高的站点，可能会使用 HTTPS（一种使用 ssl 通信标准的安全 HTTP 协议）。 这里不科普 HTTP 协议和 SSL 标准。但是，使用 nginx 配置 https</description>
+    </item>
+    
+    <item>
+      <title>Https 负载均衡</title>
+      <link>http://localhost:1313/post/nginx/nginx-upstrem/</link>
+      <pubDate>Sat, 19 Sep 2020 17:00:42 +0800</pubDate>
+      
+      <guid>http://localhost:1313/post/nginx/nginx-upstrem/</guid>
+      <description>nginx 实现简单的负载均衡功能。 假设这样一个应用场景：将应用部署在 192.168.1.11:80、192.168.1.12:80、192.168.</description>
+    </item>
+    
+    <item>
+      <title>Http 反向代理</title>
+      <link>http://localhost:1313/post/jane-theme-preview.zh-cn/</link>
+      <pubDate>Tue, 06 Mar 2018 16:01:23 +0800</pubDate>
+      
+      <guid>http://localhost:1313/post/jane-theme-preview.zh-cn/</guid>
+      <description>Http 反向代理 我们先实现一个小目标：不考虑复杂的配置，仅仅是完成一个 http 反向代理。 nginx.conf 配置文件如下: #运行用户 #user somebody; #启动进程,通常设置成和cpu的数</description>
+    </item>
+    
+  </channel>
+</rss>

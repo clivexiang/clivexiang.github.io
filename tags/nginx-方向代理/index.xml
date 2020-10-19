@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>nginx 方向代理 on clive xiang 的博客</title>
+    <link>http://localhost:1313/tags/nginx-%E6%96%B9%E5%90%91%E4%BB%A3%E7%90%86/</link>
+    <description>Recent content in nginx 方向代理 on clive xiang 的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 06 Mar 2018 16:01:23 +0800</lastBuildDate>
+    
+	<atom:link href="http://localhost:1313/tags/nginx-%E6%96%B9%E5%90%91%E4%BB%A3%E7%90%86/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Http 反向代理</title>
+      <link>http://localhost:1313/post/jane-theme-preview.zh-cn/</link>
+      <pubDate>Tue, 06 Mar 2018 16:01:23 +0800</pubDate>
+      
+      <guid>http://localhost:1313/post/jane-theme-preview.zh-cn/</guid>
+      <description>Http 反向代理 我们先实现一个小目标：不考虑复杂的配置，仅仅是完成一个 http 反向代理。 nginx.conf 配置文件如下: #运行用户 #user somebody; #启动进程,通常设置成和cpu的数</description>
+    </item>
+    
+  </channel>
+</rss>

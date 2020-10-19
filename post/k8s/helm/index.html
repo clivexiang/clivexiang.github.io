@@ -1,0 +1,1279 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Helm 应用包管理器 - clive xiang 的博客</title>
+  
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta name="MobileOptimized" content="width"/>
+<meta name="HandheldFriendly" content="true"/>
+
+
+<meta name="applicable-device" content="pc,mobile">
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="mobile-web-app-capable" content="yes">
+
+<meta name="author" content="clive" />
+  <meta name="description" content="3.1 为什么需要 Helm？ K8S 上的应用对象，都是由特定的资源描述组成，包括 deployment、service 等。都保存各自文件中或者集中写到一个" />
+
+  <meta name="keywords" content="Hugo, theme, clive" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.74.1" />
+
+
+<link rel="canonical" href="http://localhost:1313/post/k8s/helm/" />
+
+
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/sass/jane.min.f1e506a781bf25d33ffc18aa6b4e972a965c58049d27d4f92b7db2e9bf28e4bf.css" integrity="sha256-8eUGp4G/JdM//Biqa06XKpZcWASdJ9T5K32y6b8o5L8=" media="screen" crossorigin="anonymous">
+
+
+
+
+
+<meta property="og:title" content="Helm 应用包管理器" />
+<meta property="og:description" content="3.1 为什么需要 Helm？ K8S 上的应用对象，都是由特定的资源描述组成，包括 deployment、service 等。都保存各自文件中或者集中写到一个" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/post/k8s/helm/" />
+<meta property="article:published_time" content="2020-10-19T17:00:42+08:00" />
+<meta property="article:modified_time" content="2020-10-19T17:00:42+08:00" />
+<meta itemprop="name" content="Helm 应用包管理器">
+<meta itemprop="description" content="3.1 为什么需要 Helm？ K8S 上的应用对象，都是由特定的资源描述组成，包括 deployment、service 等。都保存各自文件中或者集中写到一个">
+<meta itemprop="datePublished" content="2020-10-19T17:00:42&#43;08:00" />
+<meta itemprop="dateModified" content="2020-10-19T17:00:42&#43;08:00" />
+<meta itemprop="wordCount" content="4950">
+
+
+
+<meta itemprop="keywords" content="kubernetes,helm," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Helm 应用包管理器"/>
+<meta name="twitter:description" content="3.1 为什么需要 Helm？ K8S 上的应用对象，都是由特定的资源描述组成，包括 deployment、service 等。都保存各自文件中或者集中写到一个"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+
+
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">clive</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://localhost:1313/">首页</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://localhost:1313/post/">归档</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://localhost:1313/tags/">标签</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://localhost:1313/categories/">分类</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://kubernetes.io" rel="noopener" target="_blank">
+              k8s
+              
+              <i class="iconfont">
+                <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M623.36 272.96 473.216 423.04C467.2 429.056 467.072 438.656 472.896 444.416c0 0-6.72-6.656 1.6 1.6C496.064 467.648 528.64 500.224 528.64 500.224 534.464 506.048 544 505.856 550.016 499.904l150.08-150.144 67.328 66.432c9.024 8.96 27.456 4.544 30.4-8.96 19.968-92.608 46.656-227.52 46.656-227.52 6.848-34.496-16.192-56.704-49.92-49.92 0 0-134.656 26.816-227.328 46.784C560.32 178.048 556.352 182.272 554.752 187.136c-3.2 6.208-3.008 14.208 3.776 20.992L623.36 272.96z"></path>
+  <path d="M841.152 457.152c-30.528 0-54.784 24.512-54.784 54.656l0 274.752L237.696 786.56 237.696 237.696l206.016 0c6.656 0 10.752 0 13.248 0C487.68 237.696 512 213.184 512 182.848 512 152.32 487.36 128 456.96 128L183.04 128C153.216 128 128 152.576 128 182.848c0 3.136 0.256 6.272 0.768 9.28C128.256 195.136 128 198.272 128 201.408l0 639.488c0 0.064 0 0.192 0 0.256 0 0.128 0 0.192 0 0.32 0 30.528 24.512 54.784 54.784 54.784l646.976 0c6.592 0 9.728 0 11.712 0 28.736 0 52.928-22.976 54.464-51.968C896 843.264 896 842.304 896 841.344l0-20.352L896 561.408 896 512.128C896 481.792 871.424 457.152 841.152 457.152z"></path>
+</svg>
+
+              </i>
+            </a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://localhost:1313/about/">关于</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          <div class="mobile-menu-parent">
+            <span class="mobile-submenu-open"></span>
+            <a href="http://localhost:1313/">
+              docs
+            </a>
+          </div>
+          <ul class="mobile-submenu-list">
+            
+              <li>
+                <a href="http://localhost:1313/post/jane-theme-preview/">Jane Theme Preview</a>
+              </li>
+            
+              <li>
+                <a href="http://localhost:1313/post/shortcodes-preview/">Shortcodes Preview</a>
+              </li>
+            
+              <li>
+                <a href="http://localhost:1313/post/image-preview/">Image Preview</a>
+              </li>
+            
+              <li>
+                <a href="http://localhost:1313/post/math-preview/">Math Preview</a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+
+    
+  </ul>
+</nav>
+
+
+  
+    
+
+
+
+
+
+
+  <link rel="stylesheet" href="/lib/photoswipe/photoswipe.min.css" />
+  <link rel="stylesheet" href="/lib/photoswipe/default-skin/default-skin.min.css" />
+
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+  
+
+  
+
+  
+
+  <header id="header" class="header container">
+    <div class="logo-wrapper">
+  <a href="/" class="logo">
+    
+      clive
+    
+  </a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://localhost:1313/">首页</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://localhost:1313/post/">归档</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://localhost:1313/tags/">标签</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://localhost:1313/categories/">分类</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://kubernetes.io" rel="noopener" target="_blank">
+              k8s
+              
+              <i class="iconfont">
+                <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M623.36 272.96 473.216 423.04C467.2 429.056 467.072 438.656 472.896 444.416c0 0-6.72-6.656 1.6 1.6C496.064 467.648 528.64 500.224 528.64 500.224 534.464 506.048 544 505.856 550.016 499.904l150.08-150.144 67.328 66.432c9.024 8.96 27.456 4.544 30.4-8.96 19.968-92.608 46.656-227.52 46.656-227.52 6.848-34.496-16.192-56.704-49.92-49.92 0 0-134.656 26.816-227.328 46.784C560.32 178.048 556.352 182.272 554.752 187.136c-3.2 6.208-3.008 14.208 3.776 20.992L623.36 272.96z"></path>
+  <path d="M841.152 457.152c-30.528 0-54.784 24.512-54.784 54.656l0 274.752L237.696 786.56 237.696 237.696l206.016 0c6.656 0 10.752 0 13.248 0C487.68 237.696 512 213.184 512 182.848 512 152.32 487.36 128 456.96 128L183.04 128C153.216 128 128 152.576 128 182.848c0 3.136 0.256 6.272 0.768 9.28C128.256 195.136 128 198.272 128 201.408l0 639.488c0 0.064 0 0.192 0 0.256 0 0.128 0 0.192 0 0.32 0 30.528 24.512 54.784 54.784 54.784l646.976 0c6.592 0 9.728 0 11.712 0 28.736 0 52.928-22.976 54.464-51.968C896 843.264 896 842.304 896 841.344l0-20.352L896 561.408 896 512.128C896 481.792 871.424 457.152 841.152 457.152z"></path>
+</svg>
+
+              </i>
+            </a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://localhost:1313/about/">关于</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          <a class="menu-item-link menu-parent" href="http://localhost:1313/">docs</a>
+          <ul class="submenu">
+            
+              <li>
+                <a href="http://localhost:1313/post/jane-theme-preview/">Jane Theme Preview</a>
+              </li>
+            
+              <li>
+                <a href="http://localhost:1313/post/shortcodes-preview/">Shortcodes Preview</a>
+              </li>
+            
+              <li>
+                <a href="http://localhost:1313/post/image-preview/">Image Preview</a>
+              </li>
+            
+              <li>
+                <a href="http://localhost:1313/post/math-preview/">Math Preview</a>
+              </li>
+            
+          </ul>
+
+        
+
+      </li>
+    
+
+    
+    
+
+    
+  </ul>
+</nav>
+
+  </header>
+
+  <div id="mobile-panel">
+    <main id="main" class="main bg-llight">
+      <div class="content-wrapper">
+        <div id="content" class="content container">
+          <article class="post bg-white">
+    
+    <header class="post-header">
+      <h1 class="post-title">Helm 应用包管理器</h1>
+      
+      <div class="post-meta">
+        <time datetime="2020-10-19" class="post-time">
+          2020-10-19
+        </time>
+        <div class="post-category">
+            <a href="http://localhost:1313/categories/helm/"> helm </a>
+            
+          </div>
+        
+
+        
+        
+
+        
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Table of Contents</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#31-为什么需要-helm">3.1 为什么需要 Helm？</a></li>
+    <li><a href="#32-helm-介绍">3.2 Helm 介绍</a></li>
+    <li><a href="#33-helm-v3-变化">3.3 Helm v3 变化</a>
+      <ul>
+        <li><a href="#1-架构变化">1、 架构变化</a></li>
+        <li><a href="#2release名称可以在不同命名空间重用">2、<code>Release</code>名称可以在不同命名空间重用</a></li>
+        <li><a href="#3支持将-chart-推送至-docker-镜像仓库中">3、支持将 Chart 推送至 Docker 镜像仓库中</a></li>
+        <li><a href="#4使用-jsonschema-验证-chart-values">4、使用 JSONSchema 验证 chart values</a></li>
+        <li><a href="#5其他">5、其他</a></li>
+      </ul>
+    </li>
+    <li><a href="#34-helm-客户端">3.4 Helm 客户端</a>
+      <ul>
+        <li><a href="#1部署-helm-客户端">1、部署 Helm 客户端</a></li>
+        <li><a href="#2helm-常用命令">2、Helm 常用命令</a></li>
+        <li><a href="#3配置国内-chart-仓库">3、配置国内 Chart 仓库</a></li>
+      </ul>
+    </li>
+    <li><a href="#35-helm-基本使用">3.5 Helm 基本使用</a>
+      <ul>
+        <li><a href="#1使用-chart-部署一个应用">1、使用 chart 部署一个应用</a></li>
+        <li><a href="#2安装前自定义-chart-配置选项">2、安装前自定义 chart 配置选项</a></li>
+        <li><a href="#3构建一个-helm-chart">3、构建一个 Helm Chart</a></li>
+        <li><a href="#4升级回滚和删除">4、升级、回滚和删除</a></li>
+      </ul>
+    </li>
+    <li><a href="#36-chart-模板">3.6 Chart 模板</a>
+      <ul>
+        <li><a href="#1模板">1、模板</a></li>
+        <li><a href="#2调试">2、调试</a></li>
+        <li><a href="#3内置对象">3、内置对象</a></li>
+        <li><a href="#4values">4、Values</a></li>
+        <li><a href="#5管道与函数">5、管道与函数</a></li>
+        <li><a href="#6流程控制">6、流程控制</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      <h2 id="31-为什么需要-helm">3.1 为什么需要 Helm？</h2>
+<p>K8S 上的应用对象，都是由特定的资源描述组成，包括 deployment、service 等。都保存各自文件中或者集中写到一个配置文件。然后 kubectl apply –f 部署。</p>
+<p><img src="https://k8s-1252881505.cos.ap-beijing.myqcloud.com/k8s-2/yaml-all.png" alt=""></p>
+<p>如果应用只由一个或几个这样的服务组成，上面部署方式足够了。</p>
+<p>而对于一个复杂的应用，会有很多类似上面的资源描述文件，例如微服务架构应用，组成应用的服务可能多达十个，几十个。如果有更新或回滚应用的需求，可能要修改和维护所涉及的大量资源文件，而这种组织和管理应用的方式就显得力不从心了。</p>
+<p>且由于缺少对发布过的应用版本管理和控制，使 Kubernetes 上的应用维护和更新等面临诸多的挑战，主要面临以下问题：</p>
+<ol>
+<li><strong>如何将这些服务作为一个整体管理</strong></li>
+<li><strong>这些资源文件如何高效复用</strong></li>
+<li><strong>不支持应用级别的版本管理</strong></li>
+</ol>
+<h2 id="32-helm-介绍">3.2 Helm 介绍</h2>
+<p>Helm 是一个 Kubernetes 的包管理工具，就像 Linux 下的包管理器，如 yum/apt 等，可以很方便的将之前打包好的 yaml 文件部署到 kubernetes 上。</p>
+<p>Helm 有两个重要概念：</p>
+<ul>
+<li>
+<p>**helm：**一个命令行客户端工具，主要用于 Kubernetes 应用 chart 的创建、打包、发布和管理。</p>
+</li>
+<li>
+<p>**Chart：**应用描述，一系列用于描述 k8s 资源相关文件的集合。</p>
+</li>
+<li>
+<p>**Release：**基于 Chart 的部署实体，一个 chart 被 Helm 运行后将会生成对应的一个 release；将在 k8s 中创建出真实运行的资源对象。</p>
+</li>
+</ul>
+<h2 id="33-helm-v3-变化">3.3 Helm v3 变化</h2>
+<p><strong>2019 年 11 月 13 日，</strong> Helm 团队发布 <code>Helm v3 </code>的第一个稳定版本。</p>
+<p><strong>该版本主要变化如下：</strong></p>
+<h3 id="1-架构变化">1、 架构变化</h3>
+<p><strong>最明显的变化是 <code>Tiller </code>的删除</strong></p>
+<p><img src="https://k8s-1252881505.cos.ap-beijing.myqcloud.com/k8s-2/helm-arch.png" alt=""></p>
+<h3 id="2release名称可以在不同命名空间重用">2、<code>Release</code>名称可以在不同命名空间重用</h3>
+<h3 id="3支持将-chart-推送至-docker-镜像仓库中">3、支持将 Chart 推送至 Docker 镜像仓库中</h3>
+<h3 id="4使用-jsonschema-验证-chart-values">4、使用 JSONSchema 验证 chart values</h3>
+<h3 id="5其他">5、其他</h3>
+<p>1）为了更好地协调其他包管理者的措辞 <code>Helm CLI </code>个别更名</p>
+<pre><code>helm delete` 更名为 `helm uninstall
+helm inspect` 更名为 `helm show
+helm fetch` 更名为 `helm pull
+</code></pre><p>但以上旧的命令当前仍能使用。</p>
+<p>2）移除了用于本地临时搭建 <code>Chart Repository </code>的 <code>helm serve</code> 命令。</p>
+<p>3）自动创建名称空间</p>
+<p>在不存在的命名空间中创建发行版时，Helm 2 创建了命名空间。Helm 3 遵循其他 Kubernetes 对象的行为，如果命名空间不存在则返回错误。</p>
+<p>4） 不再需要<code>requirements.yaml</code>, 依赖关系是直接在<code>chart.yaml</code>中定义。</p>
+<h2 id="34-helm-客户端">3.4 Helm 客户端</h2>
+<h3 id="1部署-helm-客户端">1、部署 Helm 客户端</h3>
+<p>Helm 客户端下载地址：https://github.com/helm/helm/releases</p>
+<p>解压移动到/usr/bin/目录即可。</p>
+<pre><code>wget https://get.helm.sh/helm-v3.0.0-linux-amd64.tar.gz
+tar zxvf helm-v3.0.0-linux-amd64.tar.gz
+mv linux-amd64/helm /usr/bin/
+</code></pre><h3 id="2helm-常用命令">2、Helm 常用命令</h3>
+<table>
+<thead>
+<tr>
+<th><strong>命令</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>create</td>
+<td>创建一个 chart 并指定名字</td>
+</tr>
+<tr>
+<td>dependency</td>
+<td>管理 chart 依赖</td>
+</tr>
+<tr>
+<td>get</td>
+<td>下载一个 release。可用子命令：all、hooks、manifest、notes、values</td>
+</tr>
+<tr>
+<td>history</td>
+<td>获取 release 历史</td>
+</tr>
+<tr>
+<td>install</td>
+<td>安装一个 chart</td>
+</tr>
+<tr>
+<td>list</td>
+<td>列出 release</td>
+</tr>
+<tr>
+<td>package</td>
+<td>将 chart 目录打包到 chart 存档文件中</td>
+</tr>
+<tr>
+<td>pull</td>
+<td>从远程仓库中下载 chart 并解压到本地 # helm pull stable/mysql &ndash;untar</td>
+</tr>
+<tr>
+<td>repo</td>
+<td>添加，列出，移除，更新和索引 chart 仓库。可用子命令：add、index、list、remove、update</td>
+</tr>
+<tr>
+<td>rollback</td>
+<td>从之前版本回滚</td>
+</tr>
+<tr>
+<td>search</td>
+<td>根据关键字搜索 chart。可用子命令：hub、repo</td>
+</tr>
+<tr>
+<td>show</td>
+<td>查看 chart 详细信息。可用子命令：all、chart、readme、values</td>
+</tr>
+<tr>
+<td>status</td>
+<td>显示已命名版本的状态</td>
+</tr>
+<tr>
+<td>template</td>
+<td>本地呈现模板</td>
+</tr>
+<tr>
+<td>uninstall</td>
+<td>卸载一个 release</td>
+</tr>
+<tr>
+<td>upgrade</td>
+<td>更新一个 release</td>
+</tr>
+<tr>
+<td>version</td>
+<td>查看 helm 客户端版本</td>
+</tr>
+</tbody>
+</table>
+<h3 id="3配置国内-chart-仓库">3、配置国内 Chart 仓库</h3>
+<ul>
+<li>微软仓库（http://mirror.azure.cn/kubernetes/charts/）这个仓库强烈推荐，基本上官网有的chart这里都有。</li>
+<li>阿里云仓库（https://kubernetes.oss-cn-hangzhou.aliyuncs.com/charts ）</li>
+<li>官方仓库（https://hub.kubeapps.com/charts/incubator）官方chart仓库，国内有点不好使。</li>
+</ul>
+<p>添加存储库：</p>
+<pre><code>helm repo add stable http://mirror.azure.cn/kubernetes/charts
+helm repo add aliyun https://kubernetes.oss-cn-hangzhou.aliyuncs.com/charts
+helm repo update
+</code></pre><p>查看配置的存储库：</p>
+<pre><code>helm repo list
+helm search repo stable
+</code></pre><p>一直在 stable 存储库中安装 charts，你可以配置其他存储库。</p>
+<p>删除存储库：</p>
+<pre><code>helm repo remove aliyun
+</code></pre><h2 id="35-helm-基本使用">3.5 Helm 基本使用</h2>
+<p>主要介绍三个命令：</p>
+<ul>
+<li>
+<p>chart install</p>
+</li>
+<li>
+<p>chart update</p>
+</li>
+<li>
+<p>chart rollback</p>
+</li>
+</ul>
+<h3 id="1使用-chart-部署一个应用">1、使用 chart 部署一个应用</h3>
+<p>查找 chart：</p>
+<pre><code># helm search repo
+# helm search repo mysql
+</code></pre><p>为什么 mariadb 也在列表中？因为他和 mysql 有关。</p>
+<p>查看 chart 信息：</p>
+<pre><code># helm show chart stable/mysql
+</code></pre><p>安装包：</p>
+<pre><code># helm install db stable/mysql
+</code></pre><p>查看发布状态：</p>
+<pre><code># helm status db
+</code></pre><h3 id="2安装前自定义-chart-配置选项">2、安装前自定义 chart 配置选项</h3>
+<p>上面部署的 mysql 并没有成功，这是因为并不是所有的 chart 都能按照默认配置运行成功，可能会需要一些环境依赖，例如 PV。</p>
+<p>所以我们需要自定义 chart 配置选项，安装过程中有两种方法可以传递配置数据：</p>
+<ul>
+<li>&ndash;values（或-f）：指定带有覆盖的 YAML 文件。这可以多次指定，最右边的文件优先</li>
+<li>&ndash;set：在命令行上指定替代。如果两者都用，&ndash;set 优先级高</li>
+</ul>
+<p>&ndash;values 使用，先将修改的变量写到一个文件中</p>
+<pre><code># helm show values stable/mysql
+# cat config.yaml
+persistence:
+  enabled: true
+  storageClass: &quot;managed-nfs-storage&quot;
+  accessMode: ReadWriteOnce
+  size: 8Gi
+mysqlUser: &quot;k8s&quot;
+mysqlPassword: &quot;123456&quot;
+mysqlDatabase: &quot;k8s&quot;
+# helm install db -f config.yaml stable/mysql
+# kubectl get pods
+NAME                                      READY   STATUS    RESTARTS   AGE
+db-mysql-57485b68dc-4xjhv                 1/1     Running   0          8m51s
+</code></pre><p>以上将创建具有名称的默认 MySQL 用户 k8s，并授予此用户访问新创建的 k8s 数据库的权限，但将接受该图表的所有其余默认值。</p>
+<p>命令行替代变量：</p>
+<pre><code># helm install db --set persistence.storageClass=&quot;managed-nfs-storage&quot; stable/mysql
+</code></pre><p>也可以把 chart 包下载下来查看详情：</p>
+<pre><code># helm pull stable/mysql --untar
+</code></pre><p>values yaml 与 set 使用：</p>
+<p><img src="https://k8s-1252881505.cos.ap-beijing.myqcloud.com/k8s-2/yaml-set.png" alt=""></p>
+<p><strong>该 helm install 命令可以从多个来源安装：</strong></p>
+<ul>
+<li>chart 存储库</li>
+<li>本地 chart 存档（helm install foo-0.1.1.tgz）</li>
+<li>chart 目录（helm install path/to/foo）</li>
+<li>完整的 URL（helm install <a href="https://example.com/charts/foo-1.2.3.tgz">https://example.com/charts/foo-1.2.3.tgz</a>）</li>
+</ul>
+<h3 id="3构建一个-helm-chart">3、构建一个 Helm Chart</h3>
+<p>先给学员自动生成目录讲解，然后再手动给学员创建目录和各个文件。</p>
+<pre><code># helm create mychart
+Creating mychart
+# tree mychart/
+mychart/
+├── charts
+├── Chart.yaml
+├── templates
+│   ├── deployment.yaml
+│   ├── _helpers.tpl
+│   ├── ingress.yaml
+│   ├── NOTES.txt
+│   └── service.yaml
+└── values.yaml
+</code></pre><ul>
+<li>Chart.yaml：用于描述这个 Chart 的基本信息，包括名字、描述信息以及版本等。</li>
+<li>values.yaml ：用于存储 templates 目录中模板文件中用到变量的值。</li>
+<li>Templates： 目录里面存放所有 yaml 模板文件。</li>
+<li>charts：目录里存放这个 chart 依赖的所有子 chart。</li>
+<li>NOTES.txt ：用于介绍 Chart 帮助信息， helm install 部署后展示给用户。例如：如何使用这个 Chart、列出缺省的设置等。</li>
+<li>_helpers.tpl：放置模板助手的地方，可以在整个 chart 中重复使用</li>
+</ul>
+<p>创建 Chart 后，接下来就是将其部署：</p>
+<pre><code>helm install web mychart/
+</code></pre><p>也可以打包推送的 charts 仓库共享别人使用。</p>
+<pre><code># helm package mychart/
+mychart-0.1.0.tgz
+</code></pre><h3 id="4升级回滚和删除">4、升级、回滚和删除</h3>
+<p>发布新版本的 chart 时，或者当您要更改发布的配置时，可以使用该<code>helm upgrade</code> 命令。</p>
+<pre><code># helm upgrade --set imageTag=1.17 web mychart
+# helm upgrade -f values.yaml web mychart
+</code></pre><p>如果在发布后没有达到预期的效果，则可以使用<code>helm rollback </code>回滚到之前的版本。</p>
+<p>例如将应用回滚到第一个版本：</p>
+<pre><code># helm rollback web 2
+</code></pre><p>卸载发行版，请使用以下<code>helm uninstall</code>命令：</p>
+<pre><code># helm uninstall web
+</code></pre><p>查看历史版本配置信息</p>
+<pre><code># helm get --revision 1 web
+</code></pre><h2 id="36-chart-模板">3.6 Chart 模板</h2>
+<p>Helm 最核心的就是模板，即模板化的 K8S manifests 文件。</p>
+<p>它本质上就是一个 Go 的 template 模板。Helm 在 Go template 模板的基础上，还会增加很多东西。如一些自定义的元数据信息、扩展的库以及一些类似于编程形式的工作流，例如条件语句、管道等等。这些东西都会使得我们的模板变得更加丰富。</p>
+<h3 id="1模板">1、模板</h3>
+<p>有了模板，我们怎么把我们的配置融入进去呢？用的就是这个 values 文件。这两部分内容其实就是 chart 的核心功能。</p>
+<pre><code># rm -rf mychart/templates/*
+# vi templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - image: nginx:1.16
+        name: nginx
+</code></pre><p>实际上，这已经是一个可安装的 Chart 包了，通过 <code>helm install</code>命令来进行安装：</p>
+<pre><code># helm install web mychart
+</code></pre><p>这样部署，其实与直接 apply 没什么两样。</p>
+<p>然后使用如下命令可以看到实际的模板被渲染过后的资源文件：</p>
+<pre><code># helm get manifest web
+</code></pre><p>可以看到，这与刚开始写的内容是一样的，包括名字、镜像等，我们希望能在一个地方统一定义这些会经常变换的字段，这就需要用到 Chart 的模板了。</p>
+<pre><code># vi templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - image: nginx:1.16
+        name: nginx
+</code></pre><p>这个 deployment 就是一个 Go template 的模板，这里定义的 Release 模板对象属于 Helm 内置的一种对象，是从 values 文件中读取出来的。这样一来，我们可以将需要变化的地方都定义变量。</p>
+<p>再执行 helm install chart 可以看到现在生成的名称变成了<strong>web-deployment</strong>，证明已经生效了。也可以使用命令 helm get manifest 查看最终生成的文件内容。</p>
+<h3 id="2调试">2、调试</h3>
+<p>Helm 也提供了<code>--dry-run --debug</code>调试参数，帮助你验证模板正确性。在执行<code>helm install</code>时候带上这两个参数就可以把对应的 values 值和渲染的资源清单打印出来，而不会真正的去部署一个 release。</p>
+<p>比如我们来调试上面创建的 chart 包：</p>
+<pre><code># helm install web2 --dry-run /root/mychart
+</code></pre><h3 id="3内置对象">3、内置对象</h3>
+<p>刚刚我们使用 <code>{{.Release.Name}}</code>将 release 的名称插入到模板中。这里的 Release 就是 Helm 的内置对象，下面是一些常用的内置对象：</p>
+<table>
+<thead>
+<tr>
+<th>Release.Name</th>
+<th>release 名称</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Release.Time</td>
+<td>release 的时间</td>
+</tr>
+<tr>
+<td>Release.Namespace</td>
+<td>release 的 namespace（如果清单未覆盖）</td>
+</tr>
+<tr>
+<td>Release.Service</td>
+<td>release 服务的名称</td>
+</tr>
+<tr>
+<td>Release.Revision</td>
+<td>此 release 的修订版本号，从 1 开始累加</td>
+</tr>
+<tr>
+<td>Release.IsUpgrade</td>
+<td>如果当前操作是升级或回滚，则将其设置为 true。</td>
+</tr>
+<tr>
+<td>Release.IsInstall</td>
+<td>如果当前操作是安装，则设置为 true。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="4values">4、Values</h3>
+<p>Values 对象是为 Chart 模板提供值，这个对象的值有 4 个来源：</p>
+<ul>
+<li>
+<p>chart 包中的 values.yaml 文件</p>
+</li>
+<li>
+<p>父 chart 包的 values.yaml 文件</p>
+</li>
+<li>
+<p>通过 helm install 或者 helm upgrade 的 <code>-f</code>或者 <code>--values</code>参数传入的自定义的 yaml 文件</p>
+</li>
+<li>
+<p>通过 <code>--set</code> 参数传入的值</p>
+</li>
+</ul>
+<p>chart 的 values.yaml 提供的值可以被用户提供的 values 文件覆盖，而该文件同样可以被 <code>--set</code>提供的参数所覆盖。</p>
+<p>这里我们来重新编辑 mychart/values.yaml 文件，将默认的值全部清空，然后添加一个副本数：</p>
+<pre><code># cat values.yaml
+replicas: 3
+image: &quot;nginx&quot;
+imageTag: &quot;1.17&quot;
+# cat templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-deployment
+spec:
+  replicas: {{ .Values.replicas }}
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - image: {{ .Values.image }}:{{ .Values.imageTag }}
+        name: nginx
+</code></pre><p>查看渲染结果：</p>
+<pre><code># helm install --dry-run web ../mychart/
+</code></pre><p>values 文件也可以包含结构化内容，例如：</p>
+<pre><code># cat values.yaml
+...
+label:
+  project: ms
+  app: nginx
+
+# cat templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-deployment
+spec:
+  replicas: {{ .Values.replicas }}
+  selector:
+    matchLabels:
+      project: {{ .Values.label.project }}
+      app: {{ .Values.label.app }}
+  template:
+    metadata:
+      labels:
+        project: {{ .Values.label.project }}
+        app: {{ .Values.label.app }}
+    spec:
+      containers:
+      - image: {{ .Values.image }}:{{ .Values.imageTag }}
+        name: nginx
+</code></pre><p>查看渲染结果：</p>
+<pre><code># helm install --dry-run web ../mychart/
+</code></pre><h3 id="5管道与函数">5、管道与函数</h3>
+<p>前面讲的模块，其实就是将值传给模板引擎进行渲染，模板引擎还支持对拿到数据进行二次处理。</p>
+<p>例如从.Values 中读取的值变成字符串，可以使用<code>quote</code>函数实现：</p>
+<pre><code># vi templates/deployment.yaml
+app: {{ quote .Values.label.app }}
+# helm install --dry-run web ../mychart/
+        project: ms
+        app: &quot;nginx&quot;
+</code></pre><p>quote .Values.label.app 将后面的值作为参数传递给 quote 函数。</p>
+<p>模板函数调用语法为：functionName arg1 arg2&hellip;</p>
+<p>另外还会经常使用一个 default 函数，该函数允许在模板中指定默认值，以防止该值被忽略掉。</p>
+<p>例如忘记定义，执行 helm install 会因为缺少字段无法创建资源，这时就可以定义一个默认值。</p>
+<pre><code># cat values.yaml
+replicas: 2
+# cat templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-deployment
+</code></pre><pre><code>- name: {{ .Values.name | default &quot;nginx&quot; }}
+</code></pre><p><strong>其他函数：</strong></p>
+<p>缩进：{{ .Values.resources | indent 12 }}</p>
+<p>大写：{{ upper .Values.resources }}</p>
+<p>首字母大写：{{ title .Values.resources }}</p>
+<h3 id="6流程控制">6、流程控制</h3>
+<p>流程控制是为模板提供了一种能力，满足更复杂的数据逻辑处理。</p>
+<p>Helm 模板语言提供以下流程控制语句：</p>
+<ul>
+<li><code>if/else</code> 条件块</li>
+<li><code>with</code> 指定范围</li>
+<li><code>range</code> 循环块</li>
+</ul>
+<h4 id="if">if</h4>
+<p><code>if/else</code>块是用于在模板中有条件地包含文本块的方法，条件块的基本结构如下：</p>
+<pre><code>{{ if PIPELINE }}
+  # Do something
+{{ else if OTHER PIPELINE }}
+  # Do something else
+{{ else }}
+  # Default case
+{{ end }}
+</code></pre><p>条件判断就是判断条件是否为真，如果值为以下几种情况则为 false：</p>
+<ul>
+<li>
+<p>一个布尔类型的 <code>假</code></p>
+</li>
+<li>
+<p>一个数字 <code>零</code></p>
+</li>
+<li>
+<p>一个 <code>空</code>的字符串</p>
+</li>
+<li>
+<p>一个 <code>nil</code>（空或 <code>null</code>）</p>
+</li>
+<li>
+<p>一个空的集合（ <code>map</code>、 <code>slice</code>、 <code>tuple</code>、 <code>dict</code>、 <code>array</code>）</p>
+</li>
+</ul>
+<p>除了上面的这些情况外，其他所有条件都为 <code>真</code>。</p>
+<p>例如，如果.Values.env.hello 值为 world，则值为 hello: true</p>
+<pre><code># cat values.yaml
+replicas: 2
+label:
+  project: ms
+  app: product
+env:
+  hello: &quot;world&quot;
+</code></pre><pre><code># cat templates/deploymemt.yaml
+        env:
+        {{ if eq .Values.env.hello &quot;world&quot; }}
+          - name: hello
+            value: 123
+        {{ end }}
+</code></pre><p>其中运算符 <code>eq</code>是判断是否相等的操作，除此之外，还有 <code>ne</code>、 <code>lt</code>、 <code>gt</code>、 <code>and</code>、 <code>or</code>等运算符。</p>
+<p>通过模板引擎来渲染一下，会得到如下结果：</p>
+<pre><code># helm install --dry-run web ../mychart/
+...
+        env:
+
+          - name: hello
+            value: 123
+</code></pre><p>可以看到渲染出来会有多余的空行，这是因为当模板引擎运行时，会将控制指令删除，所有之前占的位置也就空白了，需要使用{{- if &hellip;}} 的方式消除此空行：</p>
+<pre><code># cat templates/deploymemt.yaml
+...
+        env:
+        {{- if eq .Values.env.hello &quot;world&quot; }}
+          - name: hello
+            value: 123
+        {{- end }}
+</code></pre><p>现在是不是没有多余的空格了，如果使用<code>-}}</code>需谨慎，比如上面模板文件中：</p>
+<pre><code># cat templates/deploymemt.yaml
+...
+       env:
+        {{- if eq .Values.env.hello &quot;world&quot; -}}
+           - hello: true
+        {{- end }}
+</code></pre><p>这会渲染成：</p>
+<pre><code>        env:- hello: true
+</code></pre><p>因为<code>-}}</code>它删除了双方的换行符。</p>
+<h4 id="with">with</h4>
+<p>with ：控制变量作用域。</p>
+<p>其语法和一个简单的 <code>if</code>语句比较类似：</p>
+<pre><code>{{ with PIPELINE }}
+  #  restricted scope
+{{ end }}
+</code></pre><p><code>with</code>语句可以允许将当前范围 <code>.</code>设置为特定的对象，比如我们前面一直使用的 <code>.Values.label</code>，我们可以使用 <code>with</code>来将 <code>.</code>范围指向 <code>.Values.label</code>：</p>
+<pre><code>apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.name | default &quot;web&quot; }}
+spec:
+  replicas: {{ .Values.replicas }}
+  selector:
+    matchLabels:
+      project: {{ .Values.label.project }}
+      app: {{ .Values.label.app }}
+  template:
+    metadata:
+      labels:
+        project: {{ .Values.label.project }}
+        app: {{ .Values.label.app }}
+      {{- with .Values.label }}
+        project: {{ .project }}
+        app: {{ .app }}
+      {{- end }}
+</code></pre><p>上面增加了一个{{- with .Values.label }} xxx {{- end }}的一个块，这样的话就可以在当前的块里面直接引用 <code>.project</code>和 <code>.app</code>了。</p>
+<p>需要注意的在 <code>with</code>声明的范围内，将无法从父范围访问到其他对象了，比如：</p>
+<pre><code>      {{- with .Values.label }}
+        project: {{ .project }}
+        app: {{ .app }}
+        {{ .Release.Name }}
+      {{- end }}
+</code></pre><h4 id="range">range</h4>
+<p>在 Helm 模板语言中，使用 <code>range</code>关键字来进行循环操作。</p>
+<p>我们在 <code>values.yaml</code>文件中添加上一个变量列表：</p>
+<pre><code># cat values.yaml
+replicas: 2
+label:
+  project: ms
+  app: product
+env:
+  hello: &quot;world&quot;
+  test: &quot;yes&quot;
+</code></pre><p>循环打印该列表：</p>
+<pre><code>        env:
+        {{- range .Values.env }}
+           {{ . }}
+        {{- end }}
+</code></pre><p>循环内部我们使用的是一个 <code>.</code>，这是因为当前的作用域就在当前循环内，这个 <code>.</code>引用的当前读取的元素。</p>
+<p>但结果并不是我们所期望的：</p>
+<pre><code>    env:
+       - name: world
+         value: world
+</code></pre>
+<blockquote>
+<p>讲师：李振良</p>
+<p>官方网站： <a href="http://www.ctnrs.com">http://www.ctnrs.com</a></p>
+</blockquote>
+
+    </div>
+
+    
+    
+<div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">clive</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+      2020-10-19
+      
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">License</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+
+
+    
+    
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">Reward</label>
+  <div class="qr-code">
+    
+    
+      <label class="qr-code-image" for="reward">
+        <img class="image" src="/post/k8s/wechat.jpeg">
+        <span>Wechat</span>
+      </label>
+    
+  </div>
+</div>
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          <a href="http://localhost:1313/tags/kubernetes/">kubernetes</a>
+          <a href="http://localhost:1313/tags/helm/">helm</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/k8s/docker-command/">
+            
+            <i class="iconfont">
+              <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M691.908486 949.511495l75.369571-89.491197c10.963703-12.998035 10.285251-32.864502-1.499144-44.378743L479.499795 515.267417 757.434875 204.940602c11.338233-12.190647 11.035334-32.285311-0.638543-44.850487l-80.46666-86.564541c-11.680017-12.583596-30.356378-12.893658-41.662889-0.716314L257.233596 494.235404c-11.332093 12.183484-11.041474 32.266891 0.657986 44.844348l80.46666 86.564541c1.772366 1.910513 3.706415 3.533476 5.750981 4.877077l306.620399 321.703933C662.505829 963.726242 680.945807 962.528973 691.908486 949.511495z"></path>
+</svg>
+
+            </i>
+            <span class="prev-text nav-default">Docker Command</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        
+          <a class="next" href="/post/nginx/nginx-https/">
+            <span class="next-text nav-default">Https 反向代理</span>
+            <span class="prev-text nav-mobile">Next</span>
+            
+            <i class="iconfont">
+              <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M332.091514 74.487481l-75.369571 89.491197c-10.963703 12.998035-10.285251 32.864502 1.499144 44.378743l286.278095 300.375162L266.565125 819.058374c-11.338233 12.190647-11.035334 32.285311 0.638543 44.850487l80.46666 86.564541c11.680017 12.583596 30.356378 12.893658 41.662889 0.716314l377.434212-421.426145c11.332093-12.183484 11.041474-32.266891-0.657986-44.844348l-80.46666-86.564541c-1.772366-1.910513-3.706415-3.533476-5.750981-4.877077L373.270379 71.774697C361.493148 60.273758 343.054193 61.470003 332.091514 74.487481z"></path>
+</svg>
+
+            </i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+
+  
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+    
+
+  
+
+        </div>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="icon-links">
+  
+  
+    <a href="mailto:your@email.com" rel="me noopener" class="iconfont"
+      title="email" >
+      <svg class="icon" viewBox="0 0 1451 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="36" height="36">
+  <path d="M664.781909 681.472759 0 97.881301C0 3.997201 71.046997 0 71.046997 0L474.477909 0 961.649408 0 1361.641813 0C1361.641813 0 1432.688811 3.997201 1432.688811 97.881301L771.345323 681.472759C771.345323 681.472759 764.482731 685.154773 753.594283 688.65053L753.594283 688.664858C741.602731 693.493018 729.424896 695.068979 718.077952 694.839748 706.731093 695.068979 694.553173 693.493018 682.561621 688.664858L682.561621 688.65053C671.644501 685.140446 664.781909 681.472759 664.781909 681.472759L664.781909 681.472759ZM718.063616 811.603883C693.779541 811.016482 658.879232 802.205449 619.10784 767.734955 542.989056 701.759633 0 212.052267 0 212.052267L0 942.809523C0 942.809523 0 1024 83.726336 1024L682.532949 1024 753.579947 1024 1348.948139 1024C1432.688811 1024 1432.688811 942.809523 1432.688811 942.809523L1432.688811 212.052267C1432.688811 212.052267 893.138176 701.759633 817.019477 767.734955 777.248 802.205449 742.347691 811.03081 718.063616 811.603883L718.063616 811.603883Z"></path>
+</svg>
+
+    </a>
+  
+    <a href="http://localhost:1313" rel="me noopener" class="iconfont"
+      title="weibo"  target="_blank"
+      >
+      <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="36" height="36">
+  <path d="M385.714286 733.714286q12-19.428571 6.285714-39.428571t-25.714286-28.571429q-19.428571-8-41.714286-0.571429t-34.285714 26.285714q-12.571429 19.428571-7.428571 39.142857t24.571429 28.857143 42.571429 1.428571 35.714286-27.142857zm53.714286-69.142857q4.571429-7.428571 2-15.142857t-10-10.571429q-8-2.857143-16.285714 2.857143t-12.285714 10.571429q-9.714286 17.714286 7.428571 25.714286 8 2.857143 16.571429 2.857143t12.571429-10.571429zm99.428571 61.142857q-25.714286 58.285714-90.285714 85.714286t-128 6.857143q-61.142857-19.428571-84.285714-72.285714t3.714286-107.142857q26.857143-53.142857 86.571429-79.428571t120.285714-10.857143q63.428571 16.571429 90.571429 68.285714t1.428571 108.857143zm178.285714-91.428571q-5.142857-54.857143-50.857143-97.142857t-119.142857-62.285714-156.857143-12q-127.428571 13.142857-211.142857 80.857143t-75.714286 151.142857q5.142857 54.857143 50.857143 97.142857t119.142857 62.285714 156.857143 12q127.428571-13.142857 211.142857-80.857143t75.714286-151.142857zm176 2.285714q0 38.857143-21.142857 79.714286t-62.285714 78.285714-96.285714 67.142857-129.142857 47.428571-154.571429 17.714286-157.142857-19.142857-137.428571-53.142857-98-86.285714-37.142857-114q0-65.714286 39.714286-140t112.857143-147.428571q96.571429-96.571429 195.142857-134.857143t140.857143 4q37.142857 36.571429 11.428571 119.428571-2.285714 8-0.571429 11.428571t5.714286 4 8.285714 2.857143 7.714286-2l3.428571-1.142857q79.428571-33.714286 140.571429-33.714286t87.428571 34.857143q25.714286 36 0 101.714286-1.142857 7.428571-2.571429 11.428571t2.571429 7.142857 6.857143 4.285714 9.714286 3.428571q32.571429 10.285714 58.857143 26.857143t45.714286 46.571429 19.428571 66.571429zm-42.285714-356.571429q24 26.857143 31.142857 62t-3.714286 67.142857q-4.571429 13.142857-16.857143 19.428571t-25.428571 2.285714q-13.142857-4.571429-19.428571-16.857143t-2.285714-25.428571q11.428571-36-13.714286-63.428571t-61.142857-20q-13.714286 2.857143-25.714286-4.571429t-14.285714-21.142857q-2.857143-13.714286 4.571429-25.428571t21.142857-14.571429q34.285714-7.428571 68 3.142857t57.714286 37.428571zm103.428571-93.142857q49.714286 54.857143 64.285714 127.142857t-7.714286 138q-5.142857 15.428571-19.428571 22.857143t-29.714286 2.285714-22.857143-19.428571-2.857143-29.714286q16-46.857143 5.714286-98.285714t-45.714286-90.285714q-35.428571-39.428571-84.571429-54.571429t-98.857143-4.857143q-16 3.428571-29.714286-5.428571t-17.142857-24.857143 5.428571-29.428571 24.857143-16.857143q70.285714-14.857143 139.428571 6.571429t118.857143 76.857143z"></path>
+</svg>
+
+    </a>
+  
+    <a href="http://localhost:1313" rel="me noopener" class="iconfont"
+      title="tumblr"  target="_blank"
+      >
+      <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="36" height="36">
+  <path d="M556.716946 378.027729l133.939525 0 0 89.307002L556.716946 467.334731 556.716946 601.318258c0 58.898435 8.290827 92.557022 53.140291 89.809445 10.382465-0.677429 22.25077-1.855254 35.687804-5.586229 13.437034-3.729951 24.257473-7.458879 32.372292-11.190877l12.739139-5.606695 0 82.546018c-3.403516 2.070148-8.463766 4.820796-15.007809 8.048303-6.631024 3.338025-21.029966 7.656377-43.016723 13.045107-21.988804 5.41022-44.937468 8.070816-68.844971 8.070816-51.395554 0-89.177042-10.994402-113.608477-33.17968-24.343431-22.097274-27.572986-56.147788-27.572986-101.195773L422.605505 467.334731l-89.263 0-0.435928-66.64077c38.480406-12.369725 67.798129-29.734208 88.128153-52.114938 20.332071-22.273283 33.333176-57.021691 38.829354-104.22783l96.853885-0.393973L556.717969 378.027729zM958.70846 243.958244l0 536.105001c0 98.730629-80.013335 178.722474-178.615027 178.722474L243.991502 958.785719c-98.774631 0-178.700985-79.991846-178.700985-178.722474L65.290517 243.958244c0-98.642624 79.925331-178.744987 178.700985-178.744987l536.102954 0C878.695125 65.213257 958.70846 145.31562 958.70846 243.958244zM869.44546 288.612257c0-74.015737-60.033281-133.961014-134.027529-133.961014L288.667004 154.651242c-73.994248 0-134.115534 59.945277-134.115534 133.961014l0 446.775486c0 74.015737 60.121286 133.983527 134.115534 133.983527l446.750927 0c73.994248 0 134.027529-59.96779 134.027529-133.983527L869.44546 288.612257z"></path>
+</svg>
+
+    </a>
+
+
+<a href="http://localhost:1313/index.xml" rel="noopener alternate" type="application/rss&#43;xml"
+    class="iconfont" title="rss" target="_blank">
+    <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="30" height="30">
+  <path d="M819.157333 1024C819.157333 574.592 449.408 204.8 0 204.8V0c561.706667 0 1024 462.293333 1024 1024h-204.842667zM140.416 743.04a140.8 140.8 0 0 1 140.501333 140.586667A140.928 140.928 0 0 1 140.074667 1024C62.72 1024 0 961.109333 0 883.626667s62.933333-140.544 140.416-140.586667zM678.784 1024h-199.04c0-263.210667-216.533333-479.786667-479.744-479.786667V345.173333c372.352 0 678.784 306.517333 678.784 678.826667z"></path>
+</svg>
+
+  </a>
+   
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - <a class="theme-link" href="https://github.com/xianmin/hugo-theme-jane">Jane</a>
+  </span>
+
+  <span class="copyright-year">
+    &copy;
+    
+      2017 -
+    2020
+    <span class="heart">
+      
+      <i class="iconfont">
+        <svg class="icon" viewBox="0 0 1025 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="14" height="14">
+  <path d="M1000.1 247.9c-15.5-37.3-37.6-70.6-65.7-98.9-54.4-54.8-125.8-85-201-85-85.7 0-166 39-221.4 107.4C456.6 103 376.3 64 290.6 64c-75.1 0-146.5 30.4-201.1 85.6-28.2 28.5-50.4 61.9-65.8 99.3-16 38.8-24 79.9-23.6 122.2 0.7 91.7 40.1 177.2 108.1 234.8 3.1 2.6 6 5.1 8.9 7.8 14.9 13.4 58 52.8 112.6 102.7 93.5 85.5 209.9 191.9 257.5 234.2 7 6.1 15.8 9.5 24.9 9.5 9.2 0 18.1-3.4 24.9-9.5 34.5-30.7 105.8-95.9 181.4-165 74.2-67.8 150.9-138 195.8-178.2 69.5-57.9 109.6-144.4 109.9-237.3 0.1-42.5-8-83.6-24-122.2z"
+   fill="#8a8a8a"></path>
+</svg>
+
+      </i>
+    </span><span class="author">
+        clive
+        
+      </span></span>
+
+  
+  
+
+  
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont">
+        
+        <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="35" height="35">
+  <path d="M510.866688 227.694839 95.449397 629.218702l235.761562 0-2.057869 328.796468 362.40389 0L691.55698 628.188232l241.942331-3.089361L510.866688 227.694839zM63.840492 63.962777l894.052392 0 0 131.813095L63.840492 195.775872 63.840492 63.962777 63.840492 63.962777zM63.840492 63.962777"></path>
+</svg>
+
+      </i>
+    </div>
+  </div>
+  
+<script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+
+
+
+
+<script type="text/javascript" src="/js/main.638251f4230630f0335d8c6748e53a96f94b72670920b60c09a56fdc8bece214.js" integrity="sha256-Y4JR9CMGMPAzXYxnSOU6lvlLcmcJILYMCaVv3Ivs4hQ=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <script type="text/javascript" src="/js/load-photoswipe.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe.min.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe-ui-default.min.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

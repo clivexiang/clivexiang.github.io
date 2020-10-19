@@ -1,0 +1,1268 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Python Ansible 自动化部署 K8S 集群  - clive xiang 的博客</title>
+  
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta name="MobileOptimized" content="width"/>
+<meta name="HandheldFriendly" content="true"/>
+
+
+<meta name="applicable-device" content="pc,mobile">
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="mobile-web-app-capable" content="yes">
+
+<meta name="author" content="clive xiang" />
+  <meta name="description" content="1.1 Ansible 介绍 Ansible 是一种 IT 自动化工具。它可以配置系统，部署软件以及协调更高级的 IT 任务，例如持续部署，滚动更新。Ansible 适用于管理企业 IT 基础设施" />
+
+  <meta name="keywords" content="Hugo, theme, clive" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.74.1" />
+
+
+<link rel="canonical" href="http://localhost:1313/post/k8s/python-ansible/" />
+
+
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/sass/jane.min.f1e506a781bf25d33ffc18aa6b4e972a965c58049d27d4f92b7db2e9bf28e4bf.css" integrity="sha256-8eUGp4G/JdM//Biqa06XKpZcWASdJ9T5K32y6b8o5L8=" media="screen" crossorigin="anonymous">
+
+
+
+
+
+<meta property="og:title" content="Python Ansible 自动化部署 K8S 集群 " />
+<meta property="og:description" content="1.1 Ansible 介绍 Ansible 是一种 IT 自动化工具。它可以配置系统，部署软件以及协调更高级的 IT 任务，例如持续部署，滚动更新。Ansible 适用于管理企业 IT 基础设施" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/post/k8s/python-ansible/" />
+<meta property="article:published_time" content="2020-10-19T15:45:06+08:00" />
+<meta property="article:modified_time" content="2020-10-19T15:45:06+08:00" />
+<meta itemprop="name" content="Python Ansible 自动化部署 K8S 集群 ">
+<meta itemprop="description" content="1.1 Ansible 介绍 Ansible 是一种 IT 自动化工具。它可以配置系统，部署软件以及协调更高级的 IT 任务，例如持续部署，滚动更新。Ansible 适用于管理企业 IT 基础设施">
+<meta itemprop="datePublished" content="2020-10-19T15:45:06&#43;08:00" />
+<meta itemprop="dateModified" content="2020-10-19T15:45:06&#43;08:00" />
+<meta itemprop="wordCount" content="3199">
+
+
+
+<meta itemprop="keywords" content="python,ansible,k8s," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Python Ansible 自动化部署 K8S 集群 "/>
+<meta name="twitter:description" content="1.1 Ansible 介绍 Ansible 是一种 IT 自动化工具。它可以配置系统，部署软件以及协调更高级的 IT 任务，例如持续部署，滚动更新。Ansible 适用于管理企业 IT 基础设施"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+
+
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">clive</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://localhost:1313/">首页</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://localhost:1313/post/">归档</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://localhost:1313/tags/">标签</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://localhost:1313/categories/">分类</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://kubernetes.io" rel="noopener" target="_blank">
+              k8s
+              
+              <i class="iconfont">
+                <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M623.36 272.96 473.216 423.04C467.2 429.056 467.072 438.656 472.896 444.416c0 0-6.72-6.656 1.6 1.6C496.064 467.648 528.64 500.224 528.64 500.224 534.464 506.048 544 505.856 550.016 499.904l150.08-150.144 67.328 66.432c9.024 8.96 27.456 4.544 30.4-8.96 19.968-92.608 46.656-227.52 46.656-227.52 6.848-34.496-16.192-56.704-49.92-49.92 0 0-134.656 26.816-227.328 46.784C560.32 178.048 556.352 182.272 554.752 187.136c-3.2 6.208-3.008 14.208 3.776 20.992L623.36 272.96z"></path>
+  <path d="M841.152 457.152c-30.528 0-54.784 24.512-54.784 54.656l0 274.752L237.696 786.56 237.696 237.696l206.016 0c6.656 0 10.752 0 13.248 0C487.68 237.696 512 213.184 512 182.848 512 152.32 487.36 128 456.96 128L183.04 128C153.216 128 128 152.576 128 182.848c0 3.136 0.256 6.272 0.768 9.28C128.256 195.136 128 198.272 128 201.408l0 639.488c0 0.064 0 0.192 0 0.256 0 0.128 0 0.192 0 0.32 0 30.528 24.512 54.784 54.784 54.784l646.976 0c6.592 0 9.728 0 11.712 0 28.736 0 52.928-22.976 54.464-51.968C896 843.264 896 842.304 896 841.344l0-20.352L896 561.408 896 512.128C896 481.792 871.424 457.152 841.152 457.152z"></path>
+</svg>
+
+              </i>
+            </a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://localhost:1313/about/">关于</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          <div class="mobile-menu-parent">
+            <span class="mobile-submenu-open"></span>
+            <a href="http://localhost:1313/">
+              docs
+            </a>
+          </div>
+          <ul class="mobile-submenu-list">
+            
+              <li>
+                <a href="http://localhost:1313/post/jane-theme-preview/">Jane Theme Preview</a>
+              </li>
+            
+              <li>
+                <a href="http://localhost:1313/post/shortcodes-preview/">Shortcodes Preview</a>
+              </li>
+            
+              <li>
+                <a href="http://localhost:1313/post/image-preview/">Image Preview</a>
+              </li>
+            
+              <li>
+                <a href="http://localhost:1313/post/math-preview/">Math Preview</a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+
+    
+  </ul>
+</nav>
+
+
+  
+    
+
+
+
+
+
+
+  <link rel="stylesheet" href="/lib/photoswipe/photoswipe.min.css" />
+  <link rel="stylesheet" href="/lib/photoswipe/default-skin/default-skin.min.css" />
+
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+  
+
+  
+
+  
+
+  <header id="header" class="header container">
+    <div class="logo-wrapper">
+  <a href="/" class="logo">
+    
+      clive
+    
+  </a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://localhost:1313/">首页</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://localhost:1313/post/">归档</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://localhost:1313/tags/">标签</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://localhost:1313/categories/">分类</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://kubernetes.io" rel="noopener" target="_blank">
+              k8s
+              
+              <i class="iconfont">
+                <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M623.36 272.96 473.216 423.04C467.2 429.056 467.072 438.656 472.896 444.416c0 0-6.72-6.656 1.6 1.6C496.064 467.648 528.64 500.224 528.64 500.224 534.464 506.048 544 505.856 550.016 499.904l150.08-150.144 67.328 66.432c9.024 8.96 27.456 4.544 30.4-8.96 19.968-92.608 46.656-227.52 46.656-227.52 6.848-34.496-16.192-56.704-49.92-49.92 0 0-134.656 26.816-227.328 46.784C560.32 178.048 556.352 182.272 554.752 187.136c-3.2 6.208-3.008 14.208 3.776 20.992L623.36 272.96z"></path>
+  <path d="M841.152 457.152c-30.528 0-54.784 24.512-54.784 54.656l0 274.752L237.696 786.56 237.696 237.696l206.016 0c6.656 0 10.752 0 13.248 0C487.68 237.696 512 213.184 512 182.848 512 152.32 487.36 128 456.96 128L183.04 128C153.216 128 128 152.576 128 182.848c0 3.136 0.256 6.272 0.768 9.28C128.256 195.136 128 198.272 128 201.408l0 639.488c0 0.064 0 0.192 0 0.256 0 0.128 0 0.192 0 0.32 0 30.528 24.512 54.784 54.784 54.784l646.976 0c6.592 0 9.728 0 11.712 0 28.736 0 52.928-22.976 54.464-51.968C896 843.264 896 842.304 896 841.344l0-20.352L896 561.408 896 512.128C896 481.792 871.424 457.152 841.152 457.152z"></path>
+</svg>
+
+              </i>
+            </a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://localhost:1313/about/">关于</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          <a class="menu-item-link menu-parent" href="http://localhost:1313/">docs</a>
+          <ul class="submenu">
+            
+              <li>
+                <a href="http://localhost:1313/post/jane-theme-preview/">Jane Theme Preview</a>
+              </li>
+            
+              <li>
+                <a href="http://localhost:1313/post/shortcodes-preview/">Shortcodes Preview</a>
+              </li>
+            
+              <li>
+                <a href="http://localhost:1313/post/image-preview/">Image Preview</a>
+              </li>
+            
+              <li>
+                <a href="http://localhost:1313/post/math-preview/">Math Preview</a>
+              </li>
+            
+          </ul>
+
+        
+
+      </li>
+    
+
+    
+    
+
+    
+  </ul>
+</nav>
+
+  </header>
+
+  <div id="mobile-panel">
+    <main id="main" class="main bg-llight">
+      <div class="content-wrapper">
+        <div id="content" class="content container">
+          <article class="post bg-white">
+    
+    <header class="post-header">
+      <h1 class="post-title">Python Ansible 自动化部署 K8S 集群 </h1>
+      
+      <div class="post-meta">
+        <time datetime="2020-10-19" class="post-time">
+          2020-10-19
+        </time>
+        <div class="post-category">
+            <a href="http://localhost:1313/categories/python/"> python </a>
+            <a href="http://localhost:1313/categories/comand/"> comand </a>
+            <a href="http://localhost:1313/categories/index/"> index </a>
+            
+          </div>
+        
+
+        
+        
+
+        
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Table of Contents</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#11-ansible-介绍">1.1 Ansible 介绍</a></li>
+    <li><a href="#12-主机清单">1.2 主机清单</a></li>
+    <li><a href="#13-命令行使用">1.3 命令行使用</a>
+      <ul>
+        <li><a href="#1连接远程主机认证">1、连接远程主机认证</a></li>
+        <li><a href="#2常用选项">2、常用选项</a></li>
+        <li><a href="#3命令行使用">3、命令行使用</a></li>
+      </ul>
+    </li>
+    <li><a href="#14-常用模块">1.4 常用模块</a>
+      <ul>
+        <li><a href="#1shell">1、shell</a></li>
+        <li><a href="#2copy">2、copy</a></li>
+        <li><a href="#3file">3、file</a></li>
+        <li><a href="#4yum">4、yum</a></li>
+        <li><a href="#5servicesystemd">5、service/systemd</a></li>
+        <li><a href="#6unarchive">6、unarchive</a></li>
+        <li><a href="#7debug">7、debug</a></li>
+      </ul>
+    </li>
+    <li><a href="#15-变量">1.5 变量</a>
+      <ul>
+        <li><a href="#1主机变量与组变量">1、主机变量与组变量</a></li>
+        <li><a href="#2register-变量">2、Register 变量</a></li>
+      </ul>
+    </li>
+    <li><a href="#16-playbook">1.6 Playbook</a>
+      <ul>
+        <li><a href="#1主机和用户">1、主机和用户</a></li>
+        <li><a href="#2定义变量">2、定义变量</a></li>
+        <li><a href="#3任务列表">3、任务列表</a></li>
+        <li><a href="#4语法检查与调试">4、语法检查与调试</a></li>
+        <li><a href="#5任务控制">5、任务控制</a></li>
+        <li><a href="#6流程控制">6、流程控制</a></li>
+        <li><a href="#7模板">7、模板</a></li>
+      </ul>
+    </li>
+    <li><a href="#17-roles">1.7 Roles</a>
+      <ul>
+        <li><a href="#1定义-roles">1、定义 Roles</a></li>
+        <li><a href="#2使用角色">2、使用角色</a></li>
+        <li><a href="#3角色控制">3、角色控制</a></li>
+        <li><a href="#4定义变量">4、定义变量</a></li>
+      </ul>
+    </li>
+    <li><a href="#18-自动化部署-k8s离线版">1.8 自动化部署 K8S（离线版）</a>
+      <ul>
+        <li><a href="#1-熟悉二进制部署-k8s-步骤">1、 熟悉二进制部署 K8S 步骤</a></li>
+        <li><a href="#2roles-组织-k8s-各组件部署解析">2、Roles 组织 K8S 各组件部署解析</a></li>
+        <li><a href="#3下载所需文件">3、下载所需文件</a></li>
+        <li><a href="#4修改-ansible-文件">4、修改 Ansible 文件</a></li>
+        <li><a href="#5一键部署">5、一键部署</a></li>
+        <li><a href="#6部署控制">6、部署控制</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      <h2 id="11-ansible-介绍">1.1 Ansible 介绍</h2>
+<p>Ansible 是一种 IT 自动化工具。它可以配置系统，部署软件以及协调更高级的 IT 任务，例如持续部署，滚动更新。Ansible 适用于管理企业 IT 基础设施，从具有少数主机的小规模到数千个实例的企业环境。Ansible 也是一种简单的自动化语言，可以完美地描述 IT 应用程序基础结构。</p>
+<p>具备以下三个特点：</p>
+<ul>
+<li>简单：减少学习成本</li>
+<li>强大：协调应用程序生命周期</li>
+<li>无代理：可预测，可靠和安全</li>
+</ul>
+<p>使用文档：https://releases.ansible.com/ansible/</p>
+<p>安装 Ansible：</p>
+<pre><code>yum -y install ansible
+</code></pre><p><img src="https://k8s-1252881505.cos.ap-beijing.myqcloud.com/k8s-2/ansible.png" alt=""></p>
+<ul>
+<li>Inventory：Ansible 管理的主机信息，包括 IP 地址、SSH 端口、账号、密码等</li>
+<li>Modules：任务均有模块完成，也可以自定义模块，例如经常用的脚本。</li>
+<li>Plugins：使用插件增加 Ansible 核心功能，自身提供了很多插件，也可以自定义插件。例如 connection 插件，用于连接目标主机。</li>
+<li>Playbooks：“剧本”，模块化定义一系列任务，供外部统一调用。Ansible 核心功能。</li>
+</ul>
+<h2 id="12-主机清单">1.2 主机清单</h2>
+<pre><code>[webservers]
+192.168.20.232
+192.168.20.233
+192.168.20.234
+192.168.20.235
+192.168.20.236
+
+[dbservers]
+db01.intranet.mydomain.net
+db02.intranet.mydomain.net
+10.25.1.232
+10.25.1.233
+
+</code></pre><pre><code>ssh-keygen -t rsa
+ssh-copy-id -i /root/.ssh/id_rsa.pub -p '20100' 'root@192.168.20.231'
+ssh-copy-id -i /root/.ssh/id_rsa.pub -p '20100' 'root@192.168.20.232'
+ssh-copy-id -i /root/.ssh/id_rsa.pub -p '20100' 'root@192.168.20.23
+chown 0700 -R /root/.ssh/
+cat /root/.ssh/id_rsa.pub &gt; /root/.ssh/authorized_keys
+chown root.root -R /root/.ssh/
+cd /root/.ssh/
+</code></pre><p>sed -i &ldquo;s/#host_key_checking = .*/host_key_checking = False/g&rdquo; /etc/ansible/ansible.cfg</p>
+<h2 id="13-命令行使用">1.3 命令行使用</h2>
+<h3 id="1连接远程主机认证">1、连接远程主机认证</h3>
+<p>SSH 密码认证：</p>
+<pre><code>[webservers]
+192.168.20.232:20100 ansible_ssh_user=root ansible_ssh_pass=’200271200’
+192.168.20.233:20100 ansible_ssh_user=root ansible_ssh_pass=’200271200’
+192.168.20.234:20100 ansible_ssh_user=root ansible_ssh_port=’200271200’
+
+[dbservers]
+db01.intranet.mydomain.net
+db02.intranet.mydomain.net
+10.25.1.56
+10.25.1.57
+
+</code></pre><p>SSH 密钥对认证：</p>
+<pre><code>[webservers]
+10.206.240.111:22 ansible_ssh_user=root ansible_ssh_key=/root/.ssh/id_rsa
+10.206.240.112:22 ansible_ssh_user=root
+
+也可以在配置文件中指定：
+[defaults]
+private_key_file = /root/.ssh/id_rsa  # 默认路径
+
+</code></pre><h3 id="2常用选项">2、常用选项</h3>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-C, &ndash;check</td>
+<td>运行检查，不执行任何操作</td>
+</tr>
+<tr>
+<td>-e EXTRA_VARS,&ndash;extra-vars=EXTRA_VARS</td>
+<td>设置附加变量 key=value</td>
+</tr>
+<tr>
+<td>-u REMOTE_USER, &ndash;user=REMOTE_USER</td>
+<td>SSH 连接用户，默认 None</td>
+</tr>
+<tr>
+<td>-k, &ndash;ask-pass</td>
+<td>SSH 连接用户密码</td>
+</tr>
+<tr>
+<td>-b, &ndash;become</td>
+<td>提权，默认 root</td>
+</tr>
+<tr>
+<td>-K, &ndash;ask-become-pass</td>
+<td>提权密码</td>
+</tr>
+</tbody>
+</table>
+<h3 id="3命令行使用">3、命令行使用</h3>
+<pre><code class="language-ansible" data-lang="ansible">ansible all -m ping
+ansible all -m shell -a &quot;ls /root&quot; -u root -k
+</code></pre><h2 id="14-常用模块">1.4 常用模块</h2>
+<p>ansible-doc –l 查看所有模块</p>
+<p>ansible-doc –s copy 查看模块文档</p>
+<h3 id="1shell">1、shell</h3>
+<p>在目标主机执行 shell 命令。</p>
+<pre><code>- name: 将命令结果输出到指定文件
+  shell: somescript.sh &gt;&gt; somelog.txt
+- name: 切换目录执行命令
+  shell:
+    cmd: ls -l | grep log
+    chdir: somedir/
+- name: 编写脚本
+  shell: |
+      if [ 0 -eq 0 ]; then
+         echo yes &gt; /tmp/result
+      else
+         echo no &gt; /tmp/result
+      fi
+  args:
+    executable: /bin/bash
+</code></pre><h3 id="2copy">2、copy</h3>
+<p>将文件复制到远程主机。</p>
+<pre><code>- name: 拷贝文件
+  copy:
+    src: /srv/myfiles/foo.conf
+    dest: /etc/foo.conf
+    owner: foo
+    group: foo
+    mode: u=rw,g=r,o=r
+    # mode: u+rw,g-wx,o-rwx
+    # mode: '0644'
+    backup: yes
+</code></pre><h3 id="3file">3、file</h3>
+<p>管理文件和文件属性。</p>
+<pre><code>- name: 创建目录
+  file:
+    path: /etc/some_directory
+    state: directory
+    mode: '0755'
+- name: 删除文件
+  file:
+    path: /etc/foo.txt
+    state: absent
+- name: 递归删除目录
+  file:
+    path: /etc/foo
+    state: absent
+</code></pre><p>present，latest：表示安装</p>
+<p>absent：表示卸载</p>
+<h3 id="4yum">4、yum</h3>
+<p>软件包管理。</p>
+<pre><code>ansible webservers -m yum -a &quot;name=http://nginx.org/packages/rhel/7/x86_64/RPMS/nginx-1.16.1-1.el7.ngx.x86_64.rpm state=present&quot;
+
+
+ansible webservers -m systemd -a &quot;name=http://nginx.org/packages/rhel/7/x86_64/RPMS/nginx-1.16.1-1.el7.ngx.x86_64.rpm state=restarted enabled=yes&quot;
+
+
+
+
+
+
+
+</code></pre><pre><code>- name: 安装最新版apache
+  yum:
+    name: httpd
+    state: latest
+- name: 安装列表中所有包
+  yum:
+    name:
+      - nginx
+      - postgresql
+      - postgresql-server
+    state: present
+- name: 卸载apache包
+  yum:
+    name: httpd
+    state: absent
+- name: 更新所有包
+  yum:
+    name: '*'
+    state: latest
+- name: 安装nginx来自远程repo
+  yum:
+    name: http://nginx.org/packages/centos/6/noarch/RPMS/nginx-release-centos-6-0.el6.ngx.noarch.rpm
+    # name: /usr/local/src/nginx-release-centos-6-0.el6.ngx.noarch.rpm
+    state: present
+</code></pre><h3 id="5servicesystemd">5、service/systemd</h3>
+<p>管理服务。</p>
+<pre><code>- name: 服务管理
+  service:
+    name: httpd
+    state: started
+    #state: stopped
+    #state: restarted
+    #state: reloaded
+- name: 设置开机启动
+  service:
+    name: httpd
+    enabled: yes
+</code></pre><h3 id="6unarchive">6、unarchive</h3>
+<pre><code>- name: 解压
+  unarchive:
+    src=test.tar.gz
+    dest=/tmp
+</code></pre><h3 id="7debug">7、debug</h3>
+<p>执行过程中打印语句。</p>
+<pre><code>- debug:
+    msg: System {{ inventory_hostname }} has uuid {{ ansible_product_uuid }}
+
+- name: 显示主机已知的所有变量
+  debug:
+    var: hostvars[inventory_hostname]
+    verbosity: 4
+</code></pre><h2 id="15-变量">1.5 变量</h2>
+<p>变量是应用于多个主机的便捷方式； 实际在主机执行之前，变量会对每个主机添加，然后在执行中引用。</p>
+<h3 id="1主机变量与组变量">1、主机变量与组变量</h3>
+<pre><code>[webservers]
+192.168.1.100 ansible_ssh_user=root hostname=web1
+192.168.1.100 ansible_ssh_user=root hostname=web2
+
+[webservers:vars]
+ansible_ssh_user=root hostname=web1
+</code></pre><h3 id="2register-变量">2、Register 变量</h3>
+<pre><code>- shell: /usr/bin/uptime
+  register: result
+- debug:
+    var: result
+    verbosity: 2
+</code></pre><h2 id="16-playbook">1.6 Playbook</h2>
+<p>Playbooks 是 Ansible 的配置，部署和编排语言。他们可以描述您希望在远程机器做哪些事或者描述 IT 流程中一系列步骤。使用易读的 YAML 格式组织 Playbook 文件。</p>
+<p>如果 Ansible 模块是您工作中的工具，那么 Playbook 就是您的使用说明书，而您的主机资产文件就是您的原材料。</p>
+<p>与 adhoc 任务执行模式相比，Playbooks 使用 ansible 是一种完全不同的方式，并且功能特别强大。</p>
+<p><a href="https://docs.ansible.com/ansible/latest/user_guide/playbooks.html">https://docs.ansible.com/ansible/latest/user_guide/playbooks.html</a></p>
+<pre><code>---
+- hosts: webservers
+  vars:
+    http_port: 80
+    server_name: www.ctnrs.com
+  remote_user: root
+  gather_facts: false
+  tasks:
+  - name: 安装nginx最新版
+    yum: pkg=nginx state=latest
+  - name: 写入nginx配置文件
+    template: src=/srv/httpd.j2 dest=/etc/nginx/nginx.conf
+    notify:
+    - restart nginx
+  - name: 确保nginx正在运行
+    service: name=httpd state=started
+  handlers:
+    - name: restart nginx
+      service: name=nginx state=reloaded
+</code></pre><h3 id="1主机和用户">1、主机和用户</h3>
+<pre><code>- hosts: webservers
+  remote_user: root
+  become: yes
+  become_user: lizhenliang
+</code></pre><h3 id="2定义变量">2、定义变量</h3>
+<p>Ansible 中的首选做法是不将变量存储在 Inventory 中。</p>
+<p>除了将变量直接存储在 Inventory 文件之外，主机和组变量还可以存储在相对于 Inventory 文件的单个文件中。</p>
+<pre><code>- hosts: webservers
+  vars:
+    http_port: 80
+    server_name: www.ctnrs.com
+</code></pre><h3 id="3任务列表">3、任务列表</h3>
+<p>每个 play 包含一系列任务。这些任务按照顺序执行，在 play 中，所有主机都会执行相同的任务指令。play 目的是将选择的主机映射到任务。</p>
+<pre><code>  tasks:
+  - name: 安装nginx最新版
+    yum: pkg=nginx state=latest
+</code></pre><h3 id="4语法检查与调试">4、语法检查与调试</h3>
+<p>语法检查：ansible-playbook &ndash;check /path/to/playbook.yaml</p>
+<p>测试运行，不实际操作：ansible-playbook -C /path/to/playbook.yaml</p>
+<p>debug 模块在执行期间打印语句，对于调试变量或表达式，而不必停止 play。与&rsquo;when：&lsquo;指令一起调试更佳。</p>
+<pre><code>- hosts: webserver
+tasks:
+- debug:
+msg: {{group_names}}
+- debug:
+msg: {{inventory_hostname}}
+- debug:
+msg: {{ansible_hostname}}
+</code></pre><h3 id="5任务控制">5、任务控制</h3>
+<p>如果你有一个大的剧本，那么能够在不运行整个剧本的情况下运行特定部分可能会很有用。</p>
+<pre><code>  tasks:
+  - name: 安装nginx最新版
+    yum: pkg=nginx state=latest
+    tags: install
+  - name: 写入nginx配置文件
+    template: src=/srv/httpd.j2 dest=/etc/nginx/nginx.conf
+    tags: config
+</code></pre><p>使用：</p>
+<pre><code>ansible-playbook example.yml --tags &quot;install&quot;
+ansible-playbook example.yml --tags &quot;install,config&quot;
+ansible-playbook example.yml --skip-tags &quot;install&quot;
+</code></pre><h3 id="6流程控制">6、流程控制</h3>
+<p>条件：</p>
+<pre><code>tasks:
+- name: 只在192.168.1.100运行任务
+  debug: msg=&quot;{{ansible_default_ipv4.address}}&quot;
+  when: ansible_default_ipv4.address == '192.168.1.100'
+</code></pre><p>循环：</p>
+<pre><code>tasks:
+- name： 批量创建用户
+  user: name={{ item }} state=present groups=wheel
+  with_items:
+     - testuser1
+     - testuser2
+</code></pre><pre><code>- name: 解压
+  copy: src={{ item }} dest=/tmp
+  with_fileglob:
+    - &quot;*.txt&quot;
+</code></pre><p>常用循环语句：</p>
+<table>
+<thead>
+<tr>
+<th>语句</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>with_items</td>
+<td>标准循环</td>
+</tr>
+<tr>
+<td>with_fileglob</td>
+<td>遍历目录文件</td>
+</tr>
+<tr>
+<td>with_dict</td>
+<td>遍历字典</td>
+</tr>
+</tbody>
+</table>
+<h3 id="7模板">7、模板</h3>
+<pre><code> tasks:
+  - name: 写入nginx配置文件
+    template: src=/srv/httpd.j2 dest=/etc/nginx/nginx.conf
+</code></pre><p><strong>定义变量</strong>：</p>
+<pre><code>{% set local_ip = inventory_hostname %}
+</code></pre><p><strong>条件和循环</strong>：</p>
+<pre><code>{% set list=['one', 'two', 'three'] %}
+{% for i in list %}
+	{% if i == 'two' %}
+		-&gt; two
+	{% elif loop.index == 3 %}
+		-&gt; 3
+	{% else %}
+		{{i}}
+	{% endif %}
+{% endfor %}
+</code></pre><p>例如：生成连接 etcd 字符串</p>
+<pre><code>{% for host in groups['etcd'] %}
+	https://{{ hostvars[host].inventory_hostname }}:2379
+	{% if not loop.last %},{% endif %}
+{% endfor %}
+</code></pre><p>里面也可以用 ansible 的变量。</p>
+<h2 id="17-roles">1.7 Roles</h2>
+<p>Roles 是基于已知文件结构自动加载某些变量文件，任务和处理程序的方法。按角色对内容进行分组，适合构建复杂的部署环境。</p>
+<h3 id="1定义-roles">1、定义 Roles</h3>
+<p>Roles 目录结构：</p>
+<pre><code>site.yml
+webservers.yml
+fooservers.yml
+roles/
+   common/
+     tasks/
+     handlers/
+     files/
+     templates/
+     vars/
+     defaults/
+     meta/
+   webservers/
+     tasks/
+     defaults/
+     meta/
+</code></pre><ul>
+<li><code>tasks</code> -包含角色要执行的任务的主要列表。</li>
+<li><code>handlers</code> -包含处理程序，此角色甚至在此角色之外的任何地方都可以使用这些处理程序。</li>
+<li><code>defaults</code>-角色的默认变量</li>
+<li><code>vars</code>-角色的其他变量</li>
+<li><code>files</code> -包含可以通过此角色部署的文件。</li>
+<li><code>templates</code> -包含可以通过此角色部署的模板。</li>
+<li><code>meta</code>-为此角色定义一些元数据。请参阅下面的更多细节。</li>
+</ul>
+<p>通常的做法是从<code>tasks/main.yml</code>文件中包含特定于平台的任务：</p>
+<pre><code># roles/webservers/tasks/main.yml
+- name: added in 2.4, previously you used 'include'
+  import_tasks: redhat.yml
+  when: ansible_facts['os_family']|lower == 'redhat'
+- import_tasks: debian.yml
+  when: ansible_facts['os_family']|lower == 'debian'
+
+# roles/webservers/tasks/redhat.yml
+- yum:
+    name: &quot;httpd&quot;
+    state: present
+
+# roles/webservers/tasks/debian.yml
+- apt:
+    name: &quot;apache2&quot;
+    state: present
+</code></pre><h3 id="2使用角色">2、使用角色</h3>
+<pre><code># site.yml
+- hosts: webservers
+  roles:
+    - common
+    - webservers
+
+
+定义多个：
+- name: 0
+  gather_facts: false
+  hosts: all
+  roles:
+    - common
+
+- name: 1
+  gather_facts: false
+  hosts: all
+  roles:
+    - webservers
+</code></pre><h3 id="3角色控制">3、角色控制</h3>
+<pre><code>- name: 0.系统初始化
+  gather_facts: false
+  hosts: all
+  roles:
+    - common
+  tags: common
+</code></pre><h3 id="4定义变量">4、定义变量</h3>
+<p>组变量：</p>
+<p>group_vars 存放的是组变量</p>
+<p>group_vars/all.yml 表示所有主机有效，等同于[all:vars]</p>
+<p>grous_vars/etcd.yml 表示 etcd 组主机有效，等同于[etcd:vars]</p>
+<h2 id="18-自动化部署-k8s离线版">1.8 自动化部署 K8S（离线版）</h2>
+<h3 id="1-熟悉二进制部署-k8s-步骤">1、 熟悉二进制部署 K8S 步骤</h3>
+<ol>
+<li><strong>服务器规划</strong>
+| <strong>角色</strong> | <strong>IP</strong> | <strong>组件</strong> |
+| &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash; | &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;- | &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash; |
+| k8s-master1 | 192.168.31.61 | kube-apiserver kube-controller-manager kube-scheduler etcd |
+| k8s-master2 | 192.168.31.62 | kube-apiserver kube-controller-manager kube-scheduler |
+| k8s-node1 | 192.168.31.63 | kubelet kube-proxy docker etcd |
+| k8s-node2 | 192.168.31.66 | kubelet kube-proxy docker etcd |
+| Load Balancer（Master） | 192.168.31.61 192.168.31.60 (VIP) | nginx keepalived |
+| Load Balancer（Backup） | 192.168.31.62 | nginx keepalived |</li>
+<li><strong>系统初始化</strong></li>
+<li><strong>Etcd 集群部署</strong>
+<ol>
+<li>生成 etcd 证书</li>
+<li>部署三个 Etc 集群</li>
+<li>查看集群状态</li>
+</ol>
+</li>
+<li><strong>部署 Master</strong>
+<ol>
+<li>生成 apiserver 证书</li>
+<li>部署 apiserver、controller-manager 和 scheduler 组件</li>
+<li>启动 TLS Bootstrapping</li>
+</ol>
+</li>
+<li><strong>部署 Node</strong>
+<ol>
+<li>安装 Docker</li>
+<li>部署 kubelet 和 kube-proxy</li>
+<li>在 Master 上允许为新 Node 颁发证书</li>
+<li>授权 apiserver 访问 kubelet</li>
+</ol>
+</li>
+<li><strong>部署插件（准备好镜像）</strong>
+<ol>
+<li>Flannel</li>
+<li>Web UI</li>
+<li>CoreDNS</li>
+<li>Ingress Controller</li>
+</ol>
+</li>
+<li><strong>Master 高可用</strong>
+<ol>
+<li>增加 Master 节点（与 Master1 一致）</li>
+<li>部署 Nginx 负载均衡器</li>
+<li>Nginx+Keepalived 高可用</li>
+<li>修改 Node 连接 VIP</li>
+</ol>
+</li>
+</ol>
+<h3 id="2roles-组织-k8s-各组件部署解析">2、Roles 组织 K8S 各组件部署解析</h3>
+<p>编写建议：</p>
+<ol>
+<li>梳理流程和 Roles 结构</li>
+<li>如果配置文件有不固定内容，使用 jinja 渲染</li>
+<li>人工干预改动的内容应统一写到一个文件中</li>
+</ol>
+<h3 id="3下载所需文件">3、下载所需文件</h3>
+<blockquote>
+<p>确保所有节点系统时间一致</p>
+</blockquote>
+<p>下载 Ansible 部署文件：</p>
+<pre><code>git clone https://github.com/lizhenliang/ansible-install-k8s
+cd ansible-install-k8s
+</code></pre><p>下载软件包并解压：</p>
+<p>云盘地址：https://pan.baidu.com/s/1lTXolmlcCJbei9HY2BJRPQ</p>
+<pre><code>tar zxf binary_pkg.tar.gz
+</code></pre><h3 id="4修改-ansible-文件">4、修改 Ansible 文件</h3>
+<p>修改 hosts 文件，根据规划修改对应 IP 和名称。</p>
+<pre><code>vi hosts
+</code></pre><p>修改 group_vars/all.yml 文件，修改软件包目录和证书可信任 IP。</p>
+<pre><code>vim group_vars/all.yml
+software_dir: '/root/binary_pkg'
+...
+cert_hosts:
+  k8s:
+  etcd:
+</code></pre><h3 id="5一键部署">5、一键部署</h3>
+<p><strong>架构图</strong></p>
+<p><img src="https://k8s-1252881505.cos.ap-beijing.myqcloud.com/k8s-2/single-master.jpg" alt=""></p>
+<p>​ 单 Master 架构</p>
+<p><img src="https://k8s-1252881505.cos.ap-beijing.myqcloud.com/k8s-2/multi-master.jpg" alt="avatar"></p>
+<p>​ 多 Master 架构</p>
+<p><strong>部署命令</strong>
+单 Master 版：</p>
+<pre><code>ansible-playbook -i hosts single-master-deploy.yml -uroot -k
+</code></pre><p>多 Master 版：</p>
+<pre><code>ansible-playbook -i hosts multi-master-deploy.yml -uroot -k
+</code></pre><h3 id="6部署控制">6、部署控制</h3>
+<p>如果安装某个阶段失败，可针对性测试.</p>
+<p>例如：只运行部署插件</p>
+<pre><code>ansible-playbook -i hosts single-master-deploy.yml -uroot -k --tags addons
+</code></pre><p>示例参考：https://github.com/ansible/ansible-examples</p>
+
+    </div>
+
+    
+    
+<div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">clive xiang</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+      2020-10-19
+      
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">License</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+
+
+    
+    
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">Reward</label>
+  <div class="qr-code">
+    
+    
+      <label class="qr-code-image" for="reward">
+        <img class="image" src="/post/k8s/wechat.jpeg">
+        <span>Wechat</span>
+      </label>
+    
+  </div>
+</div>
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          <a href="http://localhost:1313/tags/python/">python</a>
+          <a href="http://localhost:1313/tags/ansible/">ansible</a>
+          <a href="http://localhost:1313/tags/k8s/">k8s</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/nginx/nginx-demo/">
+            
+            <i class="iconfont">
+              <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M691.908486 949.511495l75.369571-89.491197c10.963703-12.998035 10.285251-32.864502-1.499144-44.378743L479.499795 515.267417 757.434875 204.940602c11.338233-12.190647 11.035334-32.285311-0.638543-44.850487l-80.46666-86.564541c-11.680017-12.583596-30.356378-12.893658-41.662889-0.716314L257.233596 494.235404c-11.332093 12.183484-11.041474 32.266891 0.657986 44.844348l80.46666 86.564541c1.772366 1.910513 3.706415 3.533476 5.750981 4.877077l306.620399 321.703933C662.505829 963.726242 680.945807 962.528973 691.908486 949.511495z"></path>
+</svg>
+
+            </i>
+            <span class="prev-text nav-default">Nginx 常用命令</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        
+          <a class="next" href="/post/k8s/docker-command/">
+            <span class="next-text nav-default">Docker Command</span>
+            <span class="prev-text nav-mobile">Next</span>
+            
+            <i class="iconfont">
+              <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M332.091514 74.487481l-75.369571 89.491197c-10.963703 12.998035-10.285251 32.864502 1.499144 44.378743l286.278095 300.375162L266.565125 819.058374c-11.338233 12.190647-11.035334 32.285311 0.638543 44.850487l80.46666 86.564541c11.680017 12.583596 30.356378 12.893658 41.662889 0.716314l377.434212-421.426145c11.332093-12.183484 11.041474-32.266891-0.657986-44.844348l-80.46666-86.564541c-1.772366-1.910513-3.706415-3.533476-5.750981-4.877077L373.270379 71.774697C361.493148 60.273758 343.054193 61.470003 332.091514 74.487481z"></path>
+</svg>
+
+            </i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+
+  
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+    
+
+  
+
+        </div>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="icon-links">
+  
+  
+    <a href="mailto:your@email.com" rel="me noopener" class="iconfont"
+      title="email" >
+      <svg class="icon" viewBox="0 0 1451 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="36" height="36">
+  <path d="M664.781909 681.472759 0 97.881301C0 3.997201 71.046997 0 71.046997 0L474.477909 0 961.649408 0 1361.641813 0C1361.641813 0 1432.688811 3.997201 1432.688811 97.881301L771.345323 681.472759C771.345323 681.472759 764.482731 685.154773 753.594283 688.65053L753.594283 688.664858C741.602731 693.493018 729.424896 695.068979 718.077952 694.839748 706.731093 695.068979 694.553173 693.493018 682.561621 688.664858L682.561621 688.65053C671.644501 685.140446 664.781909 681.472759 664.781909 681.472759L664.781909 681.472759ZM718.063616 811.603883C693.779541 811.016482 658.879232 802.205449 619.10784 767.734955 542.989056 701.759633 0 212.052267 0 212.052267L0 942.809523C0 942.809523 0 1024 83.726336 1024L682.532949 1024 753.579947 1024 1348.948139 1024C1432.688811 1024 1432.688811 942.809523 1432.688811 942.809523L1432.688811 212.052267C1432.688811 212.052267 893.138176 701.759633 817.019477 767.734955 777.248 802.205449 742.347691 811.03081 718.063616 811.603883L718.063616 811.603883Z"></path>
+</svg>
+
+    </a>
+  
+    <a href="http://localhost:1313" rel="me noopener" class="iconfont"
+      title="weibo"  target="_blank"
+      >
+      <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="36" height="36">
+  <path d="M385.714286 733.714286q12-19.428571 6.285714-39.428571t-25.714286-28.571429q-19.428571-8-41.714286-0.571429t-34.285714 26.285714q-12.571429 19.428571-7.428571 39.142857t24.571429 28.857143 42.571429 1.428571 35.714286-27.142857zm53.714286-69.142857q4.571429-7.428571 2-15.142857t-10-10.571429q-8-2.857143-16.285714 2.857143t-12.285714 10.571429q-9.714286 17.714286 7.428571 25.714286 8 2.857143 16.571429 2.857143t12.571429-10.571429zm99.428571 61.142857q-25.714286 58.285714-90.285714 85.714286t-128 6.857143q-61.142857-19.428571-84.285714-72.285714t3.714286-107.142857q26.857143-53.142857 86.571429-79.428571t120.285714-10.857143q63.428571 16.571429 90.571429 68.285714t1.428571 108.857143zm178.285714-91.428571q-5.142857-54.857143-50.857143-97.142857t-119.142857-62.285714-156.857143-12q-127.428571 13.142857-211.142857 80.857143t-75.714286 151.142857q5.142857 54.857143 50.857143 97.142857t119.142857 62.285714 156.857143 12q127.428571-13.142857 211.142857-80.857143t75.714286-151.142857zm176 2.285714q0 38.857143-21.142857 79.714286t-62.285714 78.285714-96.285714 67.142857-129.142857 47.428571-154.571429 17.714286-157.142857-19.142857-137.428571-53.142857-98-86.285714-37.142857-114q0-65.714286 39.714286-140t112.857143-147.428571q96.571429-96.571429 195.142857-134.857143t140.857143 4q37.142857 36.571429 11.428571 119.428571-2.285714 8-0.571429 11.428571t5.714286 4 8.285714 2.857143 7.714286-2l3.428571-1.142857q79.428571-33.714286 140.571429-33.714286t87.428571 34.857143q25.714286 36 0 101.714286-1.142857 7.428571-2.571429 11.428571t2.571429 7.142857 6.857143 4.285714 9.714286 3.428571q32.571429 10.285714 58.857143 26.857143t45.714286 46.571429 19.428571 66.571429zm-42.285714-356.571429q24 26.857143 31.142857 62t-3.714286 67.142857q-4.571429 13.142857-16.857143 19.428571t-25.428571 2.285714q-13.142857-4.571429-19.428571-16.857143t-2.285714-25.428571q11.428571-36-13.714286-63.428571t-61.142857-20q-13.714286 2.857143-25.714286-4.571429t-14.285714-21.142857q-2.857143-13.714286 4.571429-25.428571t21.142857-14.571429q34.285714-7.428571 68 3.142857t57.714286 37.428571zm103.428571-93.142857q49.714286 54.857143 64.285714 127.142857t-7.714286 138q-5.142857 15.428571-19.428571 22.857143t-29.714286 2.285714-22.857143-19.428571-2.857143-29.714286q16-46.857143 5.714286-98.285714t-45.714286-90.285714q-35.428571-39.428571-84.571429-54.571429t-98.857143-4.857143q-16 3.428571-29.714286-5.428571t-17.142857-24.857143 5.428571-29.428571 24.857143-16.857143q70.285714-14.857143 139.428571 6.571429t118.857143 76.857143z"></path>
+</svg>
+
+    </a>
+  
+    <a href="http://localhost:1313" rel="me noopener" class="iconfont"
+      title="tumblr"  target="_blank"
+      >
+      <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="36" height="36">
+  <path d="M556.716946 378.027729l133.939525 0 0 89.307002L556.716946 467.334731 556.716946 601.318258c0 58.898435 8.290827 92.557022 53.140291 89.809445 10.382465-0.677429 22.25077-1.855254 35.687804-5.586229 13.437034-3.729951 24.257473-7.458879 32.372292-11.190877l12.739139-5.606695 0 82.546018c-3.403516 2.070148-8.463766 4.820796-15.007809 8.048303-6.631024 3.338025-21.029966 7.656377-43.016723 13.045107-21.988804 5.41022-44.937468 8.070816-68.844971 8.070816-51.395554 0-89.177042-10.994402-113.608477-33.17968-24.343431-22.097274-27.572986-56.147788-27.572986-101.195773L422.605505 467.334731l-89.263 0-0.435928-66.64077c38.480406-12.369725 67.798129-29.734208 88.128153-52.114938 20.332071-22.273283 33.333176-57.021691 38.829354-104.22783l96.853885-0.393973L556.717969 378.027729zM958.70846 243.958244l0 536.105001c0 98.730629-80.013335 178.722474-178.615027 178.722474L243.991502 958.785719c-98.774631 0-178.700985-79.991846-178.700985-178.722474L65.290517 243.958244c0-98.642624 79.925331-178.744987 178.700985-178.744987l536.102954 0C878.695125 65.213257 958.70846 145.31562 958.70846 243.958244zM869.44546 288.612257c0-74.015737-60.033281-133.961014-134.027529-133.961014L288.667004 154.651242c-73.994248 0-134.115534 59.945277-134.115534 133.961014l0 446.775486c0 74.015737 60.121286 133.983527 134.115534 133.983527l446.750927 0c73.994248 0 134.027529-59.96779 134.027529-133.983527L869.44546 288.612257z"></path>
+</svg>
+
+    </a>
+
+
+<a href="http://localhost:1313/index.xml" rel="noopener alternate" type="application/rss&#43;xml"
+    class="iconfont" title="rss" target="_blank">
+    <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="30" height="30">
+  <path d="M819.157333 1024C819.157333 574.592 449.408 204.8 0 204.8V0c561.706667 0 1024 462.293333 1024 1024h-204.842667zM140.416 743.04a140.8 140.8 0 0 1 140.501333 140.586667A140.928 140.928 0 0 1 140.074667 1024C62.72 1024 0 961.109333 0 883.626667s62.933333-140.544 140.416-140.586667zM678.784 1024h-199.04c0-263.210667-216.533333-479.786667-479.744-479.786667V345.173333c372.352 0 678.784 306.517333 678.784 678.826667z"></path>
+</svg>
+
+  </a>
+   
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - <a class="theme-link" href="https://github.com/xianmin/hugo-theme-jane">Jane</a>
+  </span>
+
+  <span class="copyright-year">
+    &copy;
+    
+      2017 -
+    2020
+    <span class="heart">
+      
+      <i class="iconfont">
+        <svg class="icon" viewBox="0 0 1025 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="14" height="14">
+  <path d="M1000.1 247.9c-15.5-37.3-37.6-70.6-65.7-98.9-54.4-54.8-125.8-85-201-85-85.7 0-166 39-221.4 107.4C456.6 103 376.3 64 290.6 64c-75.1 0-146.5 30.4-201.1 85.6-28.2 28.5-50.4 61.9-65.8 99.3-16 38.8-24 79.9-23.6 122.2 0.7 91.7 40.1 177.2 108.1 234.8 3.1 2.6 6 5.1 8.9 7.8 14.9 13.4 58 52.8 112.6 102.7 93.5 85.5 209.9 191.9 257.5 234.2 7 6.1 15.8 9.5 24.9 9.5 9.2 0 18.1-3.4 24.9-9.5 34.5-30.7 105.8-95.9 181.4-165 74.2-67.8 150.9-138 195.8-178.2 69.5-57.9 109.6-144.4 109.9-237.3 0.1-42.5-8-83.6-24-122.2z"
+   fill="#8a8a8a"></path>
+</svg>
+
+      </i>
+    </span><span class="author">
+        clive
+        
+      </span></span>
+
+  
+  
+
+  
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont">
+        
+        <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="35" height="35">
+  <path d="M510.866688 227.694839 95.449397 629.218702l235.761562 0-2.057869 328.796468 362.40389 0L691.55698 628.188232l241.942331-3.089361L510.866688 227.694839zM63.840492 63.962777l894.052392 0 0 131.813095L63.840492 195.775872 63.840492 63.962777 63.840492 63.962777zM63.840492 63.962777"></path>
+</svg>
+
+      </i>
+    </div>
+  </div>
+  
+<script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+
+
+
+
+<script type="text/javascript" src="/js/main.638251f4230630f0335d8c6748e53a96f94b72670920b60c09a56fdc8bece214.js" integrity="sha256-Y4JR9CMGMPAzXYxnSOU6lvlLcmcJILYMCaVv3Ivs4hQ=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <script type="text/javascript" src="/js/load-photoswipe.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe.min.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe-ui-default.min.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
