@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>clive xiang 的博客</title>
+  <title>Nginx 常见使用场景 - clive xiang 的博客</title>
   
 
 <meta name="renderer" content="webkit" />
@@ -22,8 +22,9 @@
 
 <meta name="mobile-web-app-capable" content="yes">
 
-<meta name="author" content="clive" />
-  <meta name="description" content="Hugo theme jane example site." />
+<meta name="author" content="clive xiang" />
+  <meta name="description" content="跨域问题 在工作中，有时候会遇到一些接口不支持跨域，这时候可以简单的添加 add_headers 来支持 cors 跨域。配置如下： server { listen 80; server_name api.xxx.com; add_header &#39;Access-Control-Allow-Origin&#39; &#39;*&#39;; add_header &#39;Access-Control-Allow-Credentials&#39; &#39;true&#39;; add_header &#39;Access-Control-Allow-Methods&#39; &#39;GET,POST,HEAD&#39;; location / { proxy_pass http://127.0.0.1:3000; proxy_set_header X-Real-IP" />
+
   <meta name="keywords" content="Hugo, theme, clive" />
 
 
@@ -34,8 +35,8 @@
 <meta name="generator" content="Hugo 0.74.1" />
 
 
-<link rel="canonical" href="http://localhost:1313/" />
-<link href="/index.xml" rel="alternate" type="application/rss+xml" title="clive xiang 的博客" />
+<link rel="canonical" href="http://localhost:1313/post/nginx/nginx-use/" />
+
 
 
 
@@ -58,15 +59,23 @@
 
 
 
-<meta property="og:title" content="clive xiang 的博客" />
-<meta property="og:description" content="Hugo theme jane example site." />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="http://localhost:1313/" />
-<meta property="og:updated_time" content="2020-10-20T20:04:12+08:00" />
-<meta itemprop="name" content="clive xiang 的博客">
-<meta itemprop="description" content="Hugo theme jane example site."><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="clive xiang 的博客"/>
-<meta name="twitter:description" content="Hugo theme jane example site."/>
+<meta property="og:title" content="Nginx 常见使用场景" />
+<meta property="og:description" content="跨域问题 在工作中，有时候会遇到一些接口不支持跨域，这时候可以简单的添加 add_headers 来支持 cors 跨域。配置如下： server { listen 80; server_name api.xxx.com; add_header &#39;Access-Control-Allow-Origin&#39; &#39;*&#39;; add_header &#39;Access-Control-Allow-Credentials&#39; &#39;true&#39;; add_header &#39;Access-Control-Allow-Methods&#39; &#39;GET,POST,HEAD&#39;; location / { proxy_pass http://127.0.0.1:3000; proxy_set_header X-Real-IP" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/post/nginx/nginx-use/" />
+<meta property="article:published_time" content="2020-10-19T20:25:50+08:00" />
+<meta property="article:modified_time" content="2020-10-19T20:25:50+08:00" />
+<meta itemprop="name" content="Nginx 常见使用场景">
+<meta itemprop="description" content="跨域问题 在工作中，有时候会遇到一些接口不支持跨域，这时候可以简单的添加 add_headers 来支持 cors 跨域。配置如下： server { listen 80; server_name api.xxx.com; add_header &#39;Access-Control-Allow-Origin&#39; &#39;*&#39;; add_header &#39;Access-Control-Allow-Credentials&#39; &#39;true&#39;; add_header &#39;Access-Control-Allow-Methods&#39; &#39;GET,POST,HEAD&#39;; location / { proxy_pass http://127.0.0.1:3000; proxy_set_header X-Real-IP">
+<meta itemprop="datePublished" content="2020-10-19T20:25:50&#43;08:00" />
+<meta itemprop="dateModified" content="2020-10-19T20:25:50&#43;08:00" />
+<meta itemprop="wordCount" content="2658">
+
+
+
+<meta itemprop="keywords" content="nginx,error," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Nginx 常见使用场景"/>
+<meta name="twitter:description" content="跨域问题 在工作中，有时候会遇到一些接口不支持跨域，这时候可以简单的添加 add_headers 来支持 cors 跨域。配置如下： server { listen 80; server_name api.xxx.com; add_header &#39;Access-Control-Allow-Origin&#39; &#39;*&#39;; add_header &#39;Access-Control-Allow-Credentials&#39; &#39;true&#39;; add_header &#39;Access-Control-Allow-Methods&#39; &#39;GET,POST,HEAD&#39;; location / { proxy_pass http://127.0.0.1:3000; proxy_set_header X-Real-IP"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -262,7 +271,7 @@
   <ul id="menu" class="menu">
     
     
-        <li class="menu-item active">
+        <li class="menu-item">
         
           
           
@@ -382,257 +391,456 @@
     <main id="main" class="main bg-llight">
       <div class="content-wrapper">
         <div id="content" class="content container">
-          
-<section id="posts" class="posts">
-  
-  
+          <article class="post bg-white">
     
-  
-  
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
+    <header class="post-header">
+      <h1 class="post-title">Nginx 常见使用场景</h1>
       
-      <a class="post-link" href="/post/math-preview/">Math Preview</a>
-    </h1>
+      <div class="post-meta">
+        <time datetime="2020-10-19" class="post-time">
+          2020-10-19
+        </time>
+        <div class="post-category">
+            <a href="http://localhost:1313/categories/nginx/"> nginx </a>
+            
+          </div>
+        
+
+        
+        
+
+        
+        
+      </div>
+    </header>
+
     
-    <div class="post-meta">
-      <time datetime="2019-03-04" class="post-time">
-        2019-03-04
-      </time>
-      <div class="post-category">
-          <a href="http://localhost:1313/categories/docs/"> docs </a>
-          <a href="http://localhost:1313/categories/math/"> math </a>
-          <a href="http://localhost:1313/categories/index/"> index </a>
-          
-        </div>
-      
-      
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
     
-    <div class="post-summary">
-      <p><a href="https://www.intmath.com/cg5/katex-mathjax-comparison.php">KaTeX and MathJax Comparison Demo, currently processed as KaTex</a></p>
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Table of Contents</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#跨域问题">跨域问题</a></li>
+        <li><a href="#爬虫过滤">爬虫过滤</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      <h3 id="跨域问题">跨域问题</h3>
+<h4 id="在工作中有时候会遇到一些接口不支持跨域这时候可以简单的添加-add_headers-来支持-cors-跨域配置如下">在工作中，有时候会遇到一些接口不支持跨域，这时候可以简单的添加 add_headers 来支持 cors 跨域。配置如下：</h4>
+<pre><code>server {
+  listen 80;
+  server_name api.xxx.com;
+  add_header 'Access-Control-Allow-Origin' '*';
+  add_header 'Access-Control-Allow-Credentials' 'true';
+  add_header 'Access-Control-Allow-Methods' 'GET,POST,HEAD';
+  location / {
+    proxy_pass http://127.0.0.1:3000;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header Host  $http_host;
+  }
+}
+</code></pre><h4 id="上面更改头信息还有一种使用-rewrite-指令重定向-uri-来解决跨域问题">上面更改头信息，还有一种，使用 rewrite 指令重定向 URI 来解决跨域问题。</h4>
+<pre><code>upstream test {
+  server 127.0.0.1:8080;
+  server localhost:8081;
+}
+server {
+  listen 80;
+  server_name api.xxx.com;
+  location / {
+    root  html;                   #去请求../html文件夹里的文件
+    index  index.html index.htm;  #首页响应地址
+  }
+  # 用于拦截请求，匹配任何以 /api/开头的地址，
+  # 匹配符合以后，停止往下搜索正则。
+  location ^~/api/{
+    # 代表重写拦截进来的请求，并且只能对域名后边的除去传递的参数外的字符串起作用，
+    # 例如www.a.com/proxy/api/msg?meth=1&amp;par=2重写，只对/proxy/api/msg重写。
+    # rewrite后面的参数是一个简单的正则 ^/api/(.*)$，
+    # $1代表正则中的第一个()，$2代表第二个()的值，以此类推。
+    rewrite ^/api/(.*)$ /$1 break;
+    # 把请求代理到其他主机
+    # 其中 http://www.b.com/ 写法和 http://www.b.com写法的区别如下
+    # 如果你的请求地址是他 http://server/html/test.jsp
+    # 配置一： http://www.b.com/ 后面有“/”
+    #         将反向代理成 http://www.b.com/html/test.jsp 访问
+    # 配置一： http://www.b.com 后面没有有“/”
+    #         将反向代理成 http://www.b.com/test.jsp 访问
+    proxy_pass http://test;
+    # 如果 proxy_pass  URL 是 http://a.xx.com/platform/ 这种情况
+    # proxy_cookie_path应该设置成 /platform/ / (注意两个斜杠之间有空格)。
+    proxy_cookie_path /platfrom/ /;
+    # http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass_header
+    # 设置 Cookie 头通过
+    proxy_pass_header Set-Cookie;
+  }
+}
+</code></pre><h4 id="跳转到带-www-的域上面">跳转到带 www 的域上面</h4>
+<pre><code>server {
+    listen 80;
+    # 配置正常的带www的域名
+    server_name www.wangchujiang.com;
+    root /home/www/wabg/download;
+    location / {
+        try_files $uri $uri/ /index.html =404;
+    }
+}
+server {
+    # 这个要放到下面，
+    # 将不带www的 wangchujiang.com 永久性重定向到  https://www.wangchujiang.com
+    server_name wangchujiang.com;
+    rewrite ^(.*) https://www.wangchujiang.com$1 permanent;
+}
+</code></pre><h4 id="代理转发">代理转发</h4>
+<pre><code>upstream server-api{
+    # api 代理服务地址
+    server 127.0.0.1:3110;
+}
+upstream server-resource{
+    # 静态资源 代理服务地址
+    server 127.0.0.1:3120;
+}
+server {
+    listen       3111;
+    server_name  localhost;      # 这里指定域名
+    root /home/www/server-statics;
+    # 匹配 api 路由的反向代理到API服务
+    location ^~/api/ {
+        rewrite ^/(.*)$ /$1 break;
+        proxy_pass http://server-api;
+    }
+    # 假设这里验证码也在API服务中
+    location ^~/captcha {
+        rewrite ^/(.*)$ /$1 break;
+        proxy_pass http://server-api;
+    }
+    # 假设你的图片资源全部在另外一个服务上面
+    location ^~/img/ {
+        rewrite ^/(.*)$ /$1 break;
+        proxy_pass http://server-resource;
+    }
+    # 路由在前端，后端没有真实路由，在路由不存在的 404状态的页面返回 /index.html
+    # 这个方式使用场景，你在写React或者Vue项目的时候，没有真实路由
+    location / {
+        try_files $uri $uri/ /index.html =404;
+        #                               ^ 空格很重要
+    }
+}
+</code></pre><h4 id="监控状态信息">监控状态信息</h4>
+<h4 id="通过-nginx--v-来查看是否有-with-http_stub_status_module-该模块">通过 nginx -V 来查看是否有 with-http_stub_status_module 该模块。</h4>
+<h4 id="nginx--v-这里-v-是大写的如果是小写的-v-即-nginx--v则不会出现有哪些模块只会出现-nginx-的版本">nginx -V 这里 V 是大写的，如果是小写的 v 即 nginx -v，则不会出现有哪些模块，只会出现 nginx 的版本</h4>
+<pre><code>location /nginx_status {
+    stub_status on;
+    access_log off;
+}
+通过 http://127.0.0.1/nginx_status 访问出现下面结果。
+
+Active connections: 3
+server accepts handled requests
+ 7 7 5
+Reading: 0 Writing: 1 Waiting: 2
+主动连接(第 1 行)
+当前与http建立的连接数，包括等待的客户端连接：3
+
+服务器接受处理的请求(第 2~3 行)
+接受的客户端连接总数目：7
+处理的客户端连接总数目：7
+客户端总的请求数目：5
+
+读取其它信(第 4 行)
+当前，nginx读请求连接
+当前，nginx写响应返回给客户端
+目前有多少空闲客户端请求连接
+
+代理转发连接替换
+location ^~/api/upload {
+    rewrite ^/(.*)$ /wfs/v1/upload break;
+    proxy_pass http://wfs-api;
+}
+ssl配置
+超文本传输安全协议（缩写：HTTPS，英语：Hypertext Transfer Protocol Secure）是超文本传输协议和SSL/TLS的组合，用以提供加密通讯及对网络服务器身份的鉴定。HTTPS连接经常被用于万维网上的交易支付和企业信息系统中敏感信息的传输。HTTPS不应与在RFC 2660中定义的安全超文本传输协议（S-HTTP）相混。HTTPS 目前已经是所有注重隐私和安全的网站的首选，随着技术的不断发展，HTTPS 网站已不再是大型网站的专利，所有普通的个人站长和博客均可以自己动手搭建一个安全的加密的网站。
+
+创建SSL证书，如果你购买的证书，就可以直接下载
+
+sudo mkdir /etc/nginx/ssl
+# 创建了有效期100年，加密强度为RSA2048的SSL密钥key和X509证书文件。
+sudo openssl req -x509 -nodes -days 36500 -newkey rsa:2048 -keyout /etc/nginx/ssl/nginx.key -out /etc/nginx/ssl/nginx.crt
+# 上面命令，会有下面需要填写内容
+Country Name (2 letter code) [AU]:US
+State or Province Name (full name) [Some-State]:New York
+Locality Name (eg, city) []:New York City
+Organization Name (eg, company) [Internet Widgits Pty Ltd]:Bouncy Castles, Inc.
+Organizational Unit Name (eg, section) []:Ministry of Water Slides
+Common Name (e.g. server FQDN or YOUR name) []:your_domain.com
+Email Address []:admin@your_domain.com
+创建自签证书
+
+首先，创建证书和私钥的目录
+# mkdir -p /etc/nginx/cert
+# cd /etc/nginx/cert
+创建服务器私钥，命令会让你输入一个口令：
+# openssl genrsa -des3 -out nginx.key 2048
+创建签名请求的证书（CSR）：
+# openssl req -new -key nginx.key -out nginx.csr
+在加载SSL支持的Nginx并使用上述私钥时除去必须的口令：
+# cp nginx.key nginx.key.org
+# openssl rsa -in nginx.key.org -out nginx.key
+最后标记证书使用上述私钥和CSR：
+# openssl x509 -req -days 365 -in nginx.csr -signkey nginx.key -out nginx.crt
+查看目前nginx编译选项
+
+sbin/nginx -V
+输出下面内容
+
+nginx version: nginx/1.7.8
+built by gcc 4.4.7 20120313 (Red Hat 4.4.7-4) (GCC)
+TLS SNI support enabled
+configure arguments: --prefix=/usr/local/nginx-1.7.8 --with-http_ssl_module --with-http_spdy_module --with-http_stub_status_module --with-pcre
+如果依赖的模块不存在，可以进入安装目录，输入下面命令重新编译安装。
+
+./configure --prefix=/usr/local/nginx --with-http_stub_status_module --with-http_ssl_module
+运行完成之后还需要make (不用make install)
+
+# 备份nginx的二进制文件
+cp -rf /usr/local/nginx/sbin/nginx　 /usr/local/nginx/sbin/nginx.bak
+# 覆盖nginx的二进制文件
+cp -rf objs/nginx   /usr/local/nginx/sbin/
+HTTPS server
+</code></pre><pre><code>server {
+listen 443 ssl;
+server_name localhost;
+ssl_certificate /etc/nginx/ssl/nginx.crt;
+ssl_certificate_key /etc/nginx/ssl/nginx.key; # 禁止在 header 中出现服务器版本，防止黑客利用版本漏洞攻击
+server_tokens off; # 设置 ssl/tls 会话缓存的类型和大小。如果设置了这个参数一般是 shared，buildin 可能会参数内存碎片，默认是 none，和 off 差不多，停用缓存。如 shared:SSL:10m 表示我所有的 nginx 工作进程共享 ssl 会话缓存，官网介绍说 1M 可以存放约 4000 个 sessions。
+ssl_session_cache shared:SSL:1m; # 客户端可以重用会话缓存中 ssl 参数的过期时间，内网系统默认 5 分钟太短了，可以设成 30m 即 30 分钟甚至 4h。
+ssl_session_timeout 5m; # 选择加密套件，不同的浏览器所支持的套件（和顺序）可能会不同。 # 这里指定的是 OpenSSL 库能够识别的写法，你可以通过 openssl -v cipher 'RC4:HIGH:!aNULL:!MD5'（后面是你所指定的套件加密算法） 来看所支持算法。
+ssl_ciphers HIGH:!aNULL:!MD5; # 设置协商加密算法时，优先使用我们服务端的加密套件，而不是客户端浏览器的加密套件。
+ssl_prefer_server_ciphers on;
+location / {
+root html;
+index index.html index.htm;
+}
+}
+强制将 http 重定向到 https
+server {
+listen 80;
+server_name example.com;
+rewrite ^ https://$http_host$request_uri? permanent; # 强制将 http 重定向到 https # 在错误页面和“服务器”响应头字段中启用或禁用发射 nginx 版本。 防止黑客利用版本漏洞攻击
+server_tokens off;
+}
+两个虚拟主机
+纯静态-html 支持
+
+http {
+server {
+listen 80;
+server*name www.domain1.com;
+access_log logs/domain1.access.log main;
+location / {
+index index.html;
+root /var/www/domain1.com/htdocs;
+}
+}
+server {
+listen 80;
+server_name www.domain2.com;
+access_log logs/domain2.access.log main;
+location / {
+index index.html;
+root /var/www/domain2.com/htdocs;
+}
+}
+}
+虚拟主机标准配置
+http {
+server {
+listen 80 default;
+server_name * \*;
+access_log logs/default.access.log main;
+location / {
+index index.html;
+root /var/www/default/htdocs;
+}
+}
+}
+
+</code></pre><h3 id="爬虫过滤">爬虫过滤</h3>
+<pre><code>根据 User-Agent 过滤请求，通过一个简单的正则表达式，就可以过滤不符合要求的爬虫请求(初级爬虫)。
+
+~\* 表示不区分大小写的正则匹配
+
+location / {
+if ($http_user_agent ~* &quot;python|curl|java|wget|httpclient|okhttp&quot;) {
+        return 503;
+    }
+    # 正常处理
+    # ...
+}
+防盗链
+location ~* \.(gif|jpg|png|swf|flv)$ {
+root html
+valid_referers none blocked \*.nginxcn.com;
+if (\$invalid_referer) {
+rewrite ^/ www.nginx.cn
+#return 404;
+}
+}
+虚拟目录配置
+alias 指定的目录是准确的，root 是指定目录的上级目录，并且该上级目录要含有 location 指定名称的同名目录。
+
+location /img/ {
+alias /var/www/image/;
+}
+
+# 访问/img/目录里面的文件时，ningx 会自动去/var/www/image/目录找文件
+
+location /img/ {
+root /var/www/image;
+}
+
+# 访问/img/目录下的文件时，nginx 会去/var/www/image/img/目录下找文件。]
+
+防盗图配置
+location ~ \/public\/(css|js|img)\/._\.(js|css|gif|jpg|jpeg|png|bmp|swf) {
+valid_referers none blocked _.jslite.io;
+if (\$invalid_referer) {
+rewrite ^/ http://wangchujiang.com/piratesp.png;
+}
+}
+屏蔽.git 等文件
+location ~ (.git|.gitattributes|.gitignore|.svn) {
+deny all;
+}
+域名路径加不加需要都能正常访问
+http://wangchujiang.com/api/index.php?a=1&amp;name=wcj
+^ 有后缀
+http://wangchujiang.com/api/index?a=1&amp;name=wcj
+^ 没有后缀
+nginx rewrite 规则如下：
+
+rewrite ^/(.\*)/$ /index.php?/$1 permanent;
+if (!-d $request_filename){
+        set $rule_1 1$rule_1;
+}
+if (!-f $request_filename){
+set $rule_1 2$rule_1;
+}
+if (\$rule_1 = &quot;21&quot;){
+rewrite ^/ /index.php last;
+}
+
+</code></pre>
     </div>
-    <div class="read-more">
-      <a href="/post/math-preview/" class="read-more-link">Read more</a>
-    </div>
+
+    
+    
+<div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">clive xiang</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+      2020-10-19
+      
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">License</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+
+
+    
+    
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">Reward</label>
+  <div class="qr-code">
+    
+    
+      <label class="qr-code-image" for="reward">
+        <img class="image" src="/post/k8s/wechat.jpeg">
+        <span>Wechat</span>
+      </label>
     
   </div>
-</article>
+</div>
 
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/shortcodes-preview/">Shortcodes Preview</a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="2018-03-04" class="post-time">
-        2018-03-04
-      </time>
-      <div class="post-category">
-          <a href="http://localhost:1313/categories/docs/"> docs </a>
-          <a href="http://localhost:1313/categories/shortcodes/"> shortcodes </a>
-          <a href="http://localhost:1313/categories/index/"> index </a>
+    <footer class="post-footer">
+      <div class="post-tags">
+          <a href="http://localhost:1313/tags/nginx/">nginx</a>
+          <a href="http://localhost:1313/tags/error/">error</a>
           
         </div>
+
       
-      
-      
-    </div>
-  </header>
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/nginx/nginx-demo/">
+            
+            <i class="iconfont">
+              <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M691.908486 949.511495l75.369571-89.491197c10.963703-12.998035 10.285251-32.864502-1.499144-44.378743L479.499795 515.267417 757.434875 204.940602c11.338233-12.190647 11.035334-32.285311-0.638543-44.850487l-80.46666-86.564541c-11.680017-12.583596-30.356378-12.893658-41.662889-0.716314L257.233596 494.235404c-11.332093 12.183484-11.041474 32.266891 0.657986 44.844348l80.46666 86.564541c1.772366 1.910513 3.706415 3.533476 5.750981 4.877077l306.620399 321.703933C662.505829 963.726242 680.945807 962.528973 691.908486 949.511495z"></path>
+</svg>
+
+            </i>
+            <span class="prev-text nav-default">Nginx 常用命令</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        
+          <a class="next" href="/post/nginx/nginx-error/">
+            <span class="next-text nav-default">Nginx 常见错误</span>
+            <span class="prev-text nav-mobile">Next</span>
+            
+            <i class="iconfont">
+              <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M332.091514 74.487481l-75.369571 89.491197c-10.963703 12.998035-10.285251 32.864502 1.499144 44.378743l286.278095 300.375162L266.565125 819.058374c-11.338233 12.190647-11.035334 32.285311 0.638543 44.850487l80.46666 86.564541c11.680017 12.583596 30.356378 12.893658 41.662889 0.716314l377.434212-421.426145c11.332093-12.183484 11.041474-32.266891-0.657986-44.844348l-80.46666-86.564541c-1.772366-1.910513-3.706415-3.533476-5.750981-4.877077L373.270379 71.774697C361.493148 60.273758 343.054193 61.470003 332.091514 74.487481z"></path>
+</svg>
+
+            </i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+
   
-  <div class="post-content">
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
     
-    <div class="post-summary">
-      <h2 id="what-a-shortcode-is">What a Shortcode is</h2>
-<p>Hugo loves Markdown because of its simple content format, but there are times when Markdown falls short. Often, content authors are forced to add raw HTML (e.g., video <code>&lt;iframes&gt;</code>) to Markdown content. We think this contradicts the beautiful simplicity of Markdown&rsquo;s syntax.</p>
-<p>Hugo created <strong>shortcodes</strong> to circumvent these limitations.</p>
-<p>A shortcode is a simple snippet inside a content file that Hugo will render using a predefined template. Note that shortcodes will not work in template files. If you need the type of drop-in functionality that shortcodes provide but in a template, you most likely want a [partial template][partials] instead.</p>
-<p>In addition to cleaner Markdown, shortcodes can be updated any time to reflect new classes, techniques, or standards. At the point of site generation, Hugo shortcodes will easily merge in your changes. You avoid a possibly complicated search and replace operation.</p>
-<p>More details: <a href="https://gohugo.io/content-management/shortcodes/">https://gohugo.io/content-management/shortcodes/</a></p>
-    </div>
-    <div class="read-more">
-      <a href="/post/shortcodes-preview/" class="read-more-link">Read more</a>
-    </div>
-    
-  </div>
-</article>
 
   
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/image-preview/">Image Preview</a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="2018-03-03" class="post-time">
-        2018-03-03
-      </time>
-      <div class="post-category">
-          <a href="http://localhost:1313/categories/docs/"> docs </a>
-          <a href="http://localhost:1313/categories/shortcodes/"> shortcodes </a>
-          <a href="http://localhost:1313/categories/index/"> index </a>
-          
-        </div>
-      
-      
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      <p>Thanks for <a href="https://github.com/liwenyip/hugo-easy-gallery">liwenyip/hugo-easy-gallery</a> &amp; <a href="https://github.com/xianmin/hugo-theme-jane/pull/48">Zebradil · Pull Request #48</a> .</p>
-<p>Now, we could use <code>{{&lt; gallery &gt;}}</code> shortcode in hugo-theme-jane.</p>
-<h2 id="normal-image">Normal Image</h2>
-<p>This is an image in <code>static/image</code> folder.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-markdown" data-lang="markdown">![<span style="color:#f92672">This is an image in `static/image` folder.</span>](<span style="color:#a6e22e">/image/example.jpg</span>)
-</code></pre></div>
-    </div>
-    <div class="read-more">
-      <a href="/post/image-preview/" class="read-more-link">Read more</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/shortcode-notice/">Shortcodes Notice Preview</a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="2018-03-03" class="post-time">
-        2018-03-03
-      </time>
-      <div class="post-category">
-          <a href="http://localhost:1313/categories/docs/"> docs </a>
-          <a href="http://localhost:1313/categories/shortcodes/"> shortcodes </a>
-          <a href="http://localhost:1313/categories/index/"> index </a>
-          
-        </div>
-      
-      
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      normal use Note example: {{% notice note %}} A notice disclaimer {{% /notice %}} Result: You could custom title : {{% notice note 笔记 %}} A notice disclaimer {{% /notice %}} tip {{% notice tip %}} A tip disclaimer {{% /tip %}} info {{% notice info %}} A info disclaimer {{% /notice %}} warning {{% notice warning %}} A warning disclaimer {{% /notice %}}
-    </div>
-    <div class="read-more">
-      <a href="/post/shortcode-notice/" class="read-more-link">Read more</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/doc-footnote-preview/">Jane-Theme Footnote Preview</a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="2018-03-01" class="post-time">
-        2018-03-01
-      </time>
-      <div class="post-category">
-          <a href="http://localhost:1313/categories/docs/"> docs </a>
-          <a href="http://localhost:1313/categories/index/"> index </a>
-          
-        </div>
-      
-      
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      <p>Hugo-theme-jane optimized for footnote. When you mouse hover the footnote<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> , footnote content will be displayed.</p>
-    </div>
-    <div class="read-more">
-      <a href="/post/doc-footnote-preview/" class="read-more-link">Read more</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-</section>
-
-
-
-
-
-
-  
-  
-  
-
-  
-  
-
-  
-  
-
-  
-  
-
-  
-  
-  <nav class="pagination">
-    <ul>
-      
-      <li >
-        <a href="/">1</a>
-      </li>
-      
-      <li >
-        <a href="/page/2/">2</a>
-      </li>
-      
-      <li  class="active" >
-        <a href="/page/3/">3</a>
-      </li>
-      
-      <li >
-        <a href="/page/4/">4</a>
-      </li>
-      
-      <li >
-        <a href="/page/5/">5</a>
-      </li>
-      
-    </ul>
-  </nav>
-
-  
-  
-
-
-
-
 
         </div>
       </div>

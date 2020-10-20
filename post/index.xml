@@ -6,7 +6,7 @@
     <description>Recent content in Posts on clive xiang 的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 19 Oct 2020 20:25:50 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 20 Oct 2020 20:04:12 +0800</lastBuildDate>
     
 	<atom:link href="http://localhost:1313/post/index.xml" rel="self" type="application/rss+xml" />
     
@@ -18,6 +18,24 @@
       
       <guid>http://localhost:1313/post/nginx/nginx-demo/</guid>
       <description>nginx 的使用比较简单，就是几条命令。 常用到的命令如下： nginx -s stop 快速关闭 Nginx，可能不保存相关信息，并迅速终止 web 服务。 nginx -s quit 平稳关闭 Nginx，</description>
+    </item>
+    
+    <item>
+      <title>Nginx 常见使用场景</title>
+      <link>http://localhost:1313/post/nginx/nginx-use/</link>
+      <pubDate>Mon, 19 Oct 2020 20:25:50 +0800</pubDate>
+      
+      <guid>http://localhost:1313/post/nginx/nginx-use/</guid>
+      <description>跨域问题 在工作中，有时候会遇到一些接口不支持跨域，这时候可以简单的添加 add_headers 来支持 cors 跨域。配置如下： server { listen 80; server_name api.xxx.com; add_header &#39;Access-Control-Allow-Origin&#39; &#39;*&#39;; add_header &#39;Access-Control-Allow-Credentials&#39; &#39;true&#39;; add_header &#39;Access-Control-Allow-Methods&#39; &#39;GET,POST,HEAD&#39;; location / { proxy_pass http://127.0.0.1:3000; proxy_set_header X-Real-IP</description>
+    </item>
+    
+    <item>
+      <title>Nginx 常见错误</title>
+      <link>http://localhost:1313/post/nginx/nginx-error/</link>
+      <pubDate>Mon, 19 Oct 2020 20:25:50 +0800</pubDate>
+      
+      <guid>http://localhost:1313/post/nginx/nginx-error/</guid>
+      <description>The plain HTTP request was sent to HTTPS port 解决办法，fastcgi_param HTTPS $https if_not_empty 添加这条规则， server { listen 443 ssl; # 注意这条规则 server_name my.domain.com; fastcgi_param HTTPS $https if_not_empty; fastcgi_param HTTPS on; ssl_certificate /etc/ssl/certs/your.pem; ssl_certificate_key /etc/ssl/private/your.key; location / { # Your config here... }</description>
     </item>
     
     <item>
@@ -72,6 +90,15 @@
       
       <guid>http://localhost:1313/post/jane-theme-preview.zh-cn/</guid>
       <description>Http 反向代理 我们先实现一个小目标：不考虑复杂的配置，仅仅是完成一个 http 反向代理。 nginx.conf 配置文件如下: #运行用户 #user somebody; #启动进程,通常设置成和cpu的数</description>
+    </item>
+    
+    <item>
+      <title>Go Pakage</title>
+      <link>http://localhost:1313/post/go/go-pakage/</link>
+      <pubDate>Tue, 20 Oct 2020 20:04:12 +0800</pubDate>
+      
+      <guid>http://localhost:1313/post/go/go-pakage/</guid>
+      <description>每个 Go 程序都是由包构成的。 程序从 main 包开始运行。 本程序通过导入路径 &amp;ldquo;fmt&amp;rdquo; 和 &amp;ldquo;math/rand&amp;rdquo; 来使用这两个包。 按照约定，包名与导入路径的最后一个元素一致。例如，&amp;l</description>
     </item>
     
     <item>
@@ -176,45 +203,6 @@ We&amp;rsquo;ll start with creating a new site with a very basic template.</desc
       
       <guid>http://localhost:1313/post/goisforlovers/</guid>
       <description>draft: true Hugo uses the excellent go html/template library for its template engine. It is an extremely lightweight engine that provides a very small amount of logic. In our experience that it is just the right amount of logic to be able to create a good static website. If you have used other template systems from different languages or frameworks you will find a lot of similarities in go templates.</description>
-    </item>
-    
-    <item>
-      <title>Getting Started with Hugo</title>
-      <link>http://localhost:1313/post/hugoisforlovers/</link>
-      <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/post/hugoisforlovers/</guid>
-      <description>draft: true
-Step 1. Install Hugo Goto hugo releases and download the appropriate version for your os and architecture.
-Save it somewhere specific as we will be using it in the next step.
-More complete instructions are available at installing hugo
-Step 2. Build the Docs Hugo has its own example site which happens to also be the documentation site you are reading right now.
-Follow the following steps:
- Clone the hugo repository Go into the repo Run hugo in server mode and build the docs Open your browser to http://localhost:1313  Corresponding pseudo commands:</description>
-    </item>
-    
-    <item>
-      <title>Migrate to Hugo from Jekyll</title>
-      <link>http://localhost:1313/post/migrate-from-jekyll/</link>
-      <pubDate>Mon, 10 Mar 2014 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/post/migrate-from-jekyll/</guid>
-      <description>Move static content to static Jekyll has a rule that any directory not starting with _ will be copied as-is to the _site output. Hugo keeps all static content under static. You should therefore move it all there. With Jekyll, something that looked like
-▾ &amp;lt;root&amp;gt;/ ▾ images/ logo.png  should become
-▾ &amp;lt;root&amp;gt;/ ▾ static/ ▾ images/ logo.png  Additionally, you&amp;rsquo;ll want any files that should reside at the root (such as CNAME) to be moved to static.</description>
-    </item>
-    
-    <item>
-      <title>Syntax Highlighting</title>
-      <link>http://localhost:1313/post/syntax-highlighting/</link>
-      <pubDate>Tue, 30 Aug 2011 16:01:23 +0800</pubDate>
-      
-      <guid>http://localhost:1313/post/syntax-highlighting/</guid>
-      <description>&lt;p&gt;More detail: &lt;a href=&#34;https://gohugo.io/content-management/syntax-highlighting/&#34;&gt;Syntax Highlighting | Hugo&lt;/a&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;helloWorld&lt;/span&gt;() {
-  &lt;span style=&#34;color:#a6e22e&#34;&gt;alert&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Hello, World!&amp;#34;&lt;/span&gt;);
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
     </item>
     
   </channel>
