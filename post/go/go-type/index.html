@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Archive - clive xiang 的博客</title>
+  <title>Go 基本数据类型 变量 - clive xiang 的博客</title>
   
 
 <meta name="renderer" content="webkit" />
@@ -23,7 +23,8 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="clive" />
-  <meta name="description" content="Hugo theme jane example site." />
+  <meta name="description" content="变量 var 语句用于声明一个变量列表，跟函数的参数列表一样，类型在最后。 就像在这个例子中看到的一样，var 语句可以出现在包或函数级别。 variables.go package main import &amp;quot;fmt&amp;quot; var" />
+
   <meta name="keywords" content="Hugo, theme, clive" />
 
 
@@ -34,8 +35,8 @@
 <meta name="generator" content="Hugo 0.74.1" />
 
 
-<link rel="canonical" href="http://localhost:1313/post/" />
-<link href="/post/index.xml" rel="alternate" type="application/rss+xml" title="clive xiang 的博客" />
+<link rel="canonical" href="http://localhost:1313/post/go/go-type/" />
+
 
 
 
@@ -58,15 +59,23 @@
 
 
 
-<meta property="og:title" content="Posts" />
-<meta property="og:description" content="Hugo theme jane example site." />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="http://localhost:1313/post/" />
-<meta property="og:updated_time" content="2020-10-20T20:10:12+08:00" />
-<meta itemprop="name" content="Posts">
-<meta itemprop="description" content="Hugo theme jane example site."><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Posts"/>
-<meta name="twitter:description" content="Hugo theme jane example site."/>
+<meta property="og:title" content="Go 基本数据类型 变量" />
+<meta property="og:description" content="变量 var 语句用于声明一个变量列表，跟函数的参数列表一样，类型在最后。 就像在这个例子中看到的一样，var 语句可以出现在包或函数级别。 variables.go package main import &quot;fmt&quot; var" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/post/go/go-type/" />
+<meta property="article:published_time" content="2020-10-20T20:04:12+08:00" />
+<meta property="article:modified_time" content="2020-10-20T20:04:12+08:00" />
+<meta itemprop="name" content="Go 基本数据类型 变量">
+<meta itemprop="description" content="变量 var 语句用于声明一个变量列表，跟函数的参数列表一样，类型在最后。 就像在这个例子中看到的一样，var 语句可以出现在包或函数级别。 variables.go package main import &quot;fmt&quot; var">
+<meta itemprop="datePublished" content="2020-10-20T20:04:12&#43;08:00" />
+<meta itemprop="dateModified" content="2020-10-20T20:04:12&#43;08:00" />
+<meta itemprop="wordCount" content="1014">
+
+
+
+<meta itemprop="keywords" content="go," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Go 基本数据类型 变量"/>
+<meta name="twitter:description" content="变量 var 语句用于声明一个变量列表，跟函数的参数列表一样，类型在最后。 就像在这个例子中看到的一样，var 语句可以出现在包或函数级别。 variables.go package main import &quot;fmt&quot; var"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -273,7 +282,7 @@
 
       </li>
     
-        <li class="menu-item active">
+        <li class="menu-item">
         
           
           
@@ -382,182 +391,303 @@
     <main id="main" class="main bg-llight">
       <div class="content-wrapper">
         <div id="content" class="content container">
+          <article class="post bg-white">
+    
+    <header class="post-header">
+      <h1 class="post-title">Go 基本数据类型 变量</h1>
+      
+      <div class="post-meta">
+        <time datetime="2020-10-20" class="post-time">
+          2020-10-20
+        </time>
+        <div class="post-category">
+            <a href="http://localhost:1313/categories/go/"> go </a>
+            
+          </div>
+        
+
+        
+        
+
+        
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Table of Contents</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#变量">变量</a></li>
+        <li><a href="#变量的初始化">变量的初始化</a></li>
+        <li><a href="#短变量声明">短变量声明</a></li>
+        <li><a href="#基本类型">基本类型</a></li>
+        <li><a href="#表达式-tv-将值-v-转换为类型-t">表达式 T(v) 将值 v 转换为类型 T。</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      <h3 id="变量">变量</h3>
+<p>var 语句用于声明一个变量列表，跟函数的参数列表一样，类型在最后。</p>
+<p>就像在这个例子中看到的一样，var 语句可以出现在包或函数级别。</p>
+<p>variables.go</p>
+<pre><code>
+package main
+import &quot;fmt&quot;
+var c, python, java bool
+func main() {
+    var i int
+    fmt.Println(i, c, python, java)
+}
+</code></pre><h3 id="变量的初始化">变量的初始化</h3>
+<pre><code>变量声明可以包含初始值，每个变量对应一个。
+
+如果初始化值已存在，则可以省略类型；变量会从初始值中获得类型。
+
+variables-with-initializers.go
+
+package main
+import &quot;fmt&quot;
+var i, j int = 1, 2
+func main() {
+    var c, python, java = true, false, &quot;no!&quot;
+    fmt.Println(i, j, c, python, java)
+}
+</code></pre><h3 id="短变量声明">短变量声明</h3>
+<p>在函数中，简洁赋值语句 := 可在类型明确的地方代替 var 声明。</p>
+<p>函数外的每个语句都必须以关键字开始（var, func 等等），因此 := 结构不能在函数外使用。</p>
+<p>short-variable-declarations.go</p>
+<pre><code>
+package main
+import &quot;fmt&quot;
+func main() {
+    var i, j int = 1, 2
+    k := 3
+    c, python, java := true, false, &quot;no!&quot;
+    fmt.Println(i, j, k, c, python, java)
+}
+</code></pre><h3 id="基本类型">基本类型</h3>
+<pre><code>bool
+
+string
+
+int  int8  int16  int32  int64
+uint uint8 uint16 uint32 uint64 uintptr
+
+byte // uint8 的别名
+
+rune // int32 的别名
+    // 表示一个 Unicode 码点
+
+float32 float64
+
+complex64 complex128
+</code></pre><p>本例展示了几种类型的变量。 同导入语句一样，变量声明也可以“分组”成一个语法块。</p>
+<p>int, uint 和 uintptr 在 32 位系统上通常为 32 位宽，在 64 位系统上则为 64 位宽。 当你需要一个整数值时应使用 int 类型，除非你有特殊的理由使用固定大小或无符号的整数类型。</p>
+<p>basic-types.go</p>
+<pre><code>
+package main
+import (
+    &quot;fmt&quot;
+    &quot;math/cmplx&quot;
+)
+var (
+    ToBe   bool       = false
+    MaxInt uint64     = 1&lt;&lt;64 - 1
+    z      complex128 = cmplx.Sqrt(-5 + 12i)
+)
+func main() {
+    fmt.Printf(&quot;Type: %T Value: %v\n&quot;, ToBe, ToBe)
+    fmt.Printf(&quot;Type: %T Value: %v\n&quot;, MaxInt, MaxInt)
+    fmt.Printf(&quot;Type: %T Value: %v\n&quot;, z, z)
+}
+</code></pre><h4 id="零值">零值</h4>
+<p>没有明确初始值的变量声明会被赋予它们的 零值。</p>
+<p>零值是：</p>
+<p>数值类型为 0，
+布尔类型为 false，
+字符串为 &ldquo;&quot;（空字符串）。
+zero.go</p>
+<pre><code>
+package main
+import &quot;fmt&quot;
+func main() {
+    var i int
+    var f float64
+    var b bool
+    var s string
+    fmt.Printf(&quot;%v %v %v %q\n&quot;, i, f, b, s)
+}
+</code></pre><h3 id="表达式-tv-将值-v-转换为类型-t">表达式 T(v) 将值 v 转换为类型 T。</h3>
+<p>一些关于数值的转换：</p>
+<pre><code>
+var i int = 42
+var f float64 = float64(i)
+var u uint = uint(f)
+</code></pre><p>或者，更加简单的形式：</p>
+<pre><code>
+i := 42
+f := float64(i)
+u := uint(f)
+</code></pre><p>与 C 不同的是，Go 在不同类型的项之间赋值时需要显式转换。试着移除例子中 float64 或 uint 的转换看看会发生什么。</p>
+<p>type-conversions.go</p>
+<pre><code>
+package main
+import (
+    &quot;fmt&quot;
+    &quot;math&quot;
+)
+func main() {
+    var x, y int = 3, 4
+    var f float64 = math.Sqrt(float64(x*x + y*y))
+    var z uint = uint(f)
+    fmt.Println(x, y, z)
+}
+</code></pre><h4 id="类型推导">类型推导</h4>
+<p>在声明一个变量而不指定其类型时（即使用不带类型的 := 语法或 var = 表达式语法），变量的类型由右值推导得出。</p>
+<p>当右值声明了类型时，新变量的类型与其相同：</p>
+<pre><code>var i int
+j := i // j 也是一个 int
+</code></pre><p>不过当右边包含未指明类型的数值常量时，新变量的类型就可能是 int, float64 或 complex128 了，这取决于常量的精度：</p>
+<pre><code>
+i := 42           // int
+f := 3.142        // float64
+g := 0.867 + 0.5i // complex128
+</code></pre><p>尝试修改示例代码中 v 的初始值，并观察它是如何影响类型的。</p>
+<p>type-inference.go</p>
+<pre><code>
+package main
+import &quot;fmt&quot;
+func main() {
+    v := 42 // 修改这里！
+    fmt.Printf(&quot;v is of type %T\n&quot;, v)
+}
+</code></pre><h4 id="常量的声明与变量类似只不过是使用-const-关键字">常量的声明与变量类似，只不过是使用 const 关键字。</h4>
+<p>常量可以是字符、字符串、布尔值或数值。</p>
+<p>常量不能用 := 语法声明。</p>
+<p>constants.go</p>
+<pre><code>
+package main
+import &quot;fmt&quot;
+const Pi = 3.14
+func main() {
+    const World = &quot;世界&quot;
+    fmt.Println(&quot;Hello&quot;, World)
+    fmt.Println(&quot;Happy&quot;, Pi, &quot;Day&quot;)
+    const Truth = true
+    fmt.Println(&quot;Go rules?&quot;, Truth)
+}
+</code></pre>
+    </div>
+
+    
+    
+<div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">clive</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+      2020-10-20
+      
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">License</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+
+
+    
+    
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">Reward</label>
+  <div class="qr-code">
+    
+    
+      <label class="qr-code-image" for="reward">
+        <img class="image" src="/post/k8s/wechat.jpeg">
+        <span>Wechat</span>
+      </label>
+    
+  </div>
+</div>
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          <a href="http://localhost:1313/tags/go/">go</a>
           
-<section id="archive" class="archive">
-    
-      <div class="collection-title">
-        <h2 class="archive-year">2020</h2>
-      </div>
+        </div>
 
-    <div class="archive-post">
-      <time datetime="2020-10-19" class="archive-post-time">
-        2020-10-19
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/k8s/python-ansible/" class="archive-post-link">
-          Python Ansible 自动化部署 K8S 集群 
-        </a>
-      </span>
-    </div>
-    
-
-    <div class="archive-post">
-      <time datetime="2020-10-19" class="archive-post-time">
-        2020-10-19
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/k8s/docker-command/" class="archive-post-link">
-          Docker Command
-        </a>
-      </span>
-    </div>
-    
-
-    <div class="archive-post">
-      <time datetime="2020-09-19" class="archive-post-time">
-        2020-09-19
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/nginx/nginx-upstrem/" class="archive-post-link">
-          Https 负载均衡
-        </a>
-      </span>
-    </div>
-    
-
-    <div class="archive-post">
-      <time datetime="2020-09-19" class="archive-post-time">
-        2020-09-19
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/nginx/nginx-https/" class="archive-post-link">
-          Https 反向代理
-        </a>
-      </span>
-    </div>
-    
-      <div class="collection-title">
-        <h2 class="archive-year">2019</h2>
-      </div>
-
-    <div class="archive-post">
-      <time datetime="2019-03-04" class="archive-post-time">
-        2019-03-04
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/math-preview/" class="archive-post-link">
-          Math Preview
-        </a>
-      </span>
-    </div>
-    
-      <div class="collection-title">
-        <h2 class="archive-year">2018</h2>
-      </div>
-
-    <div class="archive-post">
-      <time datetime="2018-03-06" class="archive-post-time">
-        2018-03-06
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/jane-theme-preview.zh-cn/" class="archive-post-link">
-          Http 反向代理
-        </a>
-      </span>
-    </div>
-    
-
-    <div class="archive-post">
-      <time datetime="2018-03-04" class="archive-post-time">
-        2018-03-04
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/shortcodes-preview/" class="archive-post-link">
-          Shortcodes Preview
-        </a>
-      </span>
-    </div>
-    
-
-    <div class="archive-post">
-      <time datetime="2018-03-03" class="archive-post-time">
-        2018-03-03
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/shortcode-notice/" class="archive-post-link">
-          Shortcodes Notice Preview
-        </a>
-      </span>
-    </div>
-    
-
-    <div class="archive-post">
-      <time datetime="2018-03-03" class="archive-post-time">
-        2018-03-03
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/image-preview/" class="archive-post-link">
-          Image Preview
-        </a>
-      </span>
-    </div>
-    
-
-    <div class="archive-post">
-      <time datetime="2018-03-01" class="archive-post-time">
-        2018-03-01
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/doc-footnote-preview/" class="archive-post-link">
-          Jane-Theme Footnote Preview
-        </a>
-      </span>
-    </div></section>
-
-
-
-
-
-
-  
-  
-  
-
-  
-  
-
-  
-  
-
-  
-  
-
-  
-  
-  <nav class="pagination">
-    <ul>
       
-      <li >
-        <a href="/post/">1</a>
-      </li>
-      
-      <li  class="active" >
-        <a href="/post/page/2/">2</a>
-      </li>
-      
-      <li >
-        <a href="/post/page/3/">3</a>
-      </li>
-      
-    </ul>
-  </nav>
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/go/go-switch/">
+            
+            <i class="iconfont">
+              <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M691.908486 949.511495l75.369571-89.491197c10.963703-12.998035 10.285251-32.864502-1.499144-44.378743L479.499795 515.267417 757.434875 204.940602c11.338233-12.190647 11.035334-32.285311-0.638543-44.850487l-80.46666-86.564541c-11.680017-12.583596-30.356378-12.893658-41.662889-0.716314L257.233596 494.235404c-11.332093 12.183484-11.041474 32.266891 0.657986 44.844348l80.46666 86.564541c1.772366 1.910513 3.706415 3.533476 5.750981 4.877077l306.620399 321.703933C662.505829 963.726242 680.945807 962.528973 691.908486 949.511495z"></path>
+</svg>
+
+            </i>
+            <span class="prev-text nav-default">Go switch</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        
+          <a class="next" href="/post/math-preview/">
+            <span class="next-text nav-default">Math Preview</span>
+            <span class="prev-text nav-mobile">Next</span>
+            
+            <i class="iconfont">
+              <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M332.091514 74.487481l-75.369571 89.491197c-10.963703 12.998035-10.285251 32.864502 1.499144 44.378743l286.278095 300.375162L266.565125 819.058374c-11.338233 12.190647-11.035334 32.285311 0.638543 44.850487l80.46666 86.564541c11.680017 12.583596 30.356378 12.893658 41.662889 0.716314l377.434212-421.426145c11.332093-12.183484 11.041474-32.266891-0.657986-44.844348l-80.46666-86.564541c-1.772366-1.910513-3.706415-3.533476-5.750981-4.877077L373.270379 71.774697C361.493148 60.273758 343.054193 61.470003 332.091514 74.487481z"></path>
+</svg>
+
+            </i>
+          </a>
+      </nav>
+    </footer>
+  </article>
 
   
   
 
+  
+  
 
+  
 
+  
+  
 
+  
+
+  
+
+  
+
+    
+
+  
 
         </div>
       </div>
