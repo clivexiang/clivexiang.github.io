@@ -12,21 +12,30 @@
     
     
     <item>
-      <title>Nginx 常用命令</title>
-      <link>http://localhost:1313/post/nginx/nginx-demo/</link>
-      <pubDate>Mon, 19 Oct 2020 20:25:50 +0800</pubDate>
-      
-      <guid>http://localhost:1313/post/nginx/nginx-demo/</guid>
-      <description>nginx 的使用比较简单，就是几条命令。 常用到的命令如下： nginx -s stop 快速关闭 Nginx，可能不保存相关信息，并迅速终止 web 服务。 nginx -s quit 平稳关闭 Nginx，</description>
-    </item>
-    
-    <item>
       <title>Nginx 常见使用场景</title>
       <link>http://localhost:1313/post/nginx/nginx-use/</link>
       <pubDate>Mon, 19 Oct 2020 20:25:50 +0800</pubDate>
       
       <guid>http://localhost:1313/post/nginx/nginx-use/</guid>
       <description>跨域问题 在工作中，有时候会遇到一些接口不支持跨域，这时候可以简单的添加 add_headers 来支持 cors 跨域。配置如下： server { listen 80; server_name api.xxx.com; add_header &#39;Access-Control-Allow-Origin&#39; &#39;*&#39;; add_header &#39;Access-Control-Allow-Credentials&#39; &#39;true&#39;; add_header &#39;Access-Control-Allow-Methods&#39; &#39;GET,POST,HEAD&#39;; location / { proxy_pass http://127.0.0.1:3000; proxy_set_header X-Real-IP</description>
+    </item>
+    
+    <item>
+      <title>Http 反向代理</title>
+      <link>http://localhost:1313/post/jane-theme-preview.zh-cn/</link>
+      <pubDate>Tue, 06 Mar 2018 16:01:23 +0800</pubDate>
+      
+      <guid>http://localhost:1313/post/jane-theme-preview.zh-cn/</guid>
+      <description>Http 反向代理 我们先实现一个小目标：不考虑复杂的配置，仅仅是完成一个 http 反向代理。 nginx.conf 配置文件如下: #运行用户 #user somebody; #启动进程,通常设置成和cpu的数</description>
+    </item>
+    
+    <item>
+      <title>Nginx 常用命令</title>
+      <link>http://localhost:1313/post/nginx/nginx-demo/</link>
+      <pubDate>Mon, 19 Oct 2020 20:25:50 +0800</pubDate>
+      
+      <guid>http://localhost:1313/post/nginx/nginx-demo/</guid>
+      <description>nginx 的使用比较简单，就是几条命令。 常用到的命令如下： nginx -s stop 快速关闭 Nginx，可能不保存相关信息，并迅速终止 web 服务。 nginx -s quit 平稳关闭 Nginx，</description>
     </item>
     
     <item>
@@ -54,15 +63,6 @@
       
       <guid>http://localhost:1313/post/nginx/nginx-upstrem/</guid>
       <description>nginx 实现简单的负载均衡功能。 假设这样一个应用场景：将应用部署在 192.168.1.11:80、192.168.1.12:80、192.168.</description>
-    </item>
-    
-    <item>
-      <title>Http 反向代理</title>
-      <link>http://localhost:1313/post/jane-theme-preview.zh-cn/</link>
-      <pubDate>Tue, 06 Mar 2018 16:01:23 +0800</pubDate>
-      
-      <guid>http://localhost:1313/post/jane-theme-preview.zh-cn/</guid>
-      <description>Http 反向代理 我们先实现一个小目标：不考虑复杂的配置，仅仅是完成一个 http 反向代理。 nginx.conf 配置文件如下: #运行用户 #user somebody; #启动进程,通常设置成和cpu的数</description>
     </item>
     
   </channel>

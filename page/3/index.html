@@ -62,7 +62,7 @@
 <meta property="og:description" content="Hugo theme jane example site." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="http://localhost:1313/" />
-<meta property="og:updated_time" content="2020-10-20T20:10:12+08:00" />
+<meta property="og:updated_time" content="2020-10-21T21:18:22+08:00" />
 <meta itemprop="name" content="clive xiang 的博客">
 <meta itemprop="description" content="Hugo theme jane example site."><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="clive xiang 的博客"/>
@@ -394,74 +394,6 @@
   <header class="post-header">
     <h1 class="post-title">
       
-      <a class="post-link" href="/post/go/go-for/">Go For</a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="2020-10-20" class="post-time">
-        2020-10-20
-      </time>
-      <div class="post-category">
-          <a href="http://localhost:1313/categories/go/"> go </a>
-          
-        </div>
-      
-      
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      Go 只有一种循环结构：for 循环。 基本的 for 循环由三部分组成，它们用分号隔开： 初始化语句：在第一次迭代前执行 条件表达式：在每次迭代前求值 后置语句
-    </div>
-    <div class="read-more">
-      <a href="/post/go/go-for/" class="read-more-link">Read more</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/go/go-if/">Go if</a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="2020-10-20" class="post-time">
-        2020-10-20
-      </time>
-      <div class="post-category">
-          <a href="http://localhost:1313/categories/go/"> go </a>
-          
-        </div>
-      
-      
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      Go 的 if 语句与 for 循环类似，表达式外无需小括号 ( ) ，而大括号 { } 则是必须的。 if.go package main import ( &quot;fmt&quot; &quot;math&quot; ) func sqrt(x float64) string { if x &lt; 0 { return sqrt(-x) + &quot;i&quot; } return fmt.Sprint(math.Sqrt(x)) } func main() { fmt.Println(sqrt(2), sqrt(-4)) } if 的
-    </div>
-    <div class="read-more">
-      <a href="/post/go/go-if/" class="read-more-link">Read more</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
       <a class="post-link" href="/post/go/go-pakage/">Go Pakage</a>
     </h1>
     
@@ -560,6 +492,74 @@
 </article>
 
   
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
+      <a class="post-link" href="/post/nginx/nginx-demo/">Nginx 常用命令</a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="2020-10-19" class="post-time">
+        2020-10-19
+      </time>
+      <div class="post-category">
+          <a href="http://localhost:1313/categories/nginx/"> nginx </a>
+          
+        </div>
+      
+      
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      nginx 的使用比较简单，就是几条命令。 常用到的命令如下： nginx -s stop 快速关闭 Nginx，可能不保存相关信息，并迅速终止 web 服务。 nginx -s quit 平稳关闭 Nginx，
+    </div>
+    <div class="read-more">
+      <a href="/post/nginx/nginx-demo/" class="read-more-link">Read more</a>
+    </div>
+    
+  </div>
+</article>
+
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
+      <a class="post-link" href="/post/nginx/nginx-error/">Nginx 常见错误</a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="2020-10-19" class="post-time">
+        2020-10-19
+      </time>
+      <div class="post-category">
+          <a href="http://localhost:1313/categories/nginx/"> nginx </a>
+          
+        </div>
+      
+      
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      The plain HTTP request was sent to HTTPS port 解决办法，fastcgi_param HTTPS $https if_not_empty 添加这条规则， server { listen 443 ssl; # 注意这条规则 server_name my.domain.com; fastcgi_param HTTPS $https if_not_empty; fastcgi_param HTTPS on; ssl_certificate /etc/ssl/certs/your.pem; ssl_certificate_key /etc/ssl/private/your.key; location / { # Your config here... }
+    </div>
+    <div class="read-more">
+      <a href="/post/nginx/nginx-error/" class="read-more-link">Read more</a>
+    </div>
+    
+  </div>
+</article>
+
+  
 </section>
 
 
@@ -607,6 +607,10 @@
       
       <li >
         <a href="/page/6/">6</a>
+      </li>
+      
+      <li >
+        <a href="/page/7/">7</a>
       </li>
       
     </ul>

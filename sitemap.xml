@@ -2,21 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://localhost:1313/post/nginx/nginx-demo/</loc>
-    <lastmod>2020-10-19T20:25:50+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>http://localhost:1313/post/nginx/nginx-use/</loc>
-    <lastmod>2020-10-19T20:25:50+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>http://localhost:1313/post/nginx/nginx-error/</loc>
     <lastmod>2020-10-19T20:25:50+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -25,34 +11,6 @@
   <url>
     <loc>http://localhost:1313/post/k8s/python-ansible/</loc>
     <lastmod>2020-10-19T15:45:06+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>http://localhost:1313/post/k8s/docker-command/</loc>
-    <lastmod>2020-10-19T14:22:38+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>http://localhost:1313/post/k8s/helm/</loc>
-    <lastmod>2020-10-19T17:00:42+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>http://localhost:1313/post/nginx/nginx-https/</loc>
-    <lastmod>2020-09-19T17:00:42+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>http://localhost:1313/post/nginx/nginx-upstrem/</loc>
-    <lastmod>2020-09-19T17:00:42+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -73,48 +31,76 @@
   
   <url>
     <loc>http://localhost:1313/categories/</loc>
-    <lastmod>2020-10-20T20:10:12+08:00</lastmod>
+    <lastmod>2020-10-21T21:18:22+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>http://localhost:1313/</loc>
-    <lastmod>2020-10-20T20:10:12+08:00</lastmod>
+    <lastmod>2020-10-21T21:18:22+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>http://localhost:1313/tags/go/</loc>
-    <lastmod>2020-10-20T20:10:12+08:00</lastmod>
+    <lastmod>2020-10-21T21:18:22+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>http://localhost:1313/categories/go/</loc>
-    <lastmod>2020-10-20T20:10:12+08:00</lastmod>
+    <lastmod>2020-10-21T21:18:22+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://localhost:1313/post/go/go-defer/</loc>
-    <lastmod>2020-10-20T20:10:12+08:00</lastmod>
+    <loc>http://localhost:1313/post/go/go-methods/</loc>
+    <lastmod>2020-10-21T21:18:22+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>http://localhost:1313/post/</loc>
-    <lastmod>2020-10-20T20:10:12+08:00</lastmod>
+    <lastmod>2020-10-21T21:18:22+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>http://localhost:1313/tags/</loc>
+    <lastmod>2020-10-21T21:18:22+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://localhost:1313/post/go/go-map/</loc>
+    <lastmod>2020-10-21T21:13:22+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://localhost:1313/post/go/go-pointer/</loc>
+    <lastmod>2020-10-21T20:54:41+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://localhost:1313/post/go/go-struct/</loc>
+    <lastmod>2020-10-21T19:54:41+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://localhost:1313/post/go/go-defer/</loc>
     <lastmod>2020-10-20T20:10:12+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -177,6 +163,20 @@
   </url>
   
   <url>
+    <loc>http://localhost:1313/post/nginx/nginx-demo/</loc>
+    <lastmod>2020-10-19T20:25:50+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://localhost:1313/post/nginx/nginx-error/</loc>
+    <lastmod>2020-10-19T20:25:50+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>http://localhost:1313/tags/%E8%BF%90%E7%BB%B4/</loc>
     <lastmod>2020-10-19T20:25:50+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -192,6 +192,13 @@
   
   <url>
     <loc>http://localhost:1313/categories/helm/</loc>
+    <lastmod>2020-10-19T17:00:42+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://localhost:1313/post/k8s/helm/</loc>
     <lastmod>2020-10-19T17:00:42+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -261,8 +268,29 @@
   </url>
   
   <url>
+    <loc>http://localhost:1313/post/k8s/docker-command/</loc>
+    <lastmod>2020-10-19T14:22:38+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>http://localhost:1313/tags/markdown/</loc>
     <lastmod>2020-10-19T14:22:38+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://localhost:1313/post/nginx/nginx-https/</loc>
+    <lastmod>2020-09-19T17:00:42+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://localhost:1313/post/nginx/nginx-upstrem/</loc>
+    <lastmod>2020-09-19T17:00:42+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>

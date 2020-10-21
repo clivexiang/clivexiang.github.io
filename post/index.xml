@@ -6,19 +6,10 @@
     <description>Recent content in Posts on clive xiang 的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 20 Oct 2020 20:10:12 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 21 Oct 2020 21:18:22 +0800</lastBuildDate>
     
 	<atom:link href="http://localhost:1313/post/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Nginx 常用命令</title>
-      <link>http://localhost:1313/post/nginx/nginx-demo/</link>
-      <pubDate>Mon, 19 Oct 2020 20:25:50 +0800</pubDate>
-      
-      <guid>http://localhost:1313/post/nginx/nginx-demo/</guid>
-      <description>nginx 的使用比较简单，就是几条命令。 常用到的命令如下： nginx -s stop 快速关闭 Nginx，可能不保存相关信息，并迅速终止 web 服务。 nginx -s quit 平稳关闭 Nginx，</description>
-    </item>
     
     <item>
       <title>Nginx 常见使用场景</title>
@@ -27,15 +18,6 @@
       
       <guid>http://localhost:1313/post/nginx/nginx-use/</guid>
       <description>跨域问题 在工作中，有时候会遇到一些接口不支持跨域，这时候可以简单的添加 add_headers 来支持 cors 跨域。配置如下： server { listen 80; server_name api.xxx.com; add_header &#39;Access-Control-Allow-Origin&#39; &#39;*&#39;; add_header &#39;Access-Control-Allow-Credentials&#39; &#39;true&#39;; add_header &#39;Access-Control-Allow-Methods&#39; &#39;GET,POST,HEAD&#39;; location / { proxy_pass http://127.0.0.1:3000; proxy_set_header X-Real-IP</description>
-    </item>
-    
-    <item>
-      <title>Nginx 常见错误</title>
-      <link>http://localhost:1313/post/nginx/nginx-error/</link>
-      <pubDate>Mon, 19 Oct 2020 20:25:50 +0800</pubDate>
-      
-      <guid>http://localhost:1313/post/nginx/nginx-error/</guid>
-      <description>The plain HTTP request was sent to HTTPS port 解决办法，fastcgi_param HTTPS $https if_not_empty 添加这条规则， server { listen 443 ssl; # 注意这条规则 server_name my.domain.com; fastcgi_param HTTPS $https if_not_empty; fastcgi_param HTTPS on; ssl_certificate /etc/ssl/certs/your.pem; ssl_certificate_key /etc/ssl/private/your.key; location / { # Your config here... }</description>
     </item>
     
     <item>
@@ -48,48 +30,48 @@
     </item>
     
     <item>
-      <title>Docker Command</title>
-      <link>http://localhost:1313/post/k8s/docker-command/</link>
-      <pubDate>Mon, 19 Oct 2020 14:22:38 +0800</pubDate>
-      
-      <guid>http://localhost:1313/post/k8s/docker-command/</guid>
-      <description>杀死所有正在运行的容器 docker kill $(docker ps -a -q) 删除所有已经停止的容器 docker rm $(docker ps -a -q) 删除所有未打 dangling 标签的镜 docker rmi $(docker images -q -f dangling=true) 删除所有镜像 docker rmi $(docker images -q) 强制删除 无法删</description>
-    </item>
-    
-    <item>
-      <title>Helm 应用包管理器</title>
-      <link>http://localhost:1313/post/k8s/helm/</link>
-      <pubDate>Mon, 19 Oct 2020 17:00:42 +0800</pubDate>
-      
-      <guid>http://localhost:1313/post/k8s/helm/</guid>
-      <description>3.1 为什么需要 Helm？ K8S 上的应用对象，都是由特定的资源描述组成，包括 deployment、service 等。都保存各自文件中或者集中写到一个</description>
-    </item>
-    
-    <item>
-      <title>Https 反向代理</title>
-      <link>http://localhost:1313/post/nginx/nginx-https/</link>
-      <pubDate>Sat, 19 Sep 2020 17:00:42 +0800</pubDate>
-      
-      <guid>http://localhost:1313/post/nginx/nginx-https/</guid>
-      <description>Https 反向代理 一些对安全性要求比较高的站点，可能会使用 HTTPS（一种使用 ssl 通信标准的安全 HTTP 协议）。 这里不科普 HTTP 协议和 SSL 标准。但是，使用 nginx 配置 https</description>
-    </item>
-    
-    <item>
-      <title>Https 负载均衡</title>
-      <link>http://localhost:1313/post/nginx/nginx-upstrem/</link>
-      <pubDate>Sat, 19 Sep 2020 17:00:42 +0800</pubDate>
-      
-      <guid>http://localhost:1313/post/nginx/nginx-upstrem/</guid>
-      <description>nginx 实现简单的负载均衡功能。 假设这样一个应用场景：将应用部署在 192.168.1.11:80、192.168.1.12:80、192.168.</description>
-    </item>
-    
-    <item>
       <title>Http 反向代理</title>
       <link>http://localhost:1313/post/jane-theme-preview.zh-cn/</link>
       <pubDate>Tue, 06 Mar 2018 16:01:23 +0800</pubDate>
       
       <guid>http://localhost:1313/post/jane-theme-preview.zh-cn/</guid>
       <description>Http 反向代理 我们先实现一个小目标：不考虑复杂的配置，仅仅是完成一个 http 反向代理。 nginx.conf 配置文件如下: #运行用户 #user somebody; #启动进程,通常设置成和cpu的数</description>
+    </item>
+    
+    <item>
+      <title>Go 方法</title>
+      <link>http://localhost:1313/post/go/go-methods/</link>
+      <pubDate>Wed, 21 Oct 2020 21:18:22 +0800</pubDate>
+      
+      <guid>http://localhost:1313/post/go/go-methods/</guid>
+      <description>Go 没有类。不过你可以为结构体类型定义方法。 方法就是一类带特殊的 接收者 参数的函数。 方法接收者在它自己的参数列表内，位于 func 关键字和方法名之间。 在</description>
+    </item>
+    
+    <item>
+      <title>Go Map</title>
+      <link>http://localhost:1313/post/go/go-map/</link>
+      <pubDate>Wed, 21 Oct 2020 21:13:22 +0800</pubDate>
+      
+      <guid>http://localhost:1313/post/go/go-map/</guid>
+      <description>映射的文法 映射的文法与结构体相似，不过必须有键名。 map-literals.go package main import &amp;quot;fmt&amp;quot; type Vertex struct { Lat, Long float64 } var m = map[string]Vertex{ &amp;quot;Bell Labs&amp;quot;: Vertex{ 40.68433, -74.39967, }, &amp;quot;Google&amp;quot;: Vertex{ 37.42202, -122.08408, }, } func main() { fmt.Println(m) } 若顶级类型只是一个类型</description>
+    </item>
+    
+    <item>
+      <title>Go Pointer</title>
+      <link>http://localhost:1313/post/go/go-pointer/</link>
+      <pubDate>Wed, 21 Oct 2020 20:54:41 +0800</pubDate>
+      
+      <guid>http://localhost:1313/post/go/go-pointer/</guid>
+      <description>Go 拥有指针。指针保存了值的内存地址。 类型 *T 是指向 T 类型值的指针。其零值为 nil。 var p *int &amp;amp; 操作符会生成一个指向其操作数的指针。 i := 42 p = &amp;amp;i * 操</description>
+    </item>
+    
+    <item>
+      <title>Go Struct</title>
+      <link>http://localhost:1313/post/go/go-struct/</link>
+      <pubDate>Wed, 21 Oct 2020 19:54:41 +0800</pubDate>
+      
+      <guid>http://localhost:1313/post/go/go-struct/</guid>
+      <description>一个结构体（struct）就是一组字段（field） structs.go package main import &amp;quot;fmt&amp;quot; type Vertex struct { X int Y int } func main() { fmt.Println(Vertex{1, 2}) } 结构体字段使用点号来访问。 struct-fields.go package main import &amp;quot;fmt&amp;quot; type Vertex struct { X int</description>
     </item>
     
     <item>
@@ -147,58 +129,66 @@
     </item>
     
     <item>
+      <title>Nginx 常用命令</title>
+      <link>http://localhost:1313/post/nginx/nginx-demo/</link>
+      <pubDate>Mon, 19 Oct 2020 20:25:50 +0800</pubDate>
+      
+      <guid>http://localhost:1313/post/nginx/nginx-demo/</guid>
+      <description>nginx 的使用比较简单，就是几条命令。 常用到的命令如下： nginx -s stop 快速关闭 Nginx，可能不保存相关信息，并迅速终止 web 服务。 nginx -s quit 平稳关闭 Nginx，</description>
+    </item>
+    
+    <item>
+      <title>Nginx 常见错误</title>
+      <link>http://localhost:1313/post/nginx/nginx-error/</link>
+      <pubDate>Mon, 19 Oct 2020 20:25:50 +0800</pubDate>
+      
+      <guid>http://localhost:1313/post/nginx/nginx-error/</guid>
+      <description>The plain HTTP request was sent to HTTPS port 解决办法，fastcgi_param HTTPS $https if_not_empty 添加这条规则， server { listen 443 ssl; # 注意这条规则 server_name my.domain.com; fastcgi_param HTTPS $https if_not_empty; fastcgi_param HTTPS on; ssl_certificate /etc/ssl/certs/your.pem; ssl_certificate_key /etc/ssl/private/your.key; location / { # Your config here... }</description>
+    </item>
+    
+    <item>
+      <title>Helm 应用包管理器</title>
+      <link>http://localhost:1313/post/k8s/helm/</link>
+      <pubDate>Mon, 19 Oct 2020 17:00:42 +0800</pubDate>
+      
+      <guid>http://localhost:1313/post/k8s/helm/</guid>
+      <description>3.1 为什么需要 Helm？ K8S 上的应用对象，都是由特定的资源描述组成，包括 deployment、service 等。都保存各自文件中或者集中写到一个</description>
+    </item>
+    
+    <item>
+      <title>Docker Command</title>
+      <link>http://localhost:1313/post/k8s/docker-command/</link>
+      <pubDate>Mon, 19 Oct 2020 14:22:38 +0800</pubDate>
+      
+      <guid>http://localhost:1313/post/k8s/docker-command/</guid>
+      <description>杀死所有正在运行的容器 docker kill $(docker ps -a -q) 删除所有已经停止的容器 docker rm $(docker ps -a -q) 删除所有未打 dangling 标签的镜 docker rmi $(docker images -q -f dangling=true) 删除所有镜像 docker rmi $(docker images -q) 强制删除 无法删</description>
+    </item>
+    
+    <item>
+      <title>Https 反向代理</title>
+      <link>http://localhost:1313/post/nginx/nginx-https/</link>
+      <pubDate>Sat, 19 Sep 2020 17:00:42 +0800</pubDate>
+      
+      <guid>http://localhost:1313/post/nginx/nginx-https/</guid>
+      <description>Https 反向代理 一些对安全性要求比较高的站点，可能会使用 HTTPS（一种使用 ssl 通信标准的安全 HTTP 协议）。 这里不科普 HTTP 协议和 SSL 标准。但是，使用 nginx 配置 https</description>
+    </item>
+    
+    <item>
+      <title>Https 负载均衡</title>
+      <link>http://localhost:1313/post/nginx/nginx-upstrem/</link>
+      <pubDate>Sat, 19 Sep 2020 17:00:42 +0800</pubDate>
+      
+      <guid>http://localhost:1313/post/nginx/nginx-upstrem/</guid>
+      <description>nginx 实现简单的负载均衡功能。 假设这样一个应用场景：将应用部署在 192.168.1.11:80、192.168.1.12:80、192.168.</description>
+    </item>
+    
+    <item>
       <title>Math Preview</title>
       <link>http://localhost:1313/post/math-preview/</link>
       <pubDate>Mon, 04 Mar 2019 16:01:23 +0800</pubDate>
       
       <guid>http://localhost:1313/post/math-preview/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://www.intmath.com/cg5/katex-mathjax-comparison.php&#34;&gt;KaTeX and MathJax Comparison Demo, currently processed as KaTex&lt;/a&gt;&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Shortcodes Preview</title>
-      <link>http://localhost:1313/post/shortcodes-preview/</link>
-      <pubDate>Sun, 04 Mar 2018 16:01:23 +0800</pubDate>
-      
-      <guid>http://localhost:1313/post/shortcodes-preview/</guid>
-      <description>&lt;h2 id=&#34;what-a-shortcode-is&#34;&gt;What a Shortcode is&lt;/h2&gt;
-&lt;p&gt;Hugo loves Markdown because of its simple content format, but there are times when Markdown falls short. Often, content authors are forced to add raw HTML (e.g., video &lt;code&gt;&amp;lt;iframes&amp;gt;&lt;/code&gt;) to Markdown content. We think this contradicts the beautiful simplicity of Markdown&amp;rsquo;s syntax.&lt;/p&gt;
-&lt;p&gt;Hugo created &lt;strong&gt;shortcodes&lt;/strong&gt; to circumvent these limitations.&lt;/p&gt;
-&lt;p&gt;A shortcode is a simple snippet inside a content file that Hugo will render using a predefined template. Note that shortcodes will not work in template files. If you need the type of drop-in functionality that shortcodes provide but in a template, you most likely want a [partial template][partials] instead.&lt;/p&gt;
-&lt;p&gt;In addition to cleaner Markdown, shortcodes can be updated any time to reflect new classes, techniques, or standards. At the point of site generation, Hugo shortcodes will easily merge in your changes. You avoid a possibly complicated search and replace operation.&lt;/p&gt;
-&lt;p&gt;More details: &lt;a href=&#34;https://gohugo.io/content-management/shortcodes/&#34;&gt;https://gohugo.io/content-management/shortcodes/&lt;/a&gt;&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Image Preview</title>
-      <link>http://localhost:1313/post/image-preview/</link>
-      <pubDate>Sat, 03 Mar 2018 16:01:23 +0800</pubDate>
-      
-      <guid>http://localhost:1313/post/image-preview/</guid>
-      <description>&lt;p&gt;Thanks for &lt;a href=&#34;https://github.com/liwenyip/hugo-easy-gallery&#34;&gt;liwenyip/hugo-easy-gallery&lt;/a&gt; &amp;amp; &lt;a href=&#34;https://github.com/xianmin/hugo-theme-jane/pull/48&#34;&gt;Zebradil · Pull Request #48&lt;/a&gt; .&lt;/p&gt;
-&lt;p&gt;Now, we could use &lt;code&gt;{{&amp;lt; gallery &amp;gt;}}&lt;/code&gt; shortcode in hugo-theme-jane.&lt;/p&gt;
-&lt;h2 id=&#34;normal-image&#34;&gt;Normal Image&lt;/h2&gt;
-&lt;p&gt;This is an image in &lt;code&gt;static/image&lt;/code&gt; folder.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;![&lt;span style=&#34;color:#f92672&#34;&gt;This is an image in `static/image` folder.&lt;/span&gt;](&lt;span style=&#34;color:#a6e22e&#34;&gt;/image/example.jpg&lt;/span&gt;)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
-    </item>
-    
-    <item>
-      <title>Shortcodes Notice Preview</title>
-      <link>http://localhost:1313/post/shortcode-notice/</link>
-      <pubDate>Sat, 03 Mar 2018 16:01:23 +0800</pubDate>
-      
-      <guid>http://localhost:1313/post/shortcode-notice/</guid>
-      <description>normal use Note example: {{% notice note %}} A notice disclaimer {{% /notice %}} Result: You could custom title : {{% notice note 笔记 %}} A notice disclaimer {{% /notice %}} tip {{% notice tip %}} A tip disclaimer {{% /tip %}} info {{% notice info %}} A info disclaimer {{% /notice %}} warning {{% notice warning %}} A warning disclaimer {{% /notice %}}</description>
-    </item>
-    
-    <item>
-      <title>Jane-Theme Footnote Preview</title>
-      <link>http://localhost:1313/post/doc-footnote-preview/</link>
-      <pubDate>Thu, 01 Mar 2018 16:01:23 +0800</pubDate>
-      
-      <guid>http://localhost:1313/post/doc-footnote-preview/</guid>
-      <description>&lt;p&gt;Hugo-theme-jane optimized for footnote. When you mouse hover the footnote&lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt; , footnote content will be displayed.&lt;/p&gt;</description>
     </item>
     
   </channel>

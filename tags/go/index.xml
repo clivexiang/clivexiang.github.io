@@ -6,10 +6,46 @@
     <description>Recent content in go on clive xiang 的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 20 Oct 2020 20:10:12 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 21 Oct 2020 21:18:22 +0800</lastBuildDate>
     
 	<atom:link href="http://localhost:1313/tags/go/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Go 方法</title>
+      <link>http://localhost:1313/post/go/go-methods/</link>
+      <pubDate>Wed, 21 Oct 2020 21:18:22 +0800</pubDate>
+      
+      <guid>http://localhost:1313/post/go/go-methods/</guid>
+      <description>Go 没有类。不过你可以为结构体类型定义方法。 方法就是一类带特殊的 接收者 参数的函数。 方法接收者在它自己的参数列表内，位于 func 关键字和方法名之间。 在</description>
+    </item>
+    
+    <item>
+      <title>Go Map</title>
+      <link>http://localhost:1313/post/go/go-map/</link>
+      <pubDate>Wed, 21 Oct 2020 21:13:22 +0800</pubDate>
+      
+      <guid>http://localhost:1313/post/go/go-map/</guid>
+      <description>映射的文法 映射的文法与结构体相似，不过必须有键名。 map-literals.go package main import &amp;quot;fmt&amp;quot; type Vertex struct { Lat, Long float64 } var m = map[string]Vertex{ &amp;quot;Bell Labs&amp;quot;: Vertex{ 40.68433, -74.39967, }, &amp;quot;Google&amp;quot;: Vertex{ 37.42202, -122.08408, }, } func main() { fmt.Println(m) } 若顶级类型只是一个类型</description>
+    </item>
+    
+    <item>
+      <title>Go Pointer</title>
+      <link>http://localhost:1313/post/go/go-pointer/</link>
+      <pubDate>Wed, 21 Oct 2020 20:54:41 +0800</pubDate>
+      
+      <guid>http://localhost:1313/post/go/go-pointer/</guid>
+      <description>Go 拥有指针。指针保存了值的内存地址。 类型 *T 是指向 T 类型值的指针。其零值为 nil。 var p *int &amp;amp; 操作符会生成一个指向其操作数的指针。 i := 42 p = &amp;amp;i * 操</description>
+    </item>
+    
+    <item>
+      <title>Go Struct</title>
+      <link>http://localhost:1313/post/go/go-struct/</link>
+      <pubDate>Wed, 21 Oct 2020 19:54:41 +0800</pubDate>
+      
+      <guid>http://localhost:1313/post/go/go-struct/</guid>
+      <description>一个结构体（struct）就是一组字段（field） structs.go package main import &amp;quot;fmt&amp;quot; type Vertex struct { X int Y int } func main() { fmt.Println(Vertex{1, 2}) } 结构体字段使用点号来访问。 struct-fields.go package main import &amp;quot;fmt&amp;quot; type Vertex struct { X int</description>
+    </item>
     
     <item>
       <title>Go Defer</title>

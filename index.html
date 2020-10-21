@@ -62,7 +62,7 @@
 <meta property="og:description" content="Hugo theme jane example site." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="http://localhost:1313/" />
-<meta property="og:updated_time" content="2020-10-20T20:10:12+08:00" />
+<meta property="og:updated_time" content="2020-10-21T21:18:22+08:00" />
 <meta itemprop="name" content="clive xiang 的博客">
 <meta itemprop="description" content="Hugo theme jane example site."><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="clive xiang 的博客"/>
@@ -402,48 +402,6 @@
 
         </span>
       
-      <a class="post-link" href="/post/nginx/nginx-demo/">Nginx 常用命令</a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="2020-10-19" class="post-time">
-        2020-10-19
-      </time>
-      <div class="post-category">
-          <a href="http://localhost:1313/categories/nginx/"> nginx </a>
-          
-        </div>
-      
-      
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      nginx 的使用比较简单，就是几条命令。 常用到的命令如下： nginx -s stop 快速关闭 Nginx，可能不保存相关信息，并迅速终止 web 服务。 nginx -s quit 平稳关闭 Nginx，
-    </div>
-    <div class="read-more">
-      <a href="/post/nginx/nginx-demo/" class="read-more-link">Read more</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-        <span class="post-pinned">
-          <svg class="icon" style="" viewBox="0 0 1024 1024" version="1.1"
-  width="32" height="32">
-  <path d="M682.666667 512V170.666667h42.666666V85.333333H298.666667v85.333334h42.666666v341.333333l-85.333333 85.333333v85.333334h221.866667v256h68.266666v-256H768v-85.333334l-85.333333-85.333333z"></path>
-</svg>
-
-        </span>
-      
       <a class="post-link" href="/post/nginx/nginx-use/">Nginx 常见使用场景</a>
     </h1>
     
@@ -468,48 +426,6 @@
     </div>
     <div class="read-more">
       <a href="/post/nginx/nginx-use/" class="read-more-link">Read more</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-        <span class="post-pinned">
-          <svg class="icon" style="" viewBox="0 0 1024 1024" version="1.1"
-  width="32" height="32">
-  <path d="M682.666667 512V170.666667h42.666666V85.333333H298.666667v85.333334h42.666666v341.333333l-85.333333 85.333333v85.333334h221.866667v256h68.266666v-256H768v-85.333334l-85.333333-85.333333z"></path>
-</svg>
-
-        </span>
-      
-      <a class="post-link" href="/post/nginx/nginx-error/">Nginx 常见错误</a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="2020-10-19" class="post-time">
-        2020-10-19
-      </time>
-      <div class="post-category">
-          <a href="http://localhost:1313/categories/nginx/"> nginx </a>
-          
-        </div>
-      
-      
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      The plain HTTP request was sent to HTTPS port 解决办法，fastcgi_param HTTPS $https if_not_empty 添加这条规则， server { listen 443 ssl; # 注意这条规则 server_name my.domain.com; fastcgi_param HTTPS $https if_not_empty; fastcgi_param HTTPS on; ssl_certificate /etc/ssl/certs/your.pem; ssl_certificate_key /etc/ssl/private/your.key; location / { # Your config here... }
-    </div>
-    <div class="read-more">
-      <a href="/post/nginx/nginx-error/" class="read-more-link">Read more</a>
     </div>
     
   </div>
@@ -572,17 +488,15 @@
 
         </span>
       
-      <a class="post-link" href="/post/k8s/docker-command/">Docker Command</a>
+      <a class="post-link" href="/post/jane-theme-preview.zh-cn/">Http 反向代理</a>
     </h1>
     
     <div class="post-meta">
-      <time datetime="2020-10-19" class="post-time">
-        2020-10-19
+      <time datetime="2018-03-06" class="post-time">
+        2018-03-06
       </time>
       <div class="post-category">
-          <a href="http://localhost:1313/categories/docker/"> docker </a>
-          <a href="http://localhost:1313/categories/comand/"> comand </a>
-          <a href="http://localhost:1313/categories/index/"> index </a>
+          <a href="http://localhost:1313/categories/nginx/"> nginx </a>
           
         </div>
       
@@ -594,10 +508,78 @@
   <div class="post-content">
     
     <div class="post-summary">
-      杀死所有正在运行的容器 docker kill $(docker ps -a -q) 删除所有已经停止的容器 docker rm $(docker ps -a -q) 删除所有未打 dangling 标签的镜 docker rmi $(docker images -q -f dangling=true) 删除所有镜像 docker rmi $(docker images -q) 强制删除 无法删
+      Http 反向代理 我们先实现一个小目标：不考虑复杂的配置，仅仅是完成一个 http 反向代理。 nginx.conf 配置文件如下: #运行用户 #user somebody; #启动进程,通常设置成和cpu的数
     </div>
     <div class="read-more">
-      <a href="/post/k8s/docker-command/" class="read-more-link">Read more</a>
+      <a href="/post/jane-theme-preview.zh-cn/" class="read-more-link">Read more</a>
+    </div>
+    
+  </div>
+</article>
+
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
+      <a class="post-link" href="/post/go/go-methods/">Go 方法</a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="2020-10-21" class="post-time">
+        2020-10-21
+      </time>
+      <div class="post-category">
+          <a href="http://localhost:1313/categories/go/"> go </a>
+          
+        </div>
+      
+      
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      Go 没有类。不过你可以为结构体类型定义方法。 方法就是一类带特殊的 接收者 参数的函数。 方法接收者在它自己的参数列表内，位于 func 关键字和方法名之间。 在
+    </div>
+    <div class="read-more">
+      <a href="/post/go/go-methods/" class="read-more-link">Read more</a>
+    </div>
+    
+  </div>
+</article>
+
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
+      <a class="post-link" href="/post/go/go-map/">Go Map</a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="2020-10-21" class="post-time">
+        2020-10-21
+      </time>
+      <div class="post-category">
+          <a href="http://localhost:1313/categories/go/"> go </a>
+          
+        </div>
+      
+      
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      映射的文法 映射的文法与结构体相似，不过必须有键名。 map-literals.go package main import &quot;fmt&quot; type Vertex struct { Lat, Long float64 } var m = map[string]Vertex{ &quot;Bell Labs&quot;: Vertex{ 40.68433, -74.39967, }, &quot;Google&quot;: Vertex{ 37.42202, -122.08408, }, } func main() { fmt.Println(m) } 若顶级类型只是一个类型
+    </div>
+    <div class="read-more">
+      <a href="/post/go/go-map/" class="read-more-link">Read more</a>
     </div>
     
   </div>
@@ -651,6 +633,10 @@
       
       <li >
         <a href="/page/6/">6</a>
+      </li>
+      
+      <li >
+        <a href="/page/7/">7</a>
       </li>
       
     </ul>

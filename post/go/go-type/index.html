@@ -69,7 +69,7 @@
 <meta itemprop="description" content="变量 var 语句用于声明一个变量列表，跟函数的参数列表一样，类型在最后。 就像在这个例子中看到的一样，var 语句可以出现在包或函数级别。 variables.go package main import &quot;fmt&quot; var">
 <meta itemprop="datePublished" content="2020-10-20T20:04:12&#43;08:00" />
 <meta itemprop="dateModified" content="2020-10-20T20:04:12&#43;08:00" />
-<meta itemprop="wordCount" content="1014">
+<meta itemprop="wordCount" content="2474">
 
 
 
@@ -428,6 +428,16 @@
         <li><a href="#短变量声明">短变量声明</a></li>
         <li><a href="#基本类型">基本类型</a></li>
         <li><a href="#表达式-tv-将值-v-转换为类型-t">表达式 T(v) 将值 v 转换为类型 T。</a></li>
+        <li><a href="#数组">数组</a></li>
+        <li><a href="#切片">切片</a></li>
+        <li><a href="#切片就像数组的引用">切片就像数组的引用</a></li>
+        <li><a href="#切片文法">切片文法</a></li>
+        <li><a href="#切片的默认行为">切片的默认行为</a></li>
+        <li><a href="#切片拥有-长度-和-容量">切片拥有 长度 和 容量。</a></li>
+        <li><a href="#nil-切片">nil 切片</a></li>
+        <li><a href="#用-make-创建切片">用 make 创建切片</a></li>
+        <li><a href="#切片的切片">切片的切片</a></li>
+        <li><a href="#向切片追加元素">向切片追加元素</a></li>
       </ul>
     </li>
   </ul>
@@ -587,6 +597,234 @@ func main() {
     const Truth = true
     fmt.Println(&quot;Go rules?&quot;, Truth)
 }
+</code></pre><h3 id="数组">数组</h3>
+<p>类型 [n]T 表示拥有 n 个 T 类型的值的数组。</p>
+<p>表达式</p>
+<p>var a [10]int
+会将变量 a 声明为拥有 10 个整数的数组。</p>
+<p>数组的长度是其类型的一部分，因此数组不能改变大小。这看起来是个限制，不过没关系，Go 提供了更加便利的方式来使用数组。</p>
+<p>array.go</p>
+<pre><code>
+package main
+import &quot;fmt&quot;
+func main() {
+    var a [2]string
+    a[0] = &quot;Hello&quot;
+    a[1] = &quot;World&quot;
+    fmt.Println(a[0], a[1])
+    fmt.Println(a)
+    primes := [6]int{2, 3, 5, 7, 11, 13}
+    fmt.Println(primes)
+}
+</code></pre><h3 id="切片">切片</h3>
+<p>每个数组的大小都是固定的。而切片则为数组元素提供动态大小的、灵活的视角。在实践中，切片比数组更常用。</p>
+<p>类型 []T 表示一个元素类型为 T 的切片。</p>
+<p>切片通过两个下标来界定，即一个上界和一个下界，二者以冒号分隔：</p>
+<p>a[low : high]
+它会选择一个半开区间，包括第一个元素，但排除最后一个元素。</p>
+<p>以下表达式创建了一个切片，它包含 a 中下标从 1 到 3 的元素：</p>
+<p>a[1:4]
+slices.go</p>
+<pre><code>package main
+import &quot;fmt&quot;
+func main() {
+    primes := [6]int{2, 3, 5, 7, 11, 13}
+    var s []int = primes[1:4]
+    fmt.Println(s)
+}
+</code></pre><h3 id="切片就像数组的引用">切片就像数组的引用</h3>
+<p>切片并不存储任何数据，它只是描述了底层数组中的一段。</p>
+<p>更改切片的元素会修改其底层数组中对应的元素。</p>
+<p>与它共享底层数组的切片都会观测到这些修改。</p>
+<p>slices-pointers.go</p>
+<pre><code>package main
+import &quot;fmt&quot;
+func main() {
+    names := [4]string{
+        &quot;John&quot;,
+        &quot;Paul&quot;,
+        &quot;George&quot;,
+        &quot;Ringo&quot;,
+    }
+    fmt.Println(names)
+    a := names[0:2]
+    b := names[1:3]
+    fmt.Println(a, b)
+    b[0] = &quot;XXX&quot;
+    fmt.Println(a, b)
+    fmt.Println(names)
+}
+
+</code></pre><h3 id="切片文法">切片文法</h3>
+<p>切片文法类似于没有长度的数组文法。</p>
+<p>这是一个数组文法：</p>
+<p>[3]bool{true, true, false}
+下面这样则会创建一个和上面相同的数组，然后构建一个引用了它的切片：</p>
+<p>[]bool{true, true, false}
+slice-literals.go</p>
+<pre><code>package main
+import &quot;fmt&quot;
+func main() {
+    q := []int{2, 3, 5, 7, 11, 13}
+    fmt.Println(q)
+    r := []bool{true, false, true, true, false, true}
+    fmt.Println(r)
+    s := []struct {
+        i int
+        b bool
+    }{
+        {2, true},
+        {3, false},
+        {5, true},
+        {7, true},
+        {11, false},
+        {13, true},
+    }
+    fmt.Println(s)
+}
+</code></pre><h3 id="切片的默认行为">切片的默认行为</h3>
+<p>在进行切片时，你可以利用它的默认行为来忽略上下界。</p>
+<p>切片下界的默认值为 0，上界则是该切片的长度。</p>
+<p>对于数组</p>
+<pre><code>
+var a [10]int
+来说，以下切片是等价的：
+
+a[0:10]
+a[:10]
+a[0:]
+a[:]
+slice-bounds.go
+
+package main
+import &quot;fmt&quot;
+func main() {
+    s := []int{2, 3, 5, 7, 11, 13}
+    s = s[1:4]
+    fmt.Println(s)
+    s = s[:2]
+    fmt.Println(s)
+    s = s[1:]
+    fmt.Println(s)
+}
+</code></pre><h3 id="切片拥有-长度-和-容量">切片拥有 长度 和 容量。</h3>
+<p>切片的长度就是它所包含的元素个数。</p>
+<p>切片的容量是从它的第一个元素开始数，到其底层数组元素末尾的个数。</p>
+<p>切片 s 的长度和容量可通过表达式 len(s) 和 cap(s) 来获取。</p>
+<p>你可以通过重新切片来扩展一个切片，给它提供足够的容量。试着修改示例程序中的切片操作，向外扩展它的容量，看看会发生什么。</p>
+<p>slice-len-cap.go</p>
+<pre><code>package main
+import &quot;fmt&quot;
+func main() {
+    s := []int{2, 3, 5, 7, 11, 13}
+    printSlice(s)
+    // 截取切片使其长度为 0
+    s = s[:0]
+    printSlice(s)
+    // 拓展其长度
+    s = s[:4]
+    printSlice(s)
+    // 舍弃前两个值
+    s = s[2:]
+    printSlice(s)
+}
+func printSlice(s []int) {
+    fmt.Printf(&quot;len=%d cap=%d %v\n&quot;, len(s), cap(s), s)
+}
+</code></pre><h3 id="nil-切片">nil 切片</h3>
+<p>切片的零值是 nil。</p>
+<p>nil 切片的长度和容量为 0 且没有底层数组。</p>
+<p>nil-slices.go</p>
+<pre><code>package main
+import &quot;fmt&quot;
+func main() {
+    var s []int
+    fmt.Println(s, len(s), cap(s))
+    if s == nil {
+        fmt.Println(&quot;nil!&quot;)
+    }
+}
+</code></pre><h3 id="用-make-创建切片">用 make 创建切片</h3>
+<p>切片可以用内建函数 make 来创建，这也是你创建动态数组的方式。</p>
+<p>make 函数会分配一个元素为零值的数组并返回一个引用了它的切片：</p>
+<pre><code>a := make([]int, 5)  // len(a)=5
+要指定它的容量，需向 make 传入第三个参数：
+
+b := make([]int, 0, 5) // len(b)=0, cap(b)=5
+
+b = b[:cap(b)] // len(b)=5, cap(b)=5
+b = b[1:]      // len(b)=4, cap(b)=4
+making-slices.go
+
+package main
+import &quot;fmt&quot;
+func main() {
+    a := make([]int, 5)
+    printSlice(&quot;a&quot;, a)
+    b := make([]int, 0, 5)
+    printSlice(&quot;b&quot;, b)
+    c := b[:2]
+    printSlice(&quot;c&quot;, c)
+    d := c[2:5]
+    printSlice(&quot;d&quot;, d)
+}
+func printSlice(s string, x []int) {
+    fmt.Printf(&quot;%s len=%d cap=%d %v\n&quot;,
+        s, len(x), cap(x), x)
+}
+</code></pre><h3 id="切片的切片">切片的切片</h3>
+<p>切片可包含任何类型，甚至包括其它的切片。</p>
+<p>slices-of-slice.go</p>
+<pre><code>package main
+import (
+    &quot;fmt&quot;
+    &quot;strings&quot;
+)
+func main() {
+    // 创建一个井字板（经典游戏）
+    board := [][]string{
+        []string{&quot;_&quot;, &quot;_&quot;, &quot;_&quot;},
+        []string{&quot;_&quot;, &quot;_&quot;, &quot;_&quot;},
+        []string{&quot;_&quot;, &quot;_&quot;, &quot;_&quot;},
+    }
+    // 两个玩家轮流打上 X 和 O
+    board[0][0] = &quot;X&quot;
+    board[2][2] = &quot;O&quot;
+    board[1][2] = &quot;X&quot;
+    board[1][0] = &quot;O&quot;
+    board[0][2] = &quot;X&quot;
+    for i := 0; i &lt; len(board); i++ {
+        fmt.Printf(&quot;%s\n&quot;, strings.Join(board[i], &quot; &quot;))
+    }
+}
+</code></pre><h3 id="向切片追加元素">向切片追加元素</h3>
+<p>向切片追加元素
+为切片追加新的元素是种常用的操作，为此 Go 提供了内建的 append 函数。内建函数的文档对此函数有详细的介绍。</p>
+<p>func append(s []T, vs &hellip;T) []T
+append 的第一个参数 s 是一个元素类型为 T 的切片，其余类型为 T 的值将会追加到该切片的末尾。</p>
+<p>append 的结果是一个包含原切片所有元素加上新添加元素的切片。</p>
+<p>当 s 的底层数组太小，不足以容纳所有给定的值时，它就会分配一个更大的数组。返回的切片会指向这个新分配的数组。</p>
+<p>（要了解关于切片的更多内容，请阅读文章 Go 切片：用法和本质。）</p>
+<p>append.go</p>
+<pre><code>
+package main
+import &quot;fmt&quot;
+func main() {
+    var s []int
+    printSlice(s)
+    // 添加一个空切片
+    s = append(s, 0)
+    printSlice(s)
+    // 这个切片会按需增长
+    s = append(s, 1)
+    printSlice(s)
+    // 可以一次性添加多个元素
+    s = append(s, 2, 3, 4)
+    printSlice(s)
+}
+func printSlice(s []int) {
+    fmt.Printf(&quot;len=%d cap=%d %v\n&quot;, len(s), cap(s), s)
+}
 </code></pre>
     </div>
 
@@ -651,8 +889,8 @@ func main() {
             <span class="prev-text nav-mobile">Prev</span>
           </a>
         
-          <a class="next" href="/post/math-preview/">
-            <span class="next-text nav-default">Math Preview</span>
+          <a class="next" href="/post/nginx/nginx-demo/">
+            <span class="next-text nav-default">Nginx 常用命令</span>
             <span class="prev-text nav-mobile">Next</span>
             
             <i class="iconfont">

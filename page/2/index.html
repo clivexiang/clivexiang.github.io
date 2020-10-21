@@ -62,7 +62,7 @@
 <meta property="og:description" content="Hugo theme jane example site." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="http://localhost:1313/" />
-<meta property="og:updated_time" content="2020-10-20T20:10:12+08:00" />
+<meta property="og:updated_time" content="2020-10-21T21:18:22+08:00" />
 <meta itemprop="name" content="clive xiang 的博客">
 <meta itemprop="description" content="Hugo theme jane example site."><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="clive xiang 的博客"/>
@@ -394,23 +394,15 @@
   <header class="post-header">
     <h1 class="post-title">
       
-        <span class="post-pinned">
-          <svg class="icon" style="" viewBox="0 0 1024 1024" version="1.1"
-  width="32" height="32">
-  <path d="M682.666667 512V170.666667h42.666666V85.333333H298.666667v85.333334h42.666666v341.333333l-85.333333 85.333333v85.333334h221.866667v256h68.266666v-256H768v-85.333334l-85.333333-85.333333z"></path>
-</svg>
-
-        </span>
-      
-      <a class="post-link" href="/post/k8s/helm/">Helm 应用包管理器</a>
+      <a class="post-link" href="/post/go/go-pointer/">Go Pointer</a>
     </h1>
     
     <div class="post-meta">
-      <time datetime="2020-10-19" class="post-time">
-        2020-10-19
+      <time datetime="2020-10-21" class="post-time">
+        2020-10-21
       </time>
       <div class="post-category">
-          <a href="http://localhost:1313/categories/helm/"> helm </a>
+          <a href="http://localhost:1313/categories/go/"> go </a>
           
         </div>
       
@@ -422,10 +414,10 @@
   <div class="post-content">
     
     <div class="post-summary">
-      3.1 为什么需要 Helm？ K8S 上的应用对象，都是由特定的资源描述组成，包括 deployment、service 等。都保存各自文件中或者集中写到一个
+      Go 拥有指针。指针保存了值的内存地址。 类型 *T 是指向 T 类型值的指针。其零值为 nil。 var p *int &amp; 操作符会生成一个指向其操作数的指针。 i := 42 p = &amp;i * 操
     </div>
     <div class="read-more">
-      <a href="/post/k8s/helm/" class="read-more-link">Read more</a>
+      <a href="/post/go/go-pointer/" class="read-more-link">Read more</a>
     </div>
     
   </div>
@@ -436,23 +428,15 @@
   <header class="post-header">
     <h1 class="post-title">
       
-        <span class="post-pinned">
-          <svg class="icon" style="" viewBox="0 0 1024 1024" version="1.1"
-  width="32" height="32">
-  <path d="M682.666667 512V170.666667h42.666666V85.333333H298.666667v85.333334h42.666666v341.333333l-85.333333 85.333333v85.333334h221.866667v256h68.266666v-256H768v-85.333334l-85.333333-85.333333z"></path>
-</svg>
-
-        </span>
-      
-      <a class="post-link" href="/post/nginx/nginx-https/">Https 反向代理</a>
+      <a class="post-link" href="/post/go/go-struct/">Go Struct</a>
     </h1>
     
     <div class="post-meta">
-      <time datetime="2020-09-19" class="post-time">
-        2020-09-19
+      <time datetime="2020-10-21" class="post-time">
+        2020-10-21
       </time>
       <div class="post-category">
-          <a href="http://localhost:1313/categories/nginx/"> nginx  </a>
+          <a href="http://localhost:1313/categories/go/"> go </a>
           
         </div>
       
@@ -464,94 +448,10 @@
   <div class="post-content">
     
     <div class="post-summary">
-      Https 反向代理 一些对安全性要求比较高的站点，可能会使用 HTTPS（一种使用 ssl 通信标准的安全 HTTP 协议）。 这里不科普 HTTP 协议和 SSL 标准。但是，使用 nginx 配置 https
+      一个结构体（struct）就是一组字段（field） structs.go package main import &quot;fmt&quot; type Vertex struct { X int Y int } func main() { fmt.Println(Vertex{1, 2}) } 结构体字段使用点号来访问。 struct-fields.go package main import &quot;fmt&quot; type Vertex struct { X int
     </div>
     <div class="read-more">
-      <a href="/post/nginx/nginx-https/" class="read-more-link">Read more</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-        <span class="post-pinned">
-          <svg class="icon" style="" viewBox="0 0 1024 1024" version="1.1"
-  width="32" height="32">
-  <path d="M682.666667 512V170.666667h42.666666V85.333333H298.666667v85.333334h42.666666v341.333333l-85.333333 85.333333v85.333334h221.866667v256h68.266666v-256H768v-85.333334l-85.333333-85.333333z"></path>
-</svg>
-
-        </span>
-      
-      <a class="post-link" href="/post/nginx/nginx-upstrem/">Https 负载均衡</a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="2020-09-19" class="post-time">
-        2020-09-19
-      </time>
-      <div class="post-category">
-          <a href="http://localhost:1313/categories/nginx/"> nginx  </a>
-          
-        </div>
-      
-      
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      nginx 实现简单的负载均衡功能。 假设这样一个应用场景：将应用部署在 192.168.1.11:80、192.168.1.12:80、192.168.
-    </div>
-    <div class="read-more">
-      <a href="/post/nginx/nginx-upstrem/" class="read-more-link">Read more</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-        <span class="post-pinned">
-          <svg class="icon" style="" viewBox="0 0 1024 1024" version="1.1"
-  width="32" height="32">
-  <path d="M682.666667 512V170.666667h42.666666V85.333333H298.666667v85.333334h42.666666v341.333333l-85.333333 85.333333v85.333334h221.866667v256h68.266666v-256H768v-85.333334l-85.333333-85.333333z"></path>
-</svg>
-
-        </span>
-      
-      <a class="post-link" href="/post/jane-theme-preview.zh-cn/">Http 反向代理</a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="2018-03-06" class="post-time">
-        2018-03-06
-      </time>
-      <div class="post-category">
-          <a href="http://localhost:1313/categories/nginx/"> nginx </a>
-          
-        </div>
-      
-      
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      Http 反向代理 我们先实现一个小目标：不考虑复杂的配置，仅仅是完成一个 http 反向代理。 nginx.conf 配置文件如下: #运行用户 #user somebody; #启动进程,通常设置成和cpu的数
-    </div>
-    <div class="read-more">
-      <a href="/post/jane-theme-preview.zh-cn/" class="read-more-link">Read more</a>
+      <a href="/post/go/go-struct/" class="read-more-link">Read more</a>
     </div>
     
   </div>
@@ -586,6 +486,74 @@
     </div>
     <div class="read-more">
       <a href="/post/go/go-defer/" class="read-more-link">Read more</a>
+    </div>
+    
+  </div>
+</article>
+
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
+      <a class="post-link" href="/post/go/go-for/">Go For</a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="2020-10-20" class="post-time">
+        2020-10-20
+      </time>
+      <div class="post-category">
+          <a href="http://localhost:1313/categories/go/"> go </a>
+          
+        </div>
+      
+      
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      Go 只有一种循环结构：for 循环。 基本的 for 循环由三部分组成，它们用分号隔开： 初始化语句：在第一次迭代前执行 条件表达式：在每次迭代前求值 后置语句
+    </div>
+    <div class="read-more">
+      <a href="/post/go/go-for/" class="read-more-link">Read more</a>
+    </div>
+    
+  </div>
+</article>
+
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
+      <a class="post-link" href="/post/go/go-if/">Go if</a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="2020-10-20" class="post-time">
+        2020-10-20
+      </time>
+      <div class="post-category">
+          <a href="http://localhost:1313/categories/go/"> go </a>
+          
+        </div>
+      
+      
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      Go 的 if 语句与 for 循环类似，表达式外无需小括号 ( ) ，而大括号 { } 则是必须的。 if.go package main import ( &quot;fmt&quot; &quot;math&quot; ) func sqrt(x float64) string { if x &lt; 0 { return sqrt(-x) + &quot;i&quot; } return fmt.Sprint(math.Sqrt(x)) } func main() { fmt.Println(sqrt(2), sqrt(-4)) } if 的
+    </div>
+    <div class="read-more">
+      <a href="/post/go/go-if/" class="read-more-link">Read more</a>
     </div>
     
   </div>
@@ -639,6 +607,10 @@
       
       <li >
         <a href="/page/6/">6</a>
+      </li>
+      
+      <li >
+        <a href="/page/7/">7</a>
       </li>
       
     </ul>

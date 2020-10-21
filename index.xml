@@ -6,42 +6,10 @@
     <description>Recent content on clive xiang 的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 20 Oct 2020 20:10:12 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 21 Oct 2020 21:18:22 +0800</lastBuildDate>
     
         <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Nginx 常用命令</title>
-      <link>http://localhost:1313/post/nginx/nginx-demo/</link>
-      <pubDate>Mon, 19 Oct 2020 20:25:50 +0800</pubDate>
-      
-      <guid>http://localhost:1313/post/nginx/nginx-demo/</guid>
-      
-        <description>&lt;p&gt;nginx 的使用比较简单，就是几条命令。&lt;/p&gt;
-&lt;p&gt;常用到的命令如下：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;
-nginx -s stop 快速关闭 Nginx，可能不保存相关信息，并迅速终止 web 服务。
-nginx -s quit 平稳关闭 Nginx，保存相关信息，有安排的结束 web 服务。
-nginx -s reload 因改变了 Nginx 相关配置，需要重新加载配置而重载。
-nginx -s reopen 重新打开日志文件。
-nginx -c filename 为 Nginx 指定一个配置文件，来代替缺省的。
-nginx -t 不运行，仅仅测试配置文件。nginx 将检查配置文件的语法的正确性，并尝试打开配置文件中所引用到的文件。
-nginx -v 显示 nginx 的版本。
-nginx -V 显示 nginx 的版本，编译器版本和配置参数。
-如果不想每次都敲命令，可以在 nginx 安装目录下新添一个启动批处理文件 startup.bat，双击即可运行。内容如下：
-
-&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&#34;如果启动前已经启动-nginx-并记录下-pid-文件会-kill-指定进程&#34;&gt;如果启动前已经启动 nginx 并记录下 pid 文件，会 kill 指定进程&lt;/h4&gt;
-&lt;h5 id=&#34;nginxexe--s-stop&#34;&gt;nginx.exe -s stop&lt;/h5&gt;
-&lt;h4 id=&#34;测试配置文件语法正确性&#34;&gt;测试配置文件语法正确性&lt;/h4&gt;
-&lt;h5 id=&#34;nginxexe--t--c-confnginxconf&#34;&gt;nginx.exe -t -c conf/nginx.conf&lt;/h5&gt;
-&lt;h4 id=&#34;显示版本信息&#34;&gt;显示版本信息&lt;/h4&gt;
-&lt;h5 id=&#34;nginxexe--v&#34;&gt;nginx.exe -v&lt;/h5&gt;
-&lt;h4 id=&#34;按照指定配置去启动-nginx&#34;&gt;按照指定配置去启动 nginx&lt;/h4&gt;
-&lt;h5 id=&#34;nginxexe--c-confnginxconf&#34;&gt;nginx.exe -c conf/nginx.conf&lt;/h5&gt;
-</description>
-      
-    </item>
     
     <item>
       <title>Nginx 常见使用场景</title>
@@ -353,31 +321,6 @@ set $rule_1 2$rule_1;
 }
 if (\$rule_1 = &amp;quot;21&amp;quot;){
 rewrite ^/ /index.php last;
-}
-
-&lt;/code&gt;&lt;/pre&gt;</description>
-      
-    </item>
-    
-    <item>
-      <title>Nginx 常见错误</title>
-      <link>http://localhost:1313/post/nginx/nginx-error/</link>
-      <pubDate>Mon, 19 Oct 2020 20:25:50 +0800</pubDate>
-      
-      <guid>http://localhost:1313/post/nginx/nginx-error/</guid>
-      
-        <description>&lt;pre&gt;&lt;code&gt;The plain HTTP request was sent to HTTPS port
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;解决办法fastcgi_param-https-https-if_not_empty-添加这条规则&#34;&gt;解决办法，fastcgi_param HTTPS $https if_not_empty 添加这条规则，&lt;/h3&gt;
-&lt;pre&gt;&lt;code&gt;server {
-    listen 443 ssl; # 注意这条规则
-    server_name  my.domain.com;
-    fastcgi_param HTTPS $https if_not_empty;
-    fastcgi_param HTTPS on;
-    ssl_certificate /etc/ssl/certs/your.pem;
-    ssl_certificate_key /etc/ssl/private/your.key;
-    location / {
-        # Your config here...
-    }
 }
 
 &lt;/code&gt;&lt;/pre&gt;</description>
@@ -928,24 +871,1314 @@ cert_hosts:
     </item>
     
     <item>
-      <title>Docker Command</title>
-      <link>http://localhost:1313/post/k8s/docker-command/</link>
-      <pubDate>Mon, 19 Oct 2020 14:22:38 +0800</pubDate>
+      <title>关于</title>
+      <link>http://localhost:1313/about/</link>
+      <pubDate>Sun, 20 Aug 2017 21:38:52 +0800</pubDate>
       
-      <guid>http://localhost:1313/post/k8s/docker-command/</guid>
+      <guid>http://localhost:1313/about/</guid>
       
-        <description>&lt;h3 id=&#34;杀死所有正在运行的容器&#34;&gt;杀死所有正在运行的容器&lt;/h3&gt;
-&lt;p&gt;docker kill $(docker ps -a -q)&lt;/p&gt;
-&lt;h3 id=&#34;删除所有已经停止的容器&#34;&gt;删除所有已经停止的容器&lt;/h3&gt;
-&lt;p&gt;docker rm $(docker ps -a -q)&lt;/p&gt;
-&lt;h3 id=&#34;删除所有未打-dangling-标签的镜&#34;&gt;删除所有未打 dangling 标签的镜&lt;/h3&gt;
-&lt;p&gt;docker rmi $(docker images -q -f dangling=true)&lt;/p&gt;
-&lt;h3 id=&#34;删除所有镜像&#34;&gt;删除所有镜像&lt;/h3&gt;
-&lt;p&gt;docker rmi $(docker images -q)&lt;/p&gt;
-&lt;h3 id=&#34;强制删除-无法删除的镜像&#34;&gt;强制删除 无法删除的镜像&lt;/h3&gt;
-&lt;p&gt;docker rmi -f &amp;lt;IMAGE_ID&amp;gt;
-docker rmi -f $(docker images -q)&lt;/p&gt;
+        <description>&lt;h2 id=&#34;介绍&#34;&gt;介绍&lt;/h2&gt;
+&lt;p&gt;向春晓， 32 岁, 10 年经验, 运维工程师 湖南 - 攸县&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.sysu.edu.cn/cn/#&#34;&gt;中山大学&lt;/a&gt; 本科&lt;/p&gt;
+&lt;p&gt;邮箱 : &lt;a href=&#34;mailto:clivexiang@outlook.com&#34;&gt;clivexiang@outlook.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;微信 : 13480642977&lt;/p&gt;
+&lt;p&gt;电话 : 13480642977&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;希望参与 :&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;docker ，k8s 运维&lt;/li&gt;
+&lt;li&gt;python 运维开发&lt;/li&gt;
+&lt;li&gt;Linux 维护&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;可以独立负责功能模块或者整个应用的开发&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://clivexiang.github.io&#34;&gt;个人博客(需梯子)&lt;/a&gt; | &lt;a href=&#34;https://github.com/clivexiang&#34;&gt;Github&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;技术栈&#34;&gt;技术栈&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;前端 : vue&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;后端 : python, php&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;操作系统: Linux ,Windows 运维&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;常用中间价: nginx, php-fpm&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;考试认证： CKA, RHCE&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;近期工作内容&#34;&gt;近期工作内容&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;zabbix 监控运维&lt;/li&gt;
+&lt;li&gt;nginx 中间件维护&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;项目--优化&#34;&gt;项目 &amp;amp; 优化&lt;/h2&gt;
+&lt;h2 id=&#34;工作经历&#34;&gt;工作经历&lt;/h2&gt;
+&lt;h4 id=&#34;北京卡卡罗特科技有限公司httpwwwbaibianwukongcomfirstpage-20167---20175&#34;&gt;&lt;a href=&#34;http://www.baibianwukong.com/#firstPage&#34;&gt;北京卡卡罗特科技有限公司&lt;/a&gt; (2016.7 - 2017.5)&lt;/h4&gt;
 </description>
+      
+    </item>
+    
+    <item>
+      <title>Http 反向代理</title>
+      <link>http://localhost:1313/post/jane-theme-preview.zh-cn/</link>
+      <pubDate>Tue, 06 Mar 2018 16:01:23 +0800</pubDate>
+      
+      <guid>http://localhost:1313/post/jane-theme-preview.zh-cn/</guid>
+      
+        <description>&lt;h2 id=&#34;http-反向代理&#34;&gt;Http 反向代理&lt;/h2&gt;
+&lt;h3 id=&#34;我们先实现一个小目标不考虑复杂的配置仅仅是完成一个-http-反向代理&#34;&gt;我们先实现一个小目标：不考虑复杂的配置，仅仅是完成一个 http 反向代理。&lt;/h3&gt;
+&lt;h3 id=&#34;nginxconf-配置文件如下&#34;&gt;nginx.conf 配置文件如下:&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;
+#运行用户
+#user somebody;
+#启动进程,通常设置成和cpu的数量相等
+worker_processes  1;
+#全局错误日志
+error_log  D:/Tools/nginx-1.10.1/logs/error.log;
+error_log  D:/Tools/nginx-1.10.1/logs/notice.log  notice;
+error_log  D:/Tools/nginx-1.10.1/logs/info.log  info;
+#PID文件，记录当前启动的nginx的进程ID
+pid        D:/Tools/nginx-1.10.1/logs/nginx.pid;
+#工作模式及连接数上限
+events {
+    worker_connections 1024;    #单个后台worker process进程的最大并发链接数
+}
+#设定http服务器，利用它的反向代理功能提供负载均衡支持
+http {
+    #设定mime类型(邮件支持类型),类型由mime.types文件定义
+    include       D:/Tools/nginx-1.10.1/conf/mime.types;
+    default_type  application/octet-stream;
+    #设定日志
+    log_format  main  &#39;[$remote_addr] - [$remote_user] [$time_local] &amp;quot;$request&amp;quot; &#39;
+                      &#39;$status $body_bytes_sent &amp;quot;$http_referer&amp;quot; &#39;
+                      &#39;&amp;quot;$http_user_agent&amp;quot; &amp;quot;$http_x_forwarded_for&amp;quot;&#39;;
+    access_log    D:/Tools/nginx-1.10.1/logs/access.log main;
+    rewrite_log     on;
+    #sendfile 指令指定 nginx 是否调用 sendfile 函数（zero copy 方式）来输出文件，对于普通应用，
+    #必须设为 on,如果用来进行下载等应用磁盘IO重负载应用，可设置为 off，以平衡磁盘与网络I/O处理速度，降低系统的uptime.
+    sendfile        on;
+    #tcp_nopush     on;
+    #连接超时时间
+    keepalive_timeout  120;
+    tcp_nodelay        on;
+    #gzip压缩开关
+    #gzip  on;
+    #设定实际的服务器列表
+    upstream zp_server1{
+        server 127.0.0.1:8089;
+    }
+    #HTTP服务器
+    server {
+        #监听80端口，80端口是知名端口号，用于HTTP协议
+        listen       80;
+        #定义使用www.xx.com访问
+        server_name  www.helloworld.com;
+        #首页
+        index index.html
+        #指向webapp的目录
+        root D:\01_Workspace\Project\github\zp\SpringNotes\spring-security\spring-shiro\src\main\webapp;
+        #编码格式
+        charset utf-8;
+        #代理配置参数
+        proxy_connect_timeout 180;
+        proxy_send_timeout 180;
+        proxy_read_timeout 180;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarder-For $remote_addr;
+        #反向代理的路径（和upstream绑定），location 后面设置映射的路径
+        location / {
+            proxy_pass http://zp_server1;
+        }
+        #静态文件，nginx自己处理
+        location ~ ^/(images|javascript|js|css|flash|media|static)/ {
+            root D:\01_Workspace\Project\github\zp\SpringNotes\spring-security\spring-shiro\src\main\webapp\views;
+            #过期30天，静态文件不怎么更新，过期可以设大一点，如果频繁更新，则可以设置得小一点。
+            expires 30d;
+        }
+        #设定查看Nginx状态的地址
+        location /NginxStatus {
+            stub_status           on;
+            access_log            on;
+            auth_basic            &amp;quot;NginxStatus&amp;quot;;
+            auth_basic_user_file  conf/htpasswd;
+        }
+        #禁止访问 .htxxx 文件
+        location ~ /\.ht {
+            deny all;
+        }
+        #错误处理页面（可选择性配置）
+        #error_page   404              /404.html;
+        #error_page   500 502 503 504  /50x.html;
+        #location = /50x.html {
+        #    root   html;
+        #}
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;好了，让我们来试试吧：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;启动 webapp，注意启动绑定的端口要和 nginx 中的 upstream 设置的端口保持一致。&lt;/li&gt;
+&lt;li&gt;更改 host：在 C:\Windows\System32\drivers\etc 目录下的 host 文件中添加一条 DNS 记录&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;
+127.0.0.1 www.helloworld.com
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;启动前文中 startup.bat 的命令&lt;/li&gt;
+&lt;li&gt;在浏览器中访问 &lt;a href=&#34;http://www.helloworld.com&#34;&gt;www.helloworld.com&lt;/a&gt;，不出意外，已经可以访问了。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>Go 方法</title>
+      <link>http://localhost:1313/post/go/go-methods/</link>
+      <pubDate>Wed, 21 Oct 2020 21:18:22 +0800</pubDate>
+      
+      <guid>http://localhost:1313/post/go/go-methods/</guid>
+      
+        <description>&lt;h3 id=&#34;go-没有类不过你可以为结构体类型定义方法&#34;&gt;Go 没有类。不过你可以为结构体类型定义方法。&lt;/h3&gt;
+&lt;p&gt;方法就是一类带特殊的 接收者 参数的函数。&lt;/p&gt;
+&lt;p&gt;方法接收者在它自己的参数列表内，位于 func 关键字和方法名之间。&lt;/p&gt;
+&lt;p&gt;在此例中，Abs 方法拥有一个名为 v，类型为 Vertex 的接收者。&lt;/p&gt;
+&lt;p&gt;methods.go&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;package main
+import (
+    &amp;quot;fmt&amp;quot;
+    &amp;quot;math&amp;quot;
+)
+type Vertex struct {
+    X, Y float64
+}
+func (v Vertex) Abs() float64 {
+    return math.Sqrt(v.X*v.X + v.Y*v.Y)
+}
+func main() {
+    v := Vertex{3, 4}
+    fmt.Println(v.Abs())
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;方法即函数&#34;&gt;方法即函数&lt;/h3&gt;
+&lt;p&gt;记住：方法只是个带接收者参数的函数。&lt;/p&gt;
+&lt;p&gt;现在这个 Abs 的写法就是个正常的函数，功能并没有什么变化。&lt;/p&gt;
+&lt;p&gt;methods-funcs.go&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;package main
+import (
+    &amp;quot;fmt&amp;quot;
+    &amp;quot;math&amp;quot;
+)
+type Vertex struct {
+    X, Y float64
+}
+func Abs(v Vertex) float64 {
+    return math.Sqrt(v.X*v.X + v.Y*v.Y)
+}
+func main() {
+    v := Vertex{3, 4}
+    fmt.Println(Abs(v))
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;你也可以为非结构体类型声明方法&#34;&gt;你也可以为非结构体类型声明方法。&lt;/h3&gt;
+&lt;p&gt;在此例中，我们看到了一个带 Abs 方法的数值类型 MyFloat。&lt;/p&gt;
+&lt;p&gt;你只能为在同一包内定义的类型的接收者声明方法，而不能为其它包内定义的类型（包括 int 之类的内建类型）的接收者声明方法。&lt;/p&gt;
+&lt;p&gt;（译注：就是接收者的类型定义和方法声明必须在同一包内；不能为内建类型声明方法。）&lt;/p&gt;
+&lt;p&gt;methods-continued.go&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;package main
+import (
+    &amp;quot;fmt&amp;quot;
+    &amp;quot;math&amp;quot;
+)
+type MyFloat float64
+func (f MyFloat) Abs() float64 {
+    if f &amp;lt; 0 {
+        return float64(-f)
+    }
+    return float64(f)
+}
+func main() {
+    f := MyFloat(-math.Sqrt2)
+    fmt.Println(f.Abs())
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;指针接收者&#34;&gt;指针接收者&lt;/h3&gt;
+&lt;p&gt;你可以为指针接收者声明方法。&lt;/p&gt;
+&lt;p&gt;这意味着对于某类型 T，接收者的类型可以用 T 的文法。（此外，T 不能是像 int 这样的指针。）&lt;/p&gt;
+&lt;p&gt;例如，这里为 *Vertex 定义了 Scale 方法。&lt;/p&gt;
+&lt;p&gt;指针接收者的方法可以修改接收者指向的值（就像 Scale 在这做的）。由于方法经常需要修改它的接收者，指针接收者比值接收者更常用。&lt;/p&gt;
+&lt;p&gt;若使用值接收者，那么 Scale 方法会对原始 Vertex 值的副本进行操作。（对于函数的其它参数也是如此。）Scale 方法必须用指针接受者来更改 main 函数中声明的 Vertex 的值。&lt;/p&gt;
+&lt;p&gt;methods-pointers.go&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;package main
+import (
+    &amp;quot;fmt&amp;quot;
+    &amp;quot;math&amp;quot;
+)
+type Vertex struct {
+    X, Y float64
+}
+func (v Vertex) Abs() float64 {
+    return math.Sqrt(v.X*v.X + v.Y*v.Y)
+}
+func (v *Vertex) Scale(f float64) {
+    v.X = v.X * f
+    v.Y = v.Y * f
+}
+func main() {
+    v := Vertex{3, 4}
+    v.Scale(10)
+    fmt.Println(v.Abs())
+}
+
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;指针与函数&#34;&gt;指针与函数&lt;/h3&gt;
+&lt;p&gt;现在我们要把 Abs 和 Scale 方法重写为函数。&lt;/p&gt;
+&lt;p&gt;methods-pointers-explained.go&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;package main
+import (
+    &amp;quot;fmt&amp;quot;
+    &amp;quot;math&amp;quot;
+)
+type Vertex struct {
+    X, Y float64
+}
+func Abs(v Vertex) float64 {
+    return math.Sqrt(v.X*v.X + v.Y*v.Y)
+}
+func Scale(v *Vertex, f float64) {
+    v.X = v.X * f
+    v.Y = v.Y * f
+}
+func main() {
+    v := Vertex{3, 4}
+    Scale(&amp;amp;v, 10)
+    fmt.Println(Abs(v))
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;方法与指针重定向&#34;&gt;方法与指针重定向&lt;/h3&gt;
+&lt;p&gt;比较前两个程序，你大概会注意到带指针参数的函数必须接受一个指针：&lt;/p&gt;
+&lt;p&gt;var v Vertex
+ScaleFunc(v, 5) // 编译错误！
+ScaleFunc(&amp;amp;v, 5) // OK
+而以指针为接收者的方法被调用时，接收者既能为值又能为指针：&lt;/p&gt;
+&lt;p&gt;var v Vertex
+v.Scale(5) // OK
+p := &amp;amp;v
+p.Scale(10) // OK
+对于语句 v.Scale(5)，即便 v 是个值而非指针，带指针接收者的方法也能被直接调用。 也就是说，由于 Scale 方法有一个指针接收者，为方便起见，Go 会将语句 v.Scale(5) 解释为 (&amp;amp;v).Scale(5)。&lt;/p&gt;
+&lt;p&gt;indirection.go&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;package main
+import &amp;quot;fmt&amp;quot;
+type Vertex struct {
+    X, Y float64
+}
+func (v *Vertex) Scale(f float64) {
+    v.X = v.X * f
+    v.Y = v.Y * f
+}
+func ScaleFunc(v *Vertex, f float64) {
+    v.X = v.X * f
+    v.Y = v.Y * f
+}
+func main() {
+    v := Vertex{3, 4}
+    v.Scale(2)
+    ScaleFunc(&amp;amp;v, 10)
+    p := &amp;amp;Vertex{4, 3}
+    p.Scale(3)
+    ScaleFunc(p, 8)
+    fmt.Println(v, p)
+}
+
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;同样的事情也发生在相反的方向&#34;&gt;同样的事情也发生在相反的方向。&lt;/h3&gt;
+&lt;p&gt;接受一个值作为参数的函数必须接受一个指定类型的值：&lt;/p&gt;
+&lt;p&gt;var v Vertex
+fmt.Println(AbsFunc(v)) // OK
+fmt.Println(AbsFunc(&amp;amp;v)) // 编译错误！
+而以值为接收者的方法被调用时，接收者既能为值又能为指针：&lt;/p&gt;
+&lt;p&gt;var v Vertex
+fmt.Println(v.Abs()) // OK
+p := &amp;amp;v
+fmt.Println(p.Abs()) // OK
+这种情况下，方法调用 p.Abs() 会被解释为 (*p).Abs()。&lt;/p&gt;
+&lt;p&gt;indirection-values.go&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;package main
+import (
+    &amp;quot;fmt&amp;quot;
+    &amp;quot;math&amp;quot;
+)
+type Vertex struct {
+    X, Y float64
+}
+func (v Vertex) Abs() float64 {
+    return math.Sqrt(v.X*v.X + v.Y*v.Y)
+}
+func AbsFunc(v Vertex) float64 {
+    return math.Sqrt(v.X*v.X + v.Y*v.Y)
+}
+func main() {
+    v := Vertex{3, 4}
+    fmt.Println(v.Abs())
+    fmt.Println(AbsFunc(v))
+    p := &amp;amp;Vertex{4, 3}
+    fmt.Println(p.Abs())
+    fmt.Println(AbsFunc(*p))
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;选择值或指针作为接收者&#34;&gt;选择值或指针作为接收者&lt;/h3&gt;
+&lt;p&gt;使用指针接收者的原因有二：&lt;/p&gt;
+&lt;p&gt;首先，方法能够修改其接收者指向的值。&lt;/p&gt;
+&lt;p&gt;其次，这样可以避免在每次调用方法时复制该值。若值的类型为大型结构体时，这样做会更加高效。&lt;/p&gt;
+&lt;p&gt;在本例中，Scale 和 Abs 接收者的类型为 *Vertex，即便 Abs 并不需要修改其接收者。&lt;/p&gt;
+&lt;p&gt;通常来说，所有给定类型的方法都应该有值或指针接收者，但并不应该二者混用。（我们会在接下来几页中明白为什么。）&lt;/p&gt;
+&lt;p&gt;methods-with-pointer-receivers.go&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;package main
+import (
+    &amp;quot;fmt&amp;quot;
+    &amp;quot;math&amp;quot;
+)
+type Vertex struct {
+    X, Y float64
+}
+func (v *Vertex) Scale(f float64) {
+    v.X = v.X * f
+    v.Y = v.Y * f
+}
+func (v *Vertex) Abs() float64 {
+    return math.Sqrt(v.X*v.X + v.Y*v.Y)
+}
+func main() {
+    v := &amp;amp;Vertex{3, 4}
+    fmt.Printf(&amp;quot;Before scaling: %+v, Abs: %v\n&amp;quot;, v, v.Abs())
+    v.Scale(5)
+    fmt.Printf(&amp;quot;After scaling: %+v, Abs: %v\n&amp;quot;, v, v.Abs())
+}
+&lt;/code&gt;&lt;/pre&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Go Map</title>
+      <link>http://localhost:1313/post/go/go-map/</link>
+      <pubDate>Wed, 21 Oct 2020 21:13:22 +0800</pubDate>
+      
+      <guid>http://localhost:1313/post/go/go-map/</guid>
+      
+        <description>&lt;h3 id=&#34;映射的文法&#34;&gt;映射的文法&lt;/h3&gt;
+&lt;p&gt;映射的文法与结构体相似，不过必须有键名。&lt;/p&gt;
+&lt;p&gt;map-literals.go&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;package main
+import &amp;quot;fmt&amp;quot;
+type Vertex struct {
+    Lat, Long float64
+}
+var m = map[string]Vertex{
+    &amp;quot;Bell Labs&amp;quot;: Vertex{
+        40.68433, -74.39967,
+    },
+    &amp;quot;Google&amp;quot;: Vertex{
+        37.42202, -122.08408,
+    },
+}
+func main() {
+    fmt.Println(m)
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;若顶级类型只是一个类型名你可以在文法的元素中省略它&#34;&gt;若顶级类型只是一个类型名，你可以在文法的元素中省略它。&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;map-literals-continued.go
+
+package main
+import &amp;quot;fmt&amp;quot;
+type Vertex struct {
+    Lat, Long float64
+}
+var m = map[string]Vertex{
+    &amp;quot;Bell Labs&amp;quot;: {40.68433, -74.39967},
+    &amp;quot;Google&amp;quot;:    {37.42202, -122.08408},
+}
+func main() {
+    fmt.Println(m)
+}
+
+
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;修改映射&#34;&gt;修改映射&lt;/h3&gt;
+&lt;p&gt;在映射 m 中插入或修改元素：&lt;/p&gt;
+&lt;p&gt;m[key] = elem
+获取元素：&lt;/p&gt;
+&lt;p&gt;elem = m[key]
+删除元素：&lt;/p&gt;
+&lt;p&gt;delete(m, key)
+通过双赋值检测某个键是否存在：&lt;/p&gt;
+&lt;p&gt;elem, ok = m[key]
+若 key 在 m 中，ok 为 true ；否则，ok 为 false。&lt;/p&gt;
+&lt;p&gt;若 key 不在映射中，那么 elem 是该映射元素类型的零值。&lt;/p&gt;
+&lt;p&gt;同样的，当从映射中读取某个不存在的键时，结果是映射的元素类型的零值。&lt;/p&gt;
+&lt;p&gt;注 ：若 elem 或 ok 还未声明，你可以使用短变量声明：&lt;/p&gt;
+&lt;p&gt;elem, ok := m[key]
+mutating-maps.go&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;package main
+import &amp;quot;fmt&amp;quot;
+func main() {
+    m := make(map[string]int)
+    m[&amp;quot;Answer&amp;quot;] = 42
+    fmt.Println(&amp;quot;The value:&amp;quot;, m[&amp;quot;Answer&amp;quot;])
+    m[&amp;quot;Answer&amp;quot;] = 48
+    fmt.Println(&amp;quot;The value:&amp;quot;, m[&amp;quot;Answer&amp;quot;])
+    delete(m, &amp;quot;Answer&amp;quot;)
+    fmt.Println(&amp;quot;The value:&amp;quot;, m[&amp;quot;Answer&amp;quot;])
+    v, ok := m[&amp;quot;Answer&amp;quot;]
+    fmt.Println(&amp;quot;The value:&amp;quot;, v, &amp;quot;Present?&amp;quot;, ok)
+}
+&lt;/code&gt;&lt;/pre&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Go Pointer</title>
+      <link>http://localhost:1313/post/go/go-pointer/</link>
+      <pubDate>Wed, 21 Oct 2020 20:54:41 +0800</pubDate>
+      
+      <guid>http://localhost:1313/post/go/go-pointer/</guid>
+      
+        <description>&lt;h3 id=&#34;go-拥有指针指针保存了值的内存地址&#34;&gt;Go 拥有指针。指针保存了值的内存地址。&lt;/h3&gt;
+&lt;p&gt;类型 *T 是指向 T 类型值的指针。其零值为 nil。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;
+var p *int
+&amp;amp; 操作符会生成一个指向其操作数的指针。
+
+i := 42
+p = &amp;amp;i
+* 操作符表示指针指向的底层值。
+
+fmt.Println(*p) // 通过指针 p 读取 i
+*p = 21         // 通过指针 p 设置 i
+这也就是通常所说的“间接引用”或“重定向”。
+
+与 C 不同，Go 没有指针运算。
+
+pointers.go
+
+package main
+import &amp;quot;fmt&amp;quot;
+func main() {
+    i, j := 42, 2701
+    p := &amp;amp;i         // 指向 i
+    fmt.Println(*p) // 通过指针读取 i 的值
+    *p = 21         // 通过指针设置 i 的值
+    fmt.Println(i)  // 查看 i 的值
+    p = &amp;amp;j         // 指向 j
+    *p = *p / 37   // 通过指针对 j 进行除法运算
+    fmt.Println(j) // 查看 j 的值
+}
+&lt;/code&gt;&lt;/pre&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Go Struct</title>
+      <link>http://localhost:1313/post/go/go-struct/</link>
+      <pubDate>Wed, 21 Oct 2020 19:54:41 +0800</pubDate>
+      
+      <guid>http://localhost:1313/post/go/go-struct/</guid>
+      
+        <description>&lt;h3 id=&#34;一个结构体struct就是一组字段field&#34;&gt;一个结构体（struct）就是一组字段（field）&lt;/h3&gt;
+&lt;p&gt;structs.go&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;
+package main
+import &amp;quot;fmt&amp;quot;
+type Vertex struct {
+    X int
+    Y int
+}
+func main() {
+    fmt.Println(Vertex{1, 2})
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;结构体字段使用点号来访问&#34;&gt;结构体字段使用点号来访问。&lt;/h3&gt;
+&lt;p&gt;struct-fields.go&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;
+package main
+import &amp;quot;fmt&amp;quot;
+type Vertex struct {
+    X int
+    Y int
+}
+func main() {
+    v := Vertex{1, 2}
+    v.X = 4
+    fmt.Println(v.X)
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;结构体指针&#34;&gt;结构体指针&lt;/h3&gt;
+&lt;h4 id=&#34;结构体字段可以通过结构体指针来访问&#34;&gt;结构体字段可以通过结构体指针来访问。&lt;/h4&gt;
+&lt;h4 id=&#34;如果我们有一个指向结构体的指针-p那么可以通过-px-来访问其字段-x不过这么写太啰嗦了所以语言也允许我们使用隐式间接引用直接写-px-就可以&#34;&gt;如果我们有一个指向结构体的指针 p，那么可以通过 (*p).X 来访问其字段 X。不过这么写太啰嗦了，所以语言也允许我们使用隐式间接引用，直接写 p.X 就可以。&lt;/h4&gt;
+&lt;p&gt;struct-pointers.go&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;
+package main
+import &amp;quot;fmt&amp;quot;
+type Vertex struct {
+    X int
+    Y int
+}
+func main() {
+    v := Vertex{1, 2}
+    p := &amp;amp;v
+    p.X = 1e9
+    fmt.Println(v)
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;结构体文法&#34;&gt;结构体文法&lt;/h3&gt;
+&lt;h3 id=&#34;结构体文法通过直接列出字段的值来新分配一个结构体&#34;&gt;结构体文法通过直接列出字段的值来新分配一个结构体。&lt;/h3&gt;
+&lt;p&gt;使用 Name: 语法可以仅列出部分字段。（字段名的顺序无关。）&lt;/p&gt;
+&lt;p&gt;特殊的前缀 &amp;amp; 返回一个指向结构体的指针。&lt;/p&gt;
+&lt;p&gt;struct-literals.go&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;
+package main
+import &amp;quot;fmt&amp;quot;
+type Vertex struct {
+    X, Y int
+}
+var (
+    v1 = Vertex{1, 2}  // 创建一个 Vertex 类型的结构体
+    v2 = Vertex{X: 1}  // Y:0 被隐式地赋予
+    v3 = Vertex{}      // X:0 Y:0
+    p  = &amp;amp;Vertex{1, 2} // 创建一个 *Vertex 类型的结构体（指针）
+)
+func main() {
+    fmt.Println(v1, p, v2, v3)
+}
+&lt;/code&gt;&lt;/pre&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Go Defer</title>
+      <link>http://localhost:1313/post/go/go-defer/</link>
+      <pubDate>Tue, 20 Oct 2020 20:10:12 +0800</pubDate>
+      
+      <guid>http://localhost:1313/post/go/go-defer/</guid>
+      
+        <description>&lt;h4 id=&#34;defer-语句会将函数推迟到外层函数返回之后执行&#34;&gt;defer 语句会将函数推迟到外层函数返回之后执行。&lt;/h4&gt;
+&lt;p&gt;推迟调用的函数其参数会立即求值，但直到外层函数返回前该函数都不会被调用。&lt;/p&gt;
+&lt;p&gt;defer.go&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;package main
+import &amp;quot;fmt&amp;quot;
+func main() {
+    defer fmt.Println(&amp;quot;world&amp;quot;)
+    fmt.Println(&amp;quot;hello&amp;quot;)
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&#34;defer-栈&#34;&gt;defer 栈&lt;/h4&gt;
+&lt;p&gt;推迟的函数调用会被压入一个栈中。当外层函数返回时，被推迟的函数会按照后进先出的顺序调用。&lt;/p&gt;
+&lt;p&gt;更多关于 defer 语句的信息，请阅读此博文。&lt;/p&gt;
+&lt;p&gt;defer-multi.go&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;
+package main
+import &amp;quot;fmt&amp;quot;
+func main() {
+    fmt.Println(&amp;quot;counting&amp;quot;)
+    for i := 0; i &amp;lt; 10; i++ {
+        defer fmt.Println(i)
+    }
+    fmt.Println(&amp;quot;done&amp;quot;)
+}
+&lt;/code&gt;&lt;/pre&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Go For</title>
+      <link>http://localhost:1313/post/go/go-for/</link>
+      <pubDate>Tue, 20 Oct 2020 20:04:12 +0800</pubDate>
+      
+      <guid>http://localhost:1313/post/go/go-for/</guid>
+      
+        <description>&lt;h3 id=&#34;go-只有一种循环结构for-循环&#34;&gt;Go 只有一种循环结构：for 循环。&lt;/h3&gt;
+&lt;p&gt;基本的 for 循环由三部分组成，它们用分号隔开：&lt;/p&gt;
+&lt;p&gt;初始化语句：在第一次迭代前执行
+条件表达式：在每次迭代前求值
+后置语句：在每次迭代的结尾执行&lt;/p&gt;
+&lt;p&gt;初始化语句通常为一句短变量声明，该变量声明仅在 for 语句的作用域中可见。&lt;/p&gt;
+&lt;p&gt;一旦条件表达式的布尔值为 false，循环迭代就会终止。&lt;/p&gt;
+&lt;p&gt;注意：和 C、Java、JavaScript 之类的语言不同，Go 的 for 语句后面的三个构成部分外没有小括号， 大括号 { } 则是必须的。&lt;/p&gt;
+&lt;p&gt;for.go&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;
+package main
+import &amp;quot;fmt&amp;quot;
+func main() {
+sum := 0
+for i := 0; i &amp;lt; 10; i++ {
+    sum += i
+     }
+fmt.Println(sum)
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;初始化语句和后置语句是可选的&#34;&gt;初始化语句和后置语句是可选的。&lt;/h3&gt;
+&lt;p&gt;for-continued.go&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;
+package main
+import &amp;quot;fmt&amp;quot;
+func main() {
+    sum := 1
+    for ; sum &amp;lt; 1000; {
+        sum += sum
+    }
+    fmt.Println(sum)
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;for-是-go-中的-while&#34;&gt;for 是 Go 中的 “while”&lt;/h3&gt;
+&lt;p&gt;此时你可以去掉分号，因为 C 的 while 在 Go 中叫做 for。&lt;/p&gt;
+&lt;p&gt;for-is-gos-while.go&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;
+package main
+import &amp;quot;fmt&amp;quot;
+func main() {
+    sum := 1
+    for sum &amp;lt; 1000 {
+        sum += sum
+    }
+    fmt.Println(sum)
+}
+
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;无限循环
+如果省略循环条件，该循环就不会结束，因此无限循环可以写得很紧凑。&lt;/p&gt;
+&lt;p&gt;forever.go&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;
+package main
+func main() {
+    for {
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;for-循环的-range-形式可遍历切片或映射&#34;&gt;for 循环的 range 形式可遍历切片或映射。&lt;/h3&gt;
+&lt;p&gt;当使用 for 循环遍历切片时，每次迭代都会返回两个值。第一个值为当前元素的下标，第二个值为该下标所对应元素的一份副本。&lt;/p&gt;
+&lt;p&gt;range.go&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;package main
+import &amp;quot;fmt&amp;quot;
+var pow = []int{1, 2, 4, 8, 16, 32, 64, 128}
+func main() {
+    for i, v := range pow {
+        fmt.Printf(&amp;quot;2**%d = %d\n&amp;quot;, i, v)
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;可以将下标或值赋予-_-来忽略它&#34;&gt;可以将下标或值赋予 _ 来忽略它。&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;for i, _ := range pow
+for _, value := range pow
+若你只需要索引，忽略第二个变量即可。
+
+
+for i := range pow
+range-continued.go
+
+package main
+import &amp;quot;fmt&amp;quot;
+func main() {
+    pow := make([]int, 10)
+    for i := range pow {
+        pow[i] = 1 &amp;lt;&amp;lt; uint(i) // == 2**i
+    }
+    for _, value := range pow {
+        fmt.Printf(&amp;quot;%d\n&amp;quot;, value)
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Go if</title>
+      <link>http://localhost:1313/post/go/go-if/</link>
+      <pubDate>Tue, 20 Oct 2020 20:04:12 +0800</pubDate>
+      
+      <guid>http://localhost:1313/post/go/go-if/</guid>
+      
+        <description>&lt;h3 id=&#34;go-的-if-语句与-for-循环类似表达式外无需小括号---而大括号---则是必须的&#34;&gt;Go 的 if 语句与 for 循环类似，表达式外无需小括号 ( ) ，而大括号 { } 则是必须的。&lt;/h3&gt;
+&lt;p&gt;if.go&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;
+package main
+import (
+ &amp;quot;fmt&amp;quot;
+ &amp;quot;math&amp;quot;
+)
+func sqrt(x float64) string {
+if x &amp;lt; 0 {
+return sqrt(-x) + &amp;quot;i&amp;quot;
+}
+return fmt.Sprint(math.Sqrt(x))
+}
+func main() {
+ fmt.Println(sqrt(2), sqrt(-4))
+}
+
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&#34;if-的简短语句&#34;&gt;if 的简短语句&lt;/h4&gt;
+&lt;p&gt;同 for 一样， if 语句可以在条件表达式前执行一个简单的语句。&lt;/p&gt;
+&lt;p&gt;该语句声明的变量作用域仅在 if 之内。（在最后的 return 语句处使用 v 看看。）&lt;/p&gt;
+&lt;p&gt;if-with-a-short-statement.go&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;
+package main
+import (
+    &amp;quot;fmt&amp;quot;
+    &amp;quot;math&amp;quot;
+)
+func pow(x, n, lim float64) float64 {
+    if v := math.Pow(x, n); v &amp;lt; lim {
+        return v
+    }
+    return lim
+}
+func main() {
+    fmt.Println(
+        pow(3, 2, 10),
+        pow(3, 3, 20),
+    )
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&#34;if-和-else&#34;&gt;if 和 else&lt;/h4&gt;
+&lt;p&gt;在 if 的简短语句中声明的变量同样可以在任何对应的 else 块中使用。（在 main 的 fmt.Println 调用开始前，两次对 pow 的调用均已执行并返回其各自的结果。）&lt;/p&gt;
+&lt;p&gt;if-and-else.go&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;
+package main
+import (
+    &amp;quot;fmt&amp;quot;
+    &amp;quot;math&amp;quot;
+)
+func pow(x, n, lim float64) float64 {
+    if v := math.Pow(x, n); v &amp;lt; lim {
+        return v
+    } else {
+        fmt.Printf(&amp;quot;%g &amp;gt;= %g\n&amp;quot;, v, lim)
+    }
+    // 这里开始就不能使用 v 了
+    return lim
+}
+func main() {
+    fmt.Println(
+        pow(3, 2, 10),
+        pow(3, 3, 20),
+    )
+}
+&lt;/code&gt;&lt;/pre&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Go Pakage</title>
+      <link>http://localhost:1313/post/go/go-pakage/</link>
+      <pubDate>Tue, 20 Oct 2020 20:04:12 +0800</pubDate>
+      
+      <guid>http://localhost:1313/post/go/go-pakage/</guid>
+      
+        <description>&lt;h4 id=&#34;每个-go-程序都是由包构成的&#34;&gt;每个 Go 程序都是由包构成的。&lt;/h4&gt;
+&lt;h4 id=&#34;程序从-main-包开始运行&#34;&gt;程序从 main 包开始运行。&lt;/h4&gt;
+&lt;h4 id=&#34;本程序通过导入路径-fmt-和-mathrand-来使用这两个包&#34;&gt;本程序通过导入路径 &amp;ldquo;fmt&amp;rdquo; 和 &amp;ldquo;math/rand&amp;rdquo; 来使用这两个包。&lt;/h4&gt;
+&lt;h4 id=&#34;按照约定包名与导入路径的最后一个元素一致例如mathrand-包中的源码均以-package-rand-语句开始&#34;&gt;按照约定，包名与导入路径的最后一个元素一致。例如，&amp;ldquo;math/rand&amp;rdquo; 包中的源码均以 package rand 语句开始。&lt;/h4&gt;
+&lt;h4 id=&#34;注意-此程序的运行环境是固定的因此-randintn-总是会返回相同的数字-要得到不同的数字需为生成器提供不同的种子数参见-randseed-练习场中的时间为常量因此你需要用其它的值作为种子数&#34;&gt;注意： 此程序的运行环境是固定的，因此 rand.Intn 总是会返回相同的数字。 （要得到不同的数字，需为生成器提供不同的种子数，参见 rand.Seed。 练习场中的时间为常量，因此你需要用其它的值作为种子数&lt;/h4&gt;
+&lt;p&gt;&lt;em&gt;packages.go&lt;/em&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;package main
+import (
+&amp;quot;fmt&amp;quot;
+&amp;quot;math/rand&amp;quot;
+)
+func main() {
+fmt.Println(&amp;quot;My favorite number is&amp;quot;, rand.Intn(10))
+}
+
+
+&lt;/code&gt;&lt;/pre&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Go switch</title>
+      <link>http://localhost:1313/post/go/go-switch/</link>
+      <pubDate>Tue, 20 Oct 2020 20:04:12 +0800</pubDate>
+      
+      <guid>http://localhost:1313/post/go/go-switch/</guid>
+      
+        <description>&lt;p&gt;switch 的求值顺序
+switch 的 case 语句从上到下顺次执行，直到匹配成功时停止。
+（例如，&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;
+switch i {
+case 0:
+case f():
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;在 i==0 时 f 不会被调用。）&lt;/p&gt;
+&lt;p&gt;switch-evaluation-order.go&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;
+package main
+import (
+&amp;quot;fmt&amp;quot;
+&amp;quot;time&amp;quot;
+)
+func main() {
+fmt.Println(&amp;quot;When&#39;s Saturday?&amp;quot;)
+today := time.Now().Weekday()
+switch time.Saturday {
+case today + 0:
+fmt.Println(&amp;quot;Today.&amp;quot;)
+case today + 1:
+fmt.Println(&amp;quot;Tomorrow.&amp;quot;)
+case today + 2:
+fmt.Println(&amp;quot;In two days.&amp;quot;)
+default:
+fmt.Println(&amp;quot;Too far away.&amp;quot;)
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&#34;没有条件的-switch&#34;&gt;没有条件的 switch&lt;/h4&gt;
+&lt;p&gt;没有条件的 switch 同 switch true 一样。&lt;/p&gt;
+&lt;p&gt;这种形式能将一长串 if-then-else 写得更加清晰。&lt;/p&gt;
+&lt;p&gt;switch-with-no-condition.go&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;
+package main
+import (
+    &amp;quot;fmt&amp;quot;
+    &amp;quot;time&amp;quot;
+)
+func main() {
+    t := time.Now()
+    switch {
+    case t.Hour() &amp;lt; 12:
+        fmt.Println(&amp;quot;Good morning!&amp;quot;)
+    case t.Hour() &amp;lt; 17:
+        fmt.Println(&amp;quot;Good afternoon.&amp;quot;)
+    default:
+        fmt.Println(&amp;quot;Good evening.&amp;quot;)
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Go 基本数据类型 变量</title>
+      <link>http://localhost:1313/post/go/go-type/</link>
+      <pubDate>Tue, 20 Oct 2020 20:04:12 +0800</pubDate>
+      
+      <guid>http://localhost:1313/post/go/go-type/</guid>
+      
+        <description>&lt;h3 id=&#34;变量&#34;&gt;变量&lt;/h3&gt;
+&lt;p&gt;var 语句用于声明一个变量列表，跟函数的参数列表一样，类型在最后。&lt;/p&gt;
+&lt;p&gt;就像在这个例子中看到的一样，var 语句可以出现在包或函数级别。&lt;/p&gt;
+&lt;p&gt;variables.go&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;
+package main
+import &amp;quot;fmt&amp;quot;
+var c, python, java bool
+func main() {
+    var i int
+    fmt.Println(i, c, python, java)
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;变量的初始化&#34;&gt;变量的初始化&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;变量声明可以包含初始值，每个变量对应一个。
+
+如果初始化值已存在，则可以省略类型；变量会从初始值中获得类型。
+
+variables-with-initializers.go
+
+package main
+import &amp;quot;fmt&amp;quot;
+var i, j int = 1, 2
+func main() {
+    var c, python, java = true, false, &amp;quot;no!&amp;quot;
+    fmt.Println(i, j, c, python, java)
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;短变量声明&#34;&gt;短变量声明&lt;/h3&gt;
+&lt;p&gt;在函数中，简洁赋值语句 := 可在类型明确的地方代替 var 声明。&lt;/p&gt;
+&lt;p&gt;函数外的每个语句都必须以关键字开始（var, func 等等），因此 := 结构不能在函数外使用。&lt;/p&gt;
+&lt;p&gt;short-variable-declarations.go&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;
+package main
+import &amp;quot;fmt&amp;quot;
+func main() {
+    var i, j int = 1, 2
+    k := 3
+    c, python, java := true, false, &amp;quot;no!&amp;quot;
+    fmt.Println(i, j, k, c, python, java)
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;基本类型&#34;&gt;基本类型&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;bool
+
+string
+
+int  int8  int16  int32  int64
+uint uint8 uint16 uint32 uint64 uintptr
+
+byte // uint8 的别名
+
+rune // int32 的别名
+    // 表示一个 Unicode 码点
+
+float32 float64
+
+complex64 complex128
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;本例展示了几种类型的变量。 同导入语句一样，变量声明也可以“分组”成一个语法块。&lt;/p&gt;
+&lt;p&gt;int, uint 和 uintptr 在 32 位系统上通常为 32 位宽，在 64 位系统上则为 64 位宽。 当你需要一个整数值时应使用 int 类型，除非你有特殊的理由使用固定大小或无符号的整数类型。&lt;/p&gt;
+&lt;p&gt;basic-types.go&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;
+package main
+import (
+    &amp;quot;fmt&amp;quot;
+    &amp;quot;math/cmplx&amp;quot;
+)
+var (
+    ToBe   bool       = false
+    MaxInt uint64     = 1&amp;lt;&amp;lt;64 - 1
+    z      complex128 = cmplx.Sqrt(-5 + 12i)
+)
+func main() {
+    fmt.Printf(&amp;quot;Type: %T Value: %v\n&amp;quot;, ToBe, ToBe)
+    fmt.Printf(&amp;quot;Type: %T Value: %v\n&amp;quot;, MaxInt, MaxInt)
+    fmt.Printf(&amp;quot;Type: %T Value: %v\n&amp;quot;, z, z)
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&#34;零值&#34;&gt;零值&lt;/h4&gt;
+&lt;p&gt;没有明确初始值的变量声明会被赋予它们的 零值。&lt;/p&gt;
+&lt;p&gt;零值是：&lt;/p&gt;
+&lt;p&gt;数值类型为 0，
+布尔类型为 false，
+字符串为 &amp;ldquo;&amp;quot;（空字符串）。
+zero.go&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;
+package main
+import &amp;quot;fmt&amp;quot;
+func main() {
+    var i int
+    var f float64
+    var b bool
+    var s string
+    fmt.Printf(&amp;quot;%v %v %v %q\n&amp;quot;, i, f, b, s)
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;表达式-tv-将值-v-转换为类型-t&#34;&gt;表达式 T(v) 将值 v 转换为类型 T。&lt;/h3&gt;
+&lt;p&gt;一些关于数值的转换：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;
+var i int = 42
+var f float64 = float64(i)
+var u uint = uint(f)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;或者，更加简单的形式：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;
+i := 42
+f := float64(i)
+u := uint(f)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;与 C 不同的是，Go 在不同类型的项之间赋值时需要显式转换。试着移除例子中 float64 或 uint 的转换看看会发生什么。&lt;/p&gt;
+&lt;p&gt;type-conversions.go&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;
+package main
+import (
+    &amp;quot;fmt&amp;quot;
+    &amp;quot;math&amp;quot;
+)
+func main() {
+    var x, y int = 3, 4
+    var f float64 = math.Sqrt(float64(x*x + y*y))
+    var z uint = uint(f)
+    fmt.Println(x, y, z)
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&#34;类型推导&#34;&gt;类型推导&lt;/h4&gt;
+&lt;p&gt;在声明一个变量而不指定其类型时（即使用不带类型的 := 语法或 var = 表达式语法），变量的类型由右值推导得出。&lt;/p&gt;
+&lt;p&gt;当右值声明了类型时，新变量的类型与其相同：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;var i int
+j := i // j 也是一个 int
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;不过当右边包含未指明类型的数值常量时，新变量的类型就可能是 int, float64 或 complex128 了，这取决于常量的精度：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;
+i := 42           // int
+f := 3.142        // float64
+g := 0.867 + 0.5i // complex128
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;尝试修改示例代码中 v 的初始值，并观察它是如何影响类型的。&lt;/p&gt;
+&lt;p&gt;type-inference.go&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;
+package main
+import &amp;quot;fmt&amp;quot;
+func main() {
+    v := 42 // 修改这里！
+    fmt.Printf(&amp;quot;v is of type %T\n&amp;quot;, v)
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&#34;常量的声明与变量类似只不过是使用-const-关键字&#34;&gt;常量的声明与变量类似，只不过是使用 const 关键字。&lt;/h4&gt;
+&lt;p&gt;常量可以是字符、字符串、布尔值或数值。&lt;/p&gt;
+&lt;p&gt;常量不能用 := 语法声明。&lt;/p&gt;
+&lt;p&gt;constants.go&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;
+package main
+import &amp;quot;fmt&amp;quot;
+const Pi = 3.14
+func main() {
+    const World = &amp;quot;世界&amp;quot;
+    fmt.Println(&amp;quot;Hello&amp;quot;, World)
+    fmt.Println(&amp;quot;Happy&amp;quot;, Pi, &amp;quot;Day&amp;quot;)
+    const Truth = true
+    fmt.Println(&amp;quot;Go rules?&amp;quot;, Truth)
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;数组&#34;&gt;数组&lt;/h3&gt;
+&lt;p&gt;类型 [n]T 表示拥有 n 个 T 类型的值的数组。&lt;/p&gt;
+&lt;p&gt;表达式&lt;/p&gt;
+&lt;p&gt;var a [10]int
+会将变量 a 声明为拥有 10 个整数的数组。&lt;/p&gt;
+&lt;p&gt;数组的长度是其类型的一部分，因此数组不能改变大小。这看起来是个限制，不过没关系，Go 提供了更加便利的方式来使用数组。&lt;/p&gt;
+&lt;p&gt;array.go&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;
+package main
+import &amp;quot;fmt&amp;quot;
+func main() {
+    var a [2]string
+    a[0] = &amp;quot;Hello&amp;quot;
+    a[1] = &amp;quot;World&amp;quot;
+    fmt.Println(a[0], a[1])
+    fmt.Println(a)
+    primes := [6]int{2, 3, 5, 7, 11, 13}
+    fmt.Println(primes)
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;切片&#34;&gt;切片&lt;/h3&gt;
+&lt;p&gt;每个数组的大小都是固定的。而切片则为数组元素提供动态大小的、灵活的视角。在实践中，切片比数组更常用。&lt;/p&gt;
+&lt;p&gt;类型 []T 表示一个元素类型为 T 的切片。&lt;/p&gt;
+&lt;p&gt;切片通过两个下标来界定，即一个上界和一个下界，二者以冒号分隔：&lt;/p&gt;
+&lt;p&gt;a[low : high]
+它会选择一个半开区间，包括第一个元素，但排除最后一个元素。&lt;/p&gt;
+&lt;p&gt;以下表达式创建了一个切片，它包含 a 中下标从 1 到 3 的元素：&lt;/p&gt;
+&lt;p&gt;a[1:4]
+slices.go&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;package main
+import &amp;quot;fmt&amp;quot;
+func main() {
+    primes := [6]int{2, 3, 5, 7, 11, 13}
+    var s []int = primes[1:4]
+    fmt.Println(s)
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;切片就像数组的引用&#34;&gt;切片就像数组的引用&lt;/h3&gt;
+&lt;p&gt;切片并不存储任何数据，它只是描述了底层数组中的一段。&lt;/p&gt;
+&lt;p&gt;更改切片的元素会修改其底层数组中对应的元素。&lt;/p&gt;
+&lt;p&gt;与它共享底层数组的切片都会观测到这些修改。&lt;/p&gt;
+&lt;p&gt;slices-pointers.go&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;package main
+import &amp;quot;fmt&amp;quot;
+func main() {
+    names := [4]string{
+        &amp;quot;John&amp;quot;,
+        &amp;quot;Paul&amp;quot;,
+        &amp;quot;George&amp;quot;,
+        &amp;quot;Ringo&amp;quot;,
+    }
+    fmt.Println(names)
+    a := names[0:2]
+    b := names[1:3]
+    fmt.Println(a, b)
+    b[0] = &amp;quot;XXX&amp;quot;
+    fmt.Println(a, b)
+    fmt.Println(names)
+}
+
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;切片文法&#34;&gt;切片文法&lt;/h3&gt;
+&lt;p&gt;切片文法类似于没有长度的数组文法。&lt;/p&gt;
+&lt;p&gt;这是一个数组文法：&lt;/p&gt;
+&lt;p&gt;[3]bool{true, true, false}
+下面这样则会创建一个和上面相同的数组，然后构建一个引用了它的切片：&lt;/p&gt;
+&lt;p&gt;[]bool{true, true, false}
+slice-literals.go&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;package main
+import &amp;quot;fmt&amp;quot;
+func main() {
+    q := []int{2, 3, 5, 7, 11, 13}
+    fmt.Println(q)
+    r := []bool{true, false, true, true, false, true}
+    fmt.Println(r)
+    s := []struct {
+        i int
+        b bool
+    }{
+        {2, true},
+        {3, false},
+        {5, true},
+        {7, true},
+        {11, false},
+        {13, true},
+    }
+    fmt.Println(s)
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;切片的默认行为&#34;&gt;切片的默认行为&lt;/h3&gt;
+&lt;p&gt;在进行切片时，你可以利用它的默认行为来忽略上下界。&lt;/p&gt;
+&lt;p&gt;切片下界的默认值为 0，上界则是该切片的长度。&lt;/p&gt;
+&lt;p&gt;对于数组&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;
+var a [10]int
+来说，以下切片是等价的：
+
+a[0:10]
+a[:10]
+a[0:]
+a[:]
+slice-bounds.go
+
+package main
+import &amp;quot;fmt&amp;quot;
+func main() {
+    s := []int{2, 3, 5, 7, 11, 13}
+    s = s[1:4]
+    fmt.Println(s)
+    s = s[:2]
+    fmt.Println(s)
+    s = s[1:]
+    fmt.Println(s)
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;切片拥有-长度-和-容量&#34;&gt;切片拥有 长度 和 容量。&lt;/h3&gt;
+&lt;p&gt;切片的长度就是它所包含的元素个数。&lt;/p&gt;
+&lt;p&gt;切片的容量是从它的第一个元素开始数，到其底层数组元素末尾的个数。&lt;/p&gt;
+&lt;p&gt;切片 s 的长度和容量可通过表达式 len(s) 和 cap(s) 来获取。&lt;/p&gt;
+&lt;p&gt;你可以通过重新切片来扩展一个切片，给它提供足够的容量。试着修改示例程序中的切片操作，向外扩展它的容量，看看会发生什么。&lt;/p&gt;
+&lt;p&gt;slice-len-cap.go&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;package main
+import &amp;quot;fmt&amp;quot;
+func main() {
+    s := []int{2, 3, 5, 7, 11, 13}
+    printSlice(s)
+    // 截取切片使其长度为 0
+    s = s[:0]
+    printSlice(s)
+    // 拓展其长度
+    s = s[:4]
+    printSlice(s)
+    // 舍弃前两个值
+    s = s[2:]
+    printSlice(s)
+}
+func printSlice(s []int) {
+    fmt.Printf(&amp;quot;len=%d cap=%d %v\n&amp;quot;, len(s), cap(s), s)
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;nil-切片&#34;&gt;nil 切片&lt;/h3&gt;
+&lt;p&gt;切片的零值是 nil。&lt;/p&gt;
+&lt;p&gt;nil 切片的长度和容量为 0 且没有底层数组。&lt;/p&gt;
+&lt;p&gt;nil-slices.go&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;package main
+import &amp;quot;fmt&amp;quot;
+func main() {
+    var s []int
+    fmt.Println(s, len(s), cap(s))
+    if s == nil {
+        fmt.Println(&amp;quot;nil!&amp;quot;)
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;用-make-创建切片&#34;&gt;用 make 创建切片&lt;/h3&gt;
+&lt;p&gt;切片可以用内建函数 make 来创建，这也是你创建动态数组的方式。&lt;/p&gt;
+&lt;p&gt;make 函数会分配一个元素为零值的数组并返回一个引用了它的切片：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;a := make([]int, 5)  // len(a)=5
+要指定它的容量，需向 make 传入第三个参数：
+
+b := make([]int, 0, 5) // len(b)=0, cap(b)=5
+
+b = b[:cap(b)] // len(b)=5, cap(b)=5
+b = b[1:]      // len(b)=4, cap(b)=4
+making-slices.go
+
+package main
+import &amp;quot;fmt&amp;quot;
+func main() {
+    a := make([]int, 5)
+    printSlice(&amp;quot;a&amp;quot;, a)
+    b := make([]int, 0, 5)
+    printSlice(&amp;quot;b&amp;quot;, b)
+    c := b[:2]
+    printSlice(&amp;quot;c&amp;quot;, c)
+    d := c[2:5]
+    printSlice(&amp;quot;d&amp;quot;, d)
+}
+func printSlice(s string, x []int) {
+    fmt.Printf(&amp;quot;%s len=%d cap=%d %v\n&amp;quot;,
+        s, len(x), cap(x), x)
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;切片的切片&#34;&gt;切片的切片&lt;/h3&gt;
+&lt;p&gt;切片可包含任何类型，甚至包括其它的切片。&lt;/p&gt;
+&lt;p&gt;slices-of-slice.go&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;package main
+import (
+    &amp;quot;fmt&amp;quot;
+    &amp;quot;strings&amp;quot;
+)
+func main() {
+    // 创建一个井字板（经典游戏）
+    board := [][]string{
+        []string{&amp;quot;_&amp;quot;, &amp;quot;_&amp;quot;, &amp;quot;_&amp;quot;},
+        []string{&amp;quot;_&amp;quot;, &amp;quot;_&amp;quot;, &amp;quot;_&amp;quot;},
+        []string{&amp;quot;_&amp;quot;, &amp;quot;_&amp;quot;, &amp;quot;_&amp;quot;},
+    }
+    // 两个玩家轮流打上 X 和 O
+    board[0][0] = &amp;quot;X&amp;quot;
+    board[2][2] = &amp;quot;O&amp;quot;
+    board[1][2] = &amp;quot;X&amp;quot;
+    board[1][0] = &amp;quot;O&amp;quot;
+    board[0][2] = &amp;quot;X&amp;quot;
+    for i := 0; i &amp;lt; len(board); i++ {
+        fmt.Printf(&amp;quot;%s\n&amp;quot;, strings.Join(board[i], &amp;quot; &amp;quot;))
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;向切片追加元素&#34;&gt;向切片追加元素&lt;/h3&gt;
+&lt;p&gt;向切片追加元素
+为切片追加新的元素是种常用的操作，为此 Go 提供了内建的 append 函数。内建函数的文档对此函数有详细的介绍。&lt;/p&gt;
+&lt;p&gt;func append(s []T, vs &amp;hellip;T) []T
+append 的第一个参数 s 是一个元素类型为 T 的切片，其余类型为 T 的值将会追加到该切片的末尾。&lt;/p&gt;
+&lt;p&gt;append 的结果是一个包含原切片所有元素加上新添加元素的切片。&lt;/p&gt;
+&lt;p&gt;当 s 的底层数组太小，不足以容纳所有给定的值时，它就会分配一个更大的数组。返回的切片会指向这个新分配的数组。&lt;/p&gt;
+&lt;p&gt;（要了解关于切片的更多内容，请阅读文章 Go 切片：用法和本质。）&lt;/p&gt;
+&lt;p&gt;append.go&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;
+package main
+import &amp;quot;fmt&amp;quot;
+func main() {
+    var s []int
+    printSlice(s)
+    // 添加一个空切片
+    s = append(s, 0)
+    printSlice(s)
+    // 这个切片会按需增长
+    s = append(s, 1)
+    printSlice(s)
+    // 可以一次性添加多个元素
+    s = append(s, 2, 3, 4)
+    printSlice(s)
+}
+func printSlice(s []int) {
+    fmt.Printf(&amp;quot;len=%d cap=%d %v\n&amp;quot;, len(s), cap(s), s)
+}
+&lt;/code&gt;&lt;/pre&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Nginx 常用命令</title>
+      <link>http://localhost:1313/post/nginx/nginx-demo/</link>
+      <pubDate>Mon, 19 Oct 2020 20:25:50 +0800</pubDate>
+      
+      <guid>http://localhost:1313/post/nginx/nginx-demo/</guid>
+      
+        <description>&lt;p&gt;nginx 的使用比较简单，就是几条命令。&lt;/p&gt;
+&lt;p&gt;常用到的命令如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;
+nginx -s stop 快速关闭 Nginx，可能不保存相关信息，并迅速终止 web 服务。
+nginx -s quit 平稳关闭 Nginx，保存相关信息，有安排的结束 web 服务。
+nginx -s reload 因改变了 Nginx 相关配置，需要重新加载配置而重载。
+nginx -s reopen 重新打开日志文件。
+nginx -c filename 为 Nginx 指定一个配置文件，来代替缺省的。
+nginx -t 不运行，仅仅测试配置文件。nginx 将检查配置文件的语法的正确性，并尝试打开配置文件中所引用到的文件。
+nginx -v 显示 nginx 的版本。
+nginx -V 显示 nginx 的版本，编译器版本和配置参数。
+如果不想每次都敲命令，可以在 nginx 安装目录下新添一个启动批处理文件 startup.bat，双击即可运行。内容如下：
+
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&#34;如果启动前已经启动-nginx-并记录下-pid-文件会-kill-指定进程&#34;&gt;如果启动前已经启动 nginx 并记录下 pid 文件，会 kill 指定进程&lt;/h4&gt;
+&lt;h5 id=&#34;nginxexe--s-stop&#34;&gt;nginx.exe -s stop&lt;/h5&gt;
+&lt;h4 id=&#34;测试配置文件语法正确性&#34;&gt;测试配置文件语法正确性&lt;/h4&gt;
+&lt;h5 id=&#34;nginxexe--t--c-confnginxconf&#34;&gt;nginx.exe -t -c conf/nginx.conf&lt;/h5&gt;
+&lt;h4 id=&#34;显示版本信息&#34;&gt;显示版本信息&lt;/h4&gt;
+&lt;h5 id=&#34;nginxexe--v&#34;&gt;nginx.exe -v&lt;/h5&gt;
+&lt;h4 id=&#34;按照指定配置去启动-nginx&#34;&gt;按照指定配置去启动 nginx&lt;/h4&gt;
+&lt;h5 id=&#34;nginxexe--c-confnginxconf&#34;&gt;nginx.exe -c conf/nginx.conf&lt;/h5&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>Nginx 常见错误</title>
+      <link>http://localhost:1313/post/nginx/nginx-error/</link>
+      <pubDate>Mon, 19 Oct 2020 20:25:50 +0800</pubDate>
+      
+      <guid>http://localhost:1313/post/nginx/nginx-error/</guid>
+      
+        <description>&lt;pre&gt;&lt;code&gt;The plain HTTP request was sent to HTTPS port
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;解决办法fastcgi_param-https-https-if_not_empty-添加这条规则&#34;&gt;解决办法，fastcgi_param HTTPS $https if_not_empty 添加这条规则，&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;server {
+    listen 443 ssl; # 注意这条规则
+    server_name  my.domain.com;
+    fastcgi_param HTTPS $https if_not_empty;
+    fastcgi_param HTTPS on;
+    ssl_certificate /etc/ssl/certs/your.pem;
+    ssl_certificate_key /etc/ssl/private/your.key;
+    location / {
+        # Your config here...
+    }
+}
+
+&lt;/code&gt;&lt;/pre&gt;</description>
       
     </item>
     
@@ -1526,6 +2759,28 @@ env:
     </item>
     
     <item>
+      <title>Docker Command</title>
+      <link>http://localhost:1313/post/k8s/docker-command/</link>
+      <pubDate>Mon, 19 Oct 2020 14:22:38 +0800</pubDate>
+      
+      <guid>http://localhost:1313/post/k8s/docker-command/</guid>
+      
+        <description>&lt;h3 id=&#34;杀死所有正在运行的容器&#34;&gt;杀死所有正在运行的容器&lt;/h3&gt;
+&lt;p&gt;docker kill $(docker ps -a -q)&lt;/p&gt;
+&lt;h3 id=&#34;删除所有已经停止的容器&#34;&gt;删除所有已经停止的容器&lt;/h3&gt;
+&lt;p&gt;docker rm $(docker ps -a -q)&lt;/p&gt;
+&lt;h3 id=&#34;删除所有未打-dangling-标签的镜&#34;&gt;删除所有未打 dangling 标签的镜&lt;/h3&gt;
+&lt;p&gt;docker rmi $(docker images -q -f dangling=true)&lt;/p&gt;
+&lt;h3 id=&#34;删除所有镜像&#34;&gt;删除所有镜像&lt;/h3&gt;
+&lt;p&gt;docker rmi $(docker images -q)&lt;/p&gt;
+&lt;h3 id=&#34;强制删除-无法删除的镜像&#34;&gt;强制删除 无法删除的镜像&lt;/h3&gt;
+&lt;p&gt;docker rmi -f &amp;lt;IMAGE_ID&amp;gt;
+docker rmi -f $(docker images -q)&lt;/p&gt;
+</description>
+      
+    </item>
+    
+    <item>
       <title>Https 反向代理</title>
       <link>http://localhost:1313/post/nginx/nginx-https/</link>
       <pubDate>Sat, 19 Sep 2020 17:00:42 +0800</pubDate>
@@ -1668,1302 +2923,6 @@ server 192.168.250.221:8080
 server 192.168.250.222:8080
 }
 &lt;/code&gt;&lt;/pre&gt;</description>
-      
-    </item>
-    
-    <item>
-      <title>关于</title>
-      <link>http://localhost:1313/about/</link>
-      <pubDate>Sun, 20 Aug 2017 21:38:52 +0800</pubDate>
-      
-      <guid>http://localhost:1313/about/</guid>
-      
-        <description>&lt;h2 id=&#34;介绍&#34;&gt;介绍&lt;/h2&gt;
-&lt;p&gt;向春晓， 32 岁, 10 年经验, 运维工程师 湖南 - 攸县&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;http://www.sysu.edu.cn/cn/#&#34;&gt;中山大学&lt;/a&gt; 本科&lt;/p&gt;
-&lt;p&gt;邮箱 : &lt;a href=&#34;mailto:clivexiang@outlook.com&#34;&gt;clivexiang@outlook.com&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;微信 : 13480642977&lt;/p&gt;
-&lt;p&gt;电话 : 13480642977&lt;/p&gt;
-&lt;hr&gt;
-&lt;p&gt;&lt;strong&gt;希望参与 :&lt;/strong&gt;&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;docker ，k8s 运维&lt;/li&gt;
-&lt;li&gt;python 运维开发&lt;/li&gt;
-&lt;li&gt;Linux 维护&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;可以独立负责功能模块或者整个应用的开发&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://clivexiang.github.io&#34;&gt;个人博客(需梯子)&lt;/a&gt; | &lt;a href=&#34;https://github.com/clivexiang&#34;&gt;Github&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&#34;技术栈&#34;&gt;技术栈&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;前端 : vue&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;后端 : python, php&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;操作系统: Linux ,Windows 运维&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;常用中间价: nginx, php-fpm&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;考试认证： CKA, RHCE&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;近期工作内容&#34;&gt;近期工作内容&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;zabbix 监控运维&lt;/li&gt;
-&lt;li&gt;nginx 中间件维护&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;项目--优化&#34;&gt;项目 &amp;amp; 优化&lt;/h2&gt;
-&lt;h2 id=&#34;工作经历&#34;&gt;工作经历&lt;/h2&gt;
-&lt;h4 id=&#34;北京卡卡罗特科技有限公司httpwwwbaibianwukongcomfirstpage-20167---20175&#34;&gt;&lt;a href=&#34;http://www.baibianwukong.com/#firstPage&#34;&gt;北京卡卡罗特科技有限公司&lt;/a&gt; (2016.7 - 2017.5)&lt;/h4&gt;
-</description>
-      
-    </item>
-    
-    <item>
-      <title>Http 反向代理</title>
-      <link>http://localhost:1313/post/jane-theme-preview.zh-cn/</link>
-      <pubDate>Tue, 06 Mar 2018 16:01:23 +0800</pubDate>
-      
-      <guid>http://localhost:1313/post/jane-theme-preview.zh-cn/</guid>
-      
-        <description>&lt;h2 id=&#34;http-反向代理&#34;&gt;Http 反向代理&lt;/h2&gt;
-&lt;h3 id=&#34;我们先实现一个小目标不考虑复杂的配置仅仅是完成一个-http-反向代理&#34;&gt;我们先实现一个小目标：不考虑复杂的配置，仅仅是完成一个 http 反向代理。&lt;/h3&gt;
-&lt;h3 id=&#34;nginxconf-配置文件如下&#34;&gt;nginx.conf 配置文件如下:&lt;/h3&gt;
-&lt;pre&gt;&lt;code&gt;
-#运行用户
-#user somebody;
-#启动进程,通常设置成和cpu的数量相等
-worker_processes  1;
-#全局错误日志
-error_log  D:/Tools/nginx-1.10.1/logs/error.log;
-error_log  D:/Tools/nginx-1.10.1/logs/notice.log  notice;
-error_log  D:/Tools/nginx-1.10.1/logs/info.log  info;
-#PID文件，记录当前启动的nginx的进程ID
-pid        D:/Tools/nginx-1.10.1/logs/nginx.pid;
-#工作模式及连接数上限
-events {
-    worker_connections 1024;    #单个后台worker process进程的最大并发链接数
-}
-#设定http服务器，利用它的反向代理功能提供负载均衡支持
-http {
-    #设定mime类型(邮件支持类型),类型由mime.types文件定义
-    include       D:/Tools/nginx-1.10.1/conf/mime.types;
-    default_type  application/octet-stream;
-    #设定日志
-    log_format  main  &#39;[$remote_addr] - [$remote_user] [$time_local] &amp;quot;$request&amp;quot; &#39;
-                      &#39;$status $body_bytes_sent &amp;quot;$http_referer&amp;quot; &#39;
-                      &#39;&amp;quot;$http_user_agent&amp;quot; &amp;quot;$http_x_forwarded_for&amp;quot;&#39;;
-    access_log    D:/Tools/nginx-1.10.1/logs/access.log main;
-    rewrite_log     on;
-    #sendfile 指令指定 nginx 是否调用 sendfile 函数（zero copy 方式）来输出文件，对于普通应用，
-    #必须设为 on,如果用来进行下载等应用磁盘IO重负载应用，可设置为 off，以平衡磁盘与网络I/O处理速度，降低系统的uptime.
-    sendfile        on;
-    #tcp_nopush     on;
-    #连接超时时间
-    keepalive_timeout  120;
-    tcp_nodelay        on;
-    #gzip压缩开关
-    #gzip  on;
-    #设定实际的服务器列表
-    upstream zp_server1{
-        server 127.0.0.1:8089;
-    }
-    #HTTP服务器
-    server {
-        #监听80端口，80端口是知名端口号，用于HTTP协议
-        listen       80;
-        #定义使用www.xx.com访问
-        server_name  www.helloworld.com;
-        #首页
-        index index.html
-        #指向webapp的目录
-        root D:\01_Workspace\Project\github\zp\SpringNotes\spring-security\spring-shiro\src\main\webapp;
-        #编码格式
-        charset utf-8;
-        #代理配置参数
-        proxy_connect_timeout 180;
-        proxy_send_timeout 180;
-        proxy_read_timeout 180;
-        proxy_set_header Host $host;
-        proxy_set_header X-Forwarder-For $remote_addr;
-        #反向代理的路径（和upstream绑定），location 后面设置映射的路径
-        location / {
-            proxy_pass http://zp_server1;
-        }
-        #静态文件，nginx自己处理
-        location ~ ^/(images|javascript|js|css|flash|media|static)/ {
-            root D:\01_Workspace\Project\github\zp\SpringNotes\spring-security\spring-shiro\src\main\webapp\views;
-            #过期30天，静态文件不怎么更新，过期可以设大一点，如果频繁更新，则可以设置得小一点。
-            expires 30d;
-        }
-        #设定查看Nginx状态的地址
-        location /NginxStatus {
-            stub_status           on;
-            access_log            on;
-            auth_basic            &amp;quot;NginxStatus&amp;quot;;
-            auth_basic_user_file  conf/htpasswd;
-        }
-        #禁止访问 .htxxx 文件
-        location ~ /\.ht {
-            deny all;
-        }
-        #错误处理页面（可选择性配置）
-        #error_page   404              /404.html;
-        #error_page   500 502 503 504  /50x.html;
-        #location = /50x.html {
-        #    root   html;
-        #}
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;好了，让我们来试试吧：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;启动 webapp，注意启动绑定的端口要和 nginx 中的 upstream 设置的端口保持一致。&lt;/li&gt;
-&lt;li&gt;更改 host：在 C:\Windows\System32\drivers\etc 目录下的 host 文件中添加一条 DNS 记录&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;&lt;code&gt;
-127.0.0.1 www.helloworld.com
-&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
-&lt;li&gt;启动前文中 startup.bat 的命令&lt;/li&gt;
-&lt;li&gt;在浏览器中访问 &lt;a href=&#34;http://www.helloworld.com&#34;&gt;www.helloworld.com&lt;/a&gt;，不出意外，已经可以访问了。&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-      
-    </item>
-    
-    <item>
-      <title>Go Defer</title>
-      <link>http://localhost:1313/post/go/go-defer/</link>
-      <pubDate>Tue, 20 Oct 2020 20:10:12 +0800</pubDate>
-      
-      <guid>http://localhost:1313/post/go/go-defer/</guid>
-      
-        <description>&lt;h4 id=&#34;defer-语句会将函数推迟到外层函数返回之后执行&#34;&gt;defer 语句会将函数推迟到外层函数返回之后执行。&lt;/h4&gt;
-&lt;p&gt;推迟调用的函数其参数会立即求值，但直到外层函数返回前该函数都不会被调用。&lt;/p&gt;
-&lt;p&gt;defer.go&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;package main
-import &amp;quot;fmt&amp;quot;
-func main() {
-    defer fmt.Println(&amp;quot;world&amp;quot;)
-    fmt.Println(&amp;quot;hello&amp;quot;)
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&#34;defer-栈&#34;&gt;defer 栈&lt;/h4&gt;
-&lt;p&gt;推迟的函数调用会被压入一个栈中。当外层函数返回时，被推迟的函数会按照后进先出的顺序调用。&lt;/p&gt;
-&lt;p&gt;更多关于 defer 语句的信息，请阅读此博文。&lt;/p&gt;
-&lt;p&gt;defer-multi.go&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;
-package main
-import &amp;quot;fmt&amp;quot;
-func main() {
-    fmt.Println(&amp;quot;counting&amp;quot;)
-    for i := 0; i &amp;lt; 10; i++ {
-        defer fmt.Println(i)
-    }
-    fmt.Println(&amp;quot;done&amp;quot;)
-}
-&lt;/code&gt;&lt;/pre&gt;</description>
-      
-    </item>
-    
-    <item>
-      <title>Go For</title>
-      <link>http://localhost:1313/post/go/go-for/</link>
-      <pubDate>Tue, 20 Oct 2020 20:04:12 +0800</pubDate>
-      
-      <guid>http://localhost:1313/post/go/go-for/</guid>
-      
-        <description>&lt;h3 id=&#34;go-只有一种循环结构for-循环&#34;&gt;Go 只有一种循环结构：for 循环。&lt;/h3&gt;
-&lt;p&gt;基本的 for 循环由三部分组成，它们用分号隔开：&lt;/p&gt;
-&lt;p&gt;初始化语句：在第一次迭代前执行
-条件表达式：在每次迭代前求值
-后置语句：在每次迭代的结尾执行&lt;/p&gt;
-&lt;p&gt;初始化语句通常为一句短变量声明，该变量声明仅在 for 语句的作用域中可见。&lt;/p&gt;
-&lt;p&gt;一旦条件表达式的布尔值为 false，循环迭代就会终止。&lt;/p&gt;
-&lt;p&gt;注意：和 C、Java、JavaScript 之类的语言不同，Go 的 for 语句后面的三个构成部分外没有小括号， 大括号 { } 则是必须的。&lt;/p&gt;
-&lt;p&gt;for.go&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;
-package main
-import &amp;quot;fmt&amp;quot;
-func main() {
-sum := 0
-for i := 0; i &amp;lt; 10; i++ {
-    sum += i
-     }
-fmt.Println(sum)
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;初始化语句和后置语句是可选的&#34;&gt;初始化语句和后置语句是可选的。&lt;/h3&gt;
-&lt;p&gt;for-continued.go&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;
-package main
-import &amp;quot;fmt&amp;quot;
-func main() {
-    sum := 1
-    for ; sum &amp;lt; 1000; {
-        sum += sum
-    }
-    fmt.Println(sum)
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;for-是-go-中的-while&#34;&gt;for 是 Go 中的 “while”&lt;/h3&gt;
-&lt;p&gt;此时你可以去掉分号，因为 C 的 while 在 Go 中叫做 for。&lt;/p&gt;
-&lt;p&gt;for-is-gos-while.go&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;
-package main
-import &amp;quot;fmt&amp;quot;
-func main() {
-    sum := 1
-    for sum &amp;lt; 1000 {
-        sum += sum
-    }
-    fmt.Println(sum)
-}
-
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;无限循环
-如果省略循环条件，该循环就不会结束，因此无限循环可以写得很紧凑。&lt;/p&gt;
-&lt;p&gt;forever.go&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;
-package main
-func main() {
-    for {
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;</description>
-      
-    </item>
-    
-    <item>
-      <title>Go if</title>
-      <link>http://localhost:1313/post/go/go-if/</link>
-      <pubDate>Tue, 20 Oct 2020 20:04:12 +0800</pubDate>
-      
-      <guid>http://localhost:1313/post/go/go-if/</guid>
-      
-        <description>&lt;h3 id=&#34;go-的-if-语句与-for-循环类似表达式外无需小括号---而大括号---则是必须的&#34;&gt;Go 的 if 语句与 for 循环类似，表达式外无需小括号 ( ) ，而大括号 { } 则是必须的。&lt;/h3&gt;
-&lt;p&gt;if.go&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;
-package main
-import (
- &amp;quot;fmt&amp;quot;
- &amp;quot;math&amp;quot;
-)
-func sqrt(x float64) string {
-if x &amp;lt; 0 {
-return sqrt(-x) + &amp;quot;i&amp;quot;
-}
-return fmt.Sprint(math.Sqrt(x))
-}
-func main() {
- fmt.Println(sqrt(2), sqrt(-4))
-}
-
-&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&#34;if-的简短语句&#34;&gt;if 的简短语句&lt;/h4&gt;
-&lt;p&gt;同 for 一样， if 语句可以在条件表达式前执行一个简单的语句。&lt;/p&gt;
-&lt;p&gt;该语句声明的变量作用域仅在 if 之内。（在最后的 return 语句处使用 v 看看。）&lt;/p&gt;
-&lt;p&gt;if-with-a-short-statement.go&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;
-package main
-import (
-    &amp;quot;fmt&amp;quot;
-    &amp;quot;math&amp;quot;
-)
-func pow(x, n, lim float64) float64 {
-    if v := math.Pow(x, n); v &amp;lt; lim {
-        return v
-    }
-    return lim
-}
-func main() {
-    fmt.Println(
-        pow(3, 2, 10),
-        pow(3, 3, 20),
-    )
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&#34;if-和-else&#34;&gt;if 和 else&lt;/h4&gt;
-&lt;p&gt;在 if 的简短语句中声明的变量同样可以在任何对应的 else 块中使用。（在 main 的 fmt.Println 调用开始前，两次对 pow 的调用均已执行并返回其各自的结果。）&lt;/p&gt;
-&lt;p&gt;if-and-else.go&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;
-package main
-import (
-    &amp;quot;fmt&amp;quot;
-    &amp;quot;math&amp;quot;
-)
-func pow(x, n, lim float64) float64 {
-    if v := math.Pow(x, n); v &amp;lt; lim {
-        return v
-    } else {
-        fmt.Printf(&amp;quot;%g &amp;gt;= %g\n&amp;quot;, v, lim)
-    }
-    // 这里开始就不能使用 v 了
-    return lim
-}
-func main() {
-    fmt.Println(
-        pow(3, 2, 10),
-        pow(3, 3, 20),
-    )
-}
-&lt;/code&gt;&lt;/pre&gt;</description>
-      
-    </item>
-    
-    <item>
-      <title>Go Pakage</title>
-      <link>http://localhost:1313/post/go/go-pakage/</link>
-      <pubDate>Tue, 20 Oct 2020 20:04:12 +0800</pubDate>
-      
-      <guid>http://localhost:1313/post/go/go-pakage/</guid>
-      
-        <description>&lt;h4 id=&#34;每个-go-程序都是由包构成的&#34;&gt;每个 Go 程序都是由包构成的。&lt;/h4&gt;
-&lt;h4 id=&#34;程序从-main-包开始运行&#34;&gt;程序从 main 包开始运行。&lt;/h4&gt;
-&lt;h4 id=&#34;本程序通过导入路径-fmt-和-mathrand-来使用这两个包&#34;&gt;本程序通过导入路径 &amp;ldquo;fmt&amp;rdquo; 和 &amp;ldquo;math/rand&amp;rdquo; 来使用这两个包。&lt;/h4&gt;
-&lt;h4 id=&#34;按照约定包名与导入路径的最后一个元素一致例如mathrand-包中的源码均以-package-rand-语句开始&#34;&gt;按照约定，包名与导入路径的最后一个元素一致。例如，&amp;ldquo;math/rand&amp;rdquo; 包中的源码均以 package rand 语句开始。&lt;/h4&gt;
-&lt;h4 id=&#34;注意-此程序的运行环境是固定的因此-randintn-总是会返回相同的数字-要得到不同的数字需为生成器提供不同的种子数参见-randseed-练习场中的时间为常量因此你需要用其它的值作为种子数&#34;&gt;注意： 此程序的运行环境是固定的，因此 rand.Intn 总是会返回相同的数字。 （要得到不同的数字，需为生成器提供不同的种子数，参见 rand.Seed。 练习场中的时间为常量，因此你需要用其它的值作为种子数&lt;/h4&gt;
-&lt;p&gt;&lt;em&gt;packages.go&lt;/em&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;package main
-import (
-&amp;quot;fmt&amp;quot;
-&amp;quot;math/rand&amp;quot;
-)
-func main() {
-fmt.Println(&amp;quot;My favorite number is&amp;quot;, rand.Intn(10))
-}
-
-
-&lt;/code&gt;&lt;/pre&gt;</description>
-      
-    </item>
-    
-    <item>
-      <title>Go switch</title>
-      <link>http://localhost:1313/post/go/go-switch/</link>
-      <pubDate>Tue, 20 Oct 2020 20:04:12 +0800</pubDate>
-      
-      <guid>http://localhost:1313/post/go/go-switch/</guid>
-      
-        <description>&lt;p&gt;switch 的求值顺序
-switch 的 case 语句从上到下顺次执行，直到匹配成功时停止。
-（例如，&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;
-switch i {
-case 0:
-case f():
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;在 i==0 时 f 不会被调用。）&lt;/p&gt;
-&lt;p&gt;switch-evaluation-order.go&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;
-package main
-import (
-&amp;quot;fmt&amp;quot;
-&amp;quot;time&amp;quot;
-)
-func main() {
-fmt.Println(&amp;quot;When&#39;s Saturday?&amp;quot;)
-today := time.Now().Weekday()
-switch time.Saturday {
-case today + 0:
-fmt.Println(&amp;quot;Today.&amp;quot;)
-case today + 1:
-fmt.Println(&amp;quot;Tomorrow.&amp;quot;)
-case today + 2:
-fmt.Println(&amp;quot;In two days.&amp;quot;)
-default:
-fmt.Println(&amp;quot;Too far away.&amp;quot;)
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&#34;没有条件的-switch&#34;&gt;没有条件的 switch&lt;/h4&gt;
-&lt;p&gt;没有条件的 switch 同 switch true 一样。&lt;/p&gt;
-&lt;p&gt;这种形式能将一长串 if-then-else 写得更加清晰。&lt;/p&gt;
-&lt;p&gt;switch-with-no-condition.go&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;
-package main
-import (
-    &amp;quot;fmt&amp;quot;
-    &amp;quot;time&amp;quot;
-)
-func main() {
-    t := time.Now()
-    switch {
-    case t.Hour() &amp;lt; 12:
-        fmt.Println(&amp;quot;Good morning!&amp;quot;)
-    case t.Hour() &amp;lt; 17:
-        fmt.Println(&amp;quot;Good afternoon.&amp;quot;)
-    default:
-        fmt.Println(&amp;quot;Good evening.&amp;quot;)
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;</description>
-      
-    </item>
-    
-    <item>
-      <title>Go 基本数据类型 变量</title>
-      <link>http://localhost:1313/post/go/go-type/</link>
-      <pubDate>Tue, 20 Oct 2020 20:04:12 +0800</pubDate>
-      
-      <guid>http://localhost:1313/post/go/go-type/</guid>
-      
-        <description>&lt;h3 id=&#34;变量&#34;&gt;变量&lt;/h3&gt;
-&lt;p&gt;var 语句用于声明一个变量列表，跟函数的参数列表一样，类型在最后。&lt;/p&gt;
-&lt;p&gt;就像在这个例子中看到的一样，var 语句可以出现在包或函数级别。&lt;/p&gt;
-&lt;p&gt;variables.go&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;
-package main
-import &amp;quot;fmt&amp;quot;
-var c, python, java bool
-func main() {
-    var i int
-    fmt.Println(i, c, python, java)
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;变量的初始化&#34;&gt;变量的初始化&lt;/h3&gt;
-&lt;pre&gt;&lt;code&gt;变量声明可以包含初始值，每个变量对应一个。
-
-如果初始化值已存在，则可以省略类型；变量会从初始值中获得类型。
-
-variables-with-initializers.go
-
-package main
-import &amp;quot;fmt&amp;quot;
-var i, j int = 1, 2
-func main() {
-    var c, python, java = true, false, &amp;quot;no!&amp;quot;
-    fmt.Println(i, j, c, python, java)
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;短变量声明&#34;&gt;短变量声明&lt;/h3&gt;
-&lt;p&gt;在函数中，简洁赋值语句 := 可在类型明确的地方代替 var 声明。&lt;/p&gt;
-&lt;p&gt;函数外的每个语句都必须以关键字开始（var, func 等等），因此 := 结构不能在函数外使用。&lt;/p&gt;
-&lt;p&gt;short-variable-declarations.go&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;
-package main
-import &amp;quot;fmt&amp;quot;
-func main() {
-    var i, j int = 1, 2
-    k := 3
-    c, python, java := true, false, &amp;quot;no!&amp;quot;
-    fmt.Println(i, j, k, c, python, java)
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;基本类型&#34;&gt;基本类型&lt;/h3&gt;
-&lt;pre&gt;&lt;code&gt;bool
-
-string
-
-int  int8  int16  int32  int64
-uint uint8 uint16 uint32 uint64 uintptr
-
-byte // uint8 的别名
-
-rune // int32 的别名
-    // 表示一个 Unicode 码点
-
-float32 float64
-
-complex64 complex128
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;本例展示了几种类型的变量。 同导入语句一样，变量声明也可以“分组”成一个语法块。&lt;/p&gt;
-&lt;p&gt;int, uint 和 uintptr 在 32 位系统上通常为 32 位宽，在 64 位系统上则为 64 位宽。 当你需要一个整数值时应使用 int 类型，除非你有特殊的理由使用固定大小或无符号的整数类型。&lt;/p&gt;
-&lt;p&gt;basic-types.go&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;
-package main
-import (
-    &amp;quot;fmt&amp;quot;
-    &amp;quot;math/cmplx&amp;quot;
-)
-var (
-    ToBe   bool       = false
-    MaxInt uint64     = 1&amp;lt;&amp;lt;64 - 1
-    z      complex128 = cmplx.Sqrt(-5 + 12i)
-)
-func main() {
-    fmt.Printf(&amp;quot;Type: %T Value: %v\n&amp;quot;, ToBe, ToBe)
-    fmt.Printf(&amp;quot;Type: %T Value: %v\n&amp;quot;, MaxInt, MaxInt)
-    fmt.Printf(&amp;quot;Type: %T Value: %v\n&amp;quot;, z, z)
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&#34;零值&#34;&gt;零值&lt;/h4&gt;
-&lt;p&gt;没有明确初始值的变量声明会被赋予它们的 零值。&lt;/p&gt;
-&lt;p&gt;零值是：&lt;/p&gt;
-&lt;p&gt;数值类型为 0，
-布尔类型为 false，
-字符串为 &amp;ldquo;&amp;quot;（空字符串）。
-zero.go&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;
-package main
-import &amp;quot;fmt&amp;quot;
-func main() {
-    var i int
-    var f float64
-    var b bool
-    var s string
-    fmt.Printf(&amp;quot;%v %v %v %q\n&amp;quot;, i, f, b, s)
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;表达式-tv-将值-v-转换为类型-t&#34;&gt;表达式 T(v) 将值 v 转换为类型 T。&lt;/h3&gt;
-&lt;p&gt;一些关于数值的转换：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;
-var i int = 42
-var f float64 = float64(i)
-var u uint = uint(f)
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;或者，更加简单的形式：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;
-i := 42
-f := float64(i)
-u := uint(f)
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;与 C 不同的是，Go 在不同类型的项之间赋值时需要显式转换。试着移除例子中 float64 或 uint 的转换看看会发生什么。&lt;/p&gt;
-&lt;p&gt;type-conversions.go&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;
-package main
-import (
-    &amp;quot;fmt&amp;quot;
-    &amp;quot;math&amp;quot;
-)
-func main() {
-    var x, y int = 3, 4
-    var f float64 = math.Sqrt(float64(x*x + y*y))
-    var z uint = uint(f)
-    fmt.Println(x, y, z)
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&#34;类型推导&#34;&gt;类型推导&lt;/h4&gt;
-&lt;p&gt;在声明一个变量而不指定其类型时（即使用不带类型的 := 语法或 var = 表达式语法），变量的类型由右值推导得出。&lt;/p&gt;
-&lt;p&gt;当右值声明了类型时，新变量的类型与其相同：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;var i int
-j := i // j 也是一个 int
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;不过当右边包含未指明类型的数值常量时，新变量的类型就可能是 int, float64 或 complex128 了，这取决于常量的精度：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;
-i := 42           // int
-f := 3.142        // float64
-g := 0.867 + 0.5i // complex128
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;尝试修改示例代码中 v 的初始值，并观察它是如何影响类型的。&lt;/p&gt;
-&lt;p&gt;type-inference.go&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;
-package main
-import &amp;quot;fmt&amp;quot;
-func main() {
-    v := 42 // 修改这里！
-    fmt.Printf(&amp;quot;v is of type %T\n&amp;quot;, v)
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&#34;常量的声明与变量类似只不过是使用-const-关键字&#34;&gt;常量的声明与变量类似，只不过是使用 const 关键字。&lt;/h4&gt;
-&lt;p&gt;常量可以是字符、字符串、布尔值或数值。&lt;/p&gt;
-&lt;p&gt;常量不能用 := 语法声明。&lt;/p&gt;
-&lt;p&gt;constants.go&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;
-package main
-import &amp;quot;fmt&amp;quot;
-const Pi = 3.14
-func main() {
-    const World = &amp;quot;世界&amp;quot;
-    fmt.Println(&amp;quot;Hello&amp;quot;, World)
-    fmt.Println(&amp;quot;Happy&amp;quot;, Pi, &amp;quot;Day&amp;quot;)
-    const Truth = true
-    fmt.Println(&amp;quot;Go rules?&amp;quot;, Truth)
-}
-&lt;/code&gt;&lt;/pre&gt;</description>
-      
-    </item>
-    
-    <item>
-      <title>Math Preview</title>
-      <link>http://localhost:1313/post/math-preview/</link>
-      <pubDate>Mon, 04 Mar 2019 16:01:23 +0800</pubDate>
-      
-      <guid>http://localhost:1313/post/math-preview/</guid>
-      
-        <description>&lt;p&gt;&lt;a href=&#34;https://www.intmath.com/cg5/katex-mathjax-comparison.php&#34;&gt;KaTeX and MathJax Comparison Demo, currently processed as KaTex&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;repeating-fractions&#34;&gt;Repeating fractions&lt;/h2&gt;
-
-&lt;p&gt;&lt;span  class=&#34;math&#34;&gt;\[
-\frac{1}{\Bigl(\sqrt{\phi \sqrt{5}}-\phi\Bigr) e^{\frac25 \pi}} \equiv 1+\frac{e^{-2\pi}} {1+\frac{e^{-4\pi}} {1+\frac{e^{-6\pi}} {1+\frac{e^{-8\pi}} {1+\cdots} } } }
-\]&lt;/span&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;summation-notation&#34;&gt;Summation notation&lt;/h2&gt;
-
-&lt;p&gt;&lt;span  class=&#34;math&#34;&gt;\[
-\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \left( \sum_{k=1}^n b_k^2 \right)
-\]&lt;/span&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;sum-of-a-series&#34;&gt;Sum of a Series&lt;/h2&gt;
-
-&lt;p&gt;I broke up the next two examples into separate lines so it behaves better on a mobile phone. That&#39;s why they include \displaystyle.&lt;/p&gt;
-
-&lt;p&gt;&lt;span  class=&#34;math&#34;&gt;\[
-\displaystyle\sum_{i=1}^{k+1}i
-\]&lt;/span&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;span  class=&#34;math&#34;&gt;\[
-\displaystyle= \left(\sum_{i=1}^{k}i\right) +(k+1)
-\]&lt;/span&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;span  class=&#34;math&#34;&gt;\[
-\displaystyle= \frac{k(k+1)}{2}+k+1
-\]&lt;/span&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;span  class=&#34;math&#34;&gt;\[
-\displaystyle= \frac{k(k+1)+2(k+1)}{2}
-\]&lt;/span&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;span  class=&#34;math&#34;&gt;\[
-\displaystyle= \frac{(k+1)(k+2)}{2}
-\]&lt;/span&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;span  class=&#34;math&#34;&gt;\[
-\displaystyle= \frac{(k+1)((k+1)+1)}{2}
-\]&lt;/span&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;product-notation&#34;&gt;Product notation&lt;/h2&gt;
-
-&lt;p&gt;&lt;span  class=&#34;math&#34;&gt;\[
-\displaystyle 1 + \frac{q^2}{(1-q)}+\frac{q^6}{(1-q)(1-q^2)}+\cdots = \displaystyle \prod_{j=0}^{\infty}\frac{1}{(1-q^{5j+2})(1-q^{5j+3})}, \displaystyle\text{ for }\lvert q\rvert &lt; 1.
-\]&lt;/span&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;inline-math&#34;&gt;Inline math&lt;/h2&gt;
-
-&lt;p&gt;And here is some in-line math: &lt;span  class=&#34;math&#34;&gt;\( k_{n+1} = n^2 + k_n^2 - k_{n-1} \)&lt;/span&gt; , followed by some more text.&lt;/p&gt;
-
-&lt;h2 id=&#34;greek-letters&#34;&gt;Greek Letters&lt;/h2&gt;
-
-&lt;p&gt;&lt;span  class=&#34;math&#34;&gt;\[
-\Gamma\ \Delta\ \Theta\ \Lambda\ \Xi\ \Pi\ \Sigma\ \Upsilon\ \Phi\ \Psi\ \Omega
-\alpha\ \beta\ \gamma\ \delta\ \epsilon\ \zeta\ \eta\ \theta\ \iota\ \kappa\ \lambda\ \mu\ \nu\ \xi \ \omicron\ \pi\ \rho\ \sigma\ \tau\ \upsilon\ \phi\ \chi\ \psi\ \omega\ \varepsilon\ \vartheta\ \varpi\ \varrho\ \varsigma\ \varphi
-\]&lt;/span&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;arrows&#34;&gt;Arrows&lt;/h2&gt;
-
-&lt;p&gt;&lt;span  class=&#34;math&#34;&gt;\[
-\gets\ \to\ \leftarrow\ \rightarrow\ \uparrow\ \Uparrow\ \downarrow\ \Downarrow\ \updownarrow\ \Updownarrow
-\]&lt;/span&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;span  class=&#34;math&#34;&gt;\[
-\Leftarrow\ \Rightarrow\ \leftrightarrow\ \Leftrightarrow\ \mapsto\ \hookleftarrow
-\leftharpoonup\ \leftharpoondown\ \rightleftharpoons\ \longleftarrow\ \Longleftarrow\ \longrightarrow
-\]&lt;/span&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;span  class=&#34;math&#34;&gt;\[
-\Longrightarrow\ \longleftrightarrow\ \Longleftrightarrow\ \longmapsto\ \hookrightarrow\ \rightharpoonup
-\]&lt;/span&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;span  class=&#34;math&#34;&gt;\[
-\rightharpoondown\ \leadsto\ \nearrow\ \searrow\ \swarrow\ \nwarrow
-\]&lt;/span&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;symbols&#34;&gt;Symbols&lt;/h2&gt;
-
-&lt;p&gt;&lt;span  class=&#34;math&#34;&gt;\[
-\surd\ \barwedge\ \veebar\ \odot\ \oplus\ \otimes\ \oslash\ \circledcirc\ \boxdot\ \bigtriangleup
-\]&lt;/span&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;span  class=&#34;math&#34;&gt;\[
-\bigtriangledown\ \dagger\ \diamond\ \star\ \triangleleft\ \triangleright\ \angle\ \infty\ \prime\ \triangle
-\]&lt;/span&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;calculus&#34;&gt;Calculus&lt;/h2&gt;
-
-&lt;p&gt;&lt;span  class=&#34;math&#34;&gt;\[
-\int u \frac{dv}{dx}\,dx=uv-\int \frac{du}{dx}v\,dx
-\]&lt;/span&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;span  class=&#34;math&#34;&gt;\[
-f(x) = \int_{-\infty}^\infty \hat f(\xi)\,e^{2 \pi i \xi x}
-\]&lt;/span&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;span  class=&#34;math&#34;&gt;\[
-\oint \vec{F} \cdot d\vec{s}=0
-\]&lt;/span&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;lorenz-equations&#34;&gt;Lorenz Equations&lt;/h2&gt;
-
-&lt;p&gt;&lt;span  class=&#34;math&#34;&gt;\[
-\begin{aligned} \dot{x} &amp; = \sigma(y-x) \\ \dot{y} &amp; = \rho x - y - xz \\ \dot{z} &amp; = -\beta z + xy \end{aligned}
-\]&lt;/span&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;cross-product&#34;&gt;Cross Product&lt;/h2&gt;
-
-&lt;p&gt;This works in KaTeX, but the separation of fractions in this environment is not so good.&lt;/p&gt;
-
-&lt;p&gt;&lt;span  class=&#34;math&#34;&gt;\[
-\mathbf{V}_1 \times \mathbf{V}_2 = \begin{vmatrix} \mathbf{i} &amp; \mathbf{j} &amp; \mathbf{k} \\ \frac{\partial X}{\partial u} &amp; \frac{\partial Y}{\partial u} &amp; 0 \\ \frac{\partial X}{\partial v} &amp; \frac{\partial Y}{\partial v} &amp; 0 \end{vmatrix}
-\]&lt;/span&gt;&lt;/p&gt;
-
-&lt;p&gt;Here&#39;s a workaround: make the fractions smaller with an extra class that targets the spans with &amp;quot;mfrac&amp;quot; class (makes no difference in the MathJax case):&lt;/p&gt;
-
-&lt;p&gt;&lt;span  class=&#34;math&#34;&gt;\[
-\mathbf{V}_1 \times \mathbf{V}_2 = \begin{vmatrix} \mathbf{i} &amp; \mathbf{j} &amp; \mathbf{k} \\ \frac{\partial X}{\partial u} &amp; \frac{\partial Y}{\partial u} &amp; 0 \\ \frac{\partial X}{\partial v} &amp; \frac{\partial Y}{\partial v} &amp; 0 \end{vmatrix}
-\]&lt;/span&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;accents&#34;&gt;Accents&lt;/h2&gt;
-
-&lt;p&gt;&lt;span  class=&#34;math&#34;&gt;\[
-\hat{x}\ \vec{x}\ \ddot{x}
-\]&lt;/span&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;stretchy-brackets&#34;&gt;Stretchy brackets&lt;/h2&gt;
-
-&lt;p&gt;&lt;span  class=&#34;math&#34;&gt;\[
-\left(\frac{x^2}{y^3}\right)
-\]&lt;/span&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;evaluation-at-limits&#34;&gt;Evaluation at limits&lt;/h2&gt;
-
-&lt;p&gt;&lt;span  class=&#34;math&#34;&gt;\[
-\left.\frac{x^3}{3}\right|_0^1
-\]&lt;/span&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;case-definitions&#34;&gt;Case definitions&lt;/h2&gt;
-
-&lt;p&gt;&lt;span  class=&#34;math&#34;&gt;\[
-f(n) = \begin{cases} \frac{n}{2}, &amp; \text{if } n\text{ is even} \\ 3n+1, &amp; \text{if } n\text{ is odd} \end{cases}
-\]&lt;/span&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;maxwells-equations&#34;&gt;Maxwell&#39;s Equations&lt;/h2&gt;
-
-&lt;p&gt;&lt;span  class=&#34;math&#34;&gt;\[
-\begin{aligned} \nabla \times \vec{\mathbf{B}} -\, \frac1c\, \frac{\partial\vec{\mathbf{E}}}{\partial t} &amp; = \frac{4\pi}{c}\vec{\mathbf{j}} \\ \nabla \cdot \vec{\mathbf{E}} &amp; = 4 \pi \rho \\ \nabla \times \vec{\mathbf{E}}\, +\, \frac1c\, \frac{\partial\vec{\mathbf{B}}}{\partial t} &amp; = \vec{\mathbf{0}} \\ \nabla \cdot \vec{\mathbf{B}} &amp; = 0 \end{aligned}
-\]&lt;/span&gt;&lt;/p&gt;
-
-&lt;p&gt;These equations are quite cramped. We can add vertical spacing using (for example) [1em] after each line break (\). as you can see here:&lt;/p&gt;
-
-&lt;p&gt;&lt;span  class=&#34;math&#34;&gt;\[
-\begin{aligned} \nabla \times \vec{\mathbf{B}} -\, \frac1c\, \frac{\partial\vec{\mathbf{E}}}{\partial t} &amp; = \frac{4\pi}{c}\vec{\mathbf{j}} \\[1em] \nabla \cdot \vec{\mathbf{E}} &amp; = 4 \pi \rho \\[0.5em] \nabla \times \vec{\mathbf{E}}\, +\, \frac1c\, \frac{\partial\vec{\mathbf{B}}}{\partial t} &amp; = \vec{\mathbf{0}} \\[1em] \nabla \cdot \vec{\mathbf{B}} &amp; = 0 \end{aligned}
-\]&lt;/span&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;statistics&#34;&gt;Statistics&lt;/h2&gt;
-
-&lt;p&gt;Definition of combination:&lt;/p&gt;
-
-&lt;p&gt;&lt;span  class=&#34;math&#34;&gt;\[
-\frac{n!}{k!(n-k)!} = {^n}C_k
-{n \choose k}
-\]&lt;/span&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;fractions-on-fractions&#34;&gt;Fractions on fractions&lt;/h2&gt;
-
-&lt;p&gt;&lt;span  class=&#34;math&#34;&gt;\[
-\frac{\frac{1}{x}+\frac{1}{y}}{y-z}
-\]&lt;/span&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;nth-root&#34;&gt;n-th root&lt;/h2&gt;
-
-&lt;p&gt;&lt;span  class=&#34;math&#34;&gt;\[
-\sqrt[n]{1+x+x^2+x^3+\ldots}
-\]&lt;/span&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;matrices&#34;&gt;Matrices&lt;/h2&gt;
-
-&lt;p&gt;&lt;span  class=&#34;math&#34;&gt;\[
-\begin{pmatrix} a_{11} &amp; a_{12} &amp; a_{13}\\ a_{21} &amp; a_{22} &amp; a_{23}\\ a_{31} &amp; a_{32} &amp; a_{33} \end{pmatrix}
-\begin{bmatrix} 0 &amp; \cdots &amp; 0 \\ \vdots &amp; \ddots &amp; \vdots \\ 0 &amp; \cdots &amp; 0 \end{bmatrix}
-\]&lt;/span&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;punctuation&#34;&gt;Punctuation&lt;/h2&gt;
-
-&lt;p&gt;&lt;span  class=&#34;math&#34;&gt;\[
-f(x) = \sqrt{1+x} \quad (x \ge -1)
-f(x) \sim x^2 \quad (x\to\infty)
-\]&lt;/span&gt;&lt;/p&gt;
-
-&lt;p&gt;Now with punctuation:&lt;/p&gt;
-
-&lt;p&gt;&lt;span  class=&#34;math&#34;&gt;\[
-f(x) = \sqrt{1+x}, \quad x \ge -1
-f(x) \sim x^2, \quad x\to\infty
-\]&lt;/span&gt;&lt;/p&gt;</description>
-      
-    </item>
-    
-    <item>
-      <title>Shortcodes Preview</title>
-      <link>http://localhost:1313/post/shortcodes-preview/</link>
-      <pubDate>Sun, 04 Mar 2018 16:01:23 +0800</pubDate>
-      
-      <guid>http://localhost:1313/post/shortcodes-preview/</guid>
-      
-        <description>&lt;h2 id=&#34;what-a-shortcode-is&#34;&gt;What a Shortcode is&lt;/h2&gt;
-&lt;p&gt;Hugo loves Markdown because of its simple content format, but there are times when Markdown falls short. Often, content authors are forced to add raw HTML (e.g., video &lt;code&gt;&amp;lt;iframes&amp;gt;&lt;/code&gt;) to Markdown content. We think this contradicts the beautiful simplicity of Markdown&amp;rsquo;s syntax.&lt;/p&gt;
-&lt;p&gt;Hugo created &lt;strong&gt;shortcodes&lt;/strong&gt; to circumvent these limitations.&lt;/p&gt;
-&lt;p&gt;A shortcode is a simple snippet inside a content file that Hugo will render using a predefined template. Note that shortcodes will not work in template files. If you need the type of drop-in functionality that shortcodes provide but in a template, you most likely want a [partial template][partials] instead.&lt;/p&gt;
-&lt;p&gt;In addition to cleaner Markdown, shortcodes can be updated any time to reflect new classes, techniques, or standards. At the point of site generation, Hugo shortcodes will easily merge in your changes. You avoid a possibly complicated search and replace operation.&lt;/p&gt;
-&lt;p&gt;More details: &lt;a href=&#34;https://gohugo.io/content-management/shortcodes/&#34;&gt;https://gohugo.io/content-management/shortcodes/&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&#34;blockquotes&#34;&gt;blockquotes&lt;/h2&gt;
-&lt;p&gt;Normal quote:
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-
-&lt;blockquote&gt;
-  &lt;p&gt;This is a simple quote.&lt;/p&gt;
-  &lt;footer&gt;
-    &lt;strong&gt;&lt;/strong&gt;
-    
-      
-        
-      
-    
-  &lt;/footer&gt;
-&lt;/blockquote&gt;
-&lt;/p&gt;
-&lt;p&gt;Quote with author:
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  
-  
-
-
-
-
-
-  
-
-
-&lt;blockquote&gt;
-  &lt;p&gt;This is a quote with only an Author named Author2.&lt;/p&gt;
-  &lt;footer&gt;
-    &lt;strong&gt;Author2&lt;/strong&gt;
-    
-      
-        
-      
-    
-  &lt;/footer&gt;
-&lt;/blockquote&gt;
-&lt;/p&gt;
-&lt;p&gt;Quote with author and source:
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  
-  
-
-
-
-
-
-  
-
-
-&lt;blockquote&gt;
-  &lt;p&gt;This is a quote from Author3 and source &amp;ldquo;source.&amp;rdquo;&lt;/p&gt;
-  &lt;footer&gt;
-    &lt;strong&gt;Author3&lt;/strong&gt;
-    
-      &lt;cite&gt;Source&lt;/cite&gt;
-    
-  &lt;/footer&gt;
-&lt;/blockquote&gt;
-&lt;/p&gt;
-&lt;p&gt;Quote with author and link:
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  
-  
-
-
-
-
-
-      
-      
-      
-    
-     
-      
-    
-    
-
-    
-    
-  
-
-
-&lt;blockquote&gt;
-  &lt;p&gt;This is a quote from Author4 and links to &lt;a href=&#34;https://www.google.com&#34;&gt;https://www.google.com&lt;/a&gt;.&lt;/p&gt;
-  &lt;footer&gt;
-    &lt;strong&gt;Author4&lt;/strong&gt;
-    
-      
-        &lt;cite&gt;
-          &lt;a href=&#34;https://www.google.com&#34; title=&#34;https://www.google.com&#34;&gt;google.com&lt;/a&gt; 
-        &lt;/cite&gt;
-      
-    
-  &lt;/footer&gt;
-&lt;/blockquote&gt;
-&lt;/p&gt;
-&lt;p&gt;Quote with author, link and title:
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  
-  
-
-
-
-
-
-  
-
-
-&lt;blockquote&gt;
-  &lt;p&gt;This is a quote from Author5 and links to &lt;a href=&#34;https://www.google.com&#34;&gt;https://www.google.com&lt;/a&gt; with title &amp;ldquo;Google.&amp;rdquo;&lt;/p&gt;
-  &lt;footer&gt;
-    &lt;strong&gt;Author5&lt;/strong&gt;
-    
-      
-        &lt;cite&gt;
-          &lt;a href=&#34;https://www.google.com&#34; title=&#34;https://www.google.com&#34;&gt;Google&lt;/a&gt; 
-        &lt;/cite&gt;
-      
-    
-  &lt;/footer&gt;
-&lt;/blockquote&gt;
-&lt;/p&gt;
-&lt;p&gt;Quote with author and a link longer than 32 characters, string is first cut at 32 characters then everything after the last forward slash is removed
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  
-  
-
-
-
-
-
-      
-      
-      
-    
-     
-      
-    
-    
-
-    
-    
-         
-         
-         
-
-         
-        
-        
-        
-        
-      
-      
-    
-  
-
-
-&lt;blockquote&gt;
-  &lt;p&gt;This is a quote from Author5 and links to &lt;a href=&#34;https://twitter.com/CryptoGangsta/status/716427930126196737&#34;&gt;https://twitter.com/CryptoGangsta/status/716427930126196737&lt;/a&gt; which is longer than 32 characters.
-&lt;!-- raw HTML omitted --&gt;And this is a new line in the quote with the HTML br tag.&lt;/p&gt;
-  &lt;footer&gt;
-    &lt;strong&gt;Author6&lt;/strong&gt;
-    
-      
-        &lt;cite&gt;
-          &lt;a href=&#34;https://twitter.com/CryptoGangsta/status/716427930126196737&#34; title=&#34;https://twitter.com/CryptoGangsta/status/716427930126196737&#34;&gt;twitter.com/CryptoGangsta/...&lt;/a&gt; 
-        &lt;/cite&gt;
-      
-    
-  &lt;/footer&gt;
-&lt;/blockquote&gt;
-&lt;/p&gt;
-&lt;p&gt;Test from the Octopress blockquote page at: &lt;a href=&#34;http://octopress.org/docs/plugins/blockquote/&#34;&gt;http://octopress.org/docs/plugins/blockquote/&lt;/a&gt;
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  
-  
-
-
-
-
-
-      
-      
-      
-    
-     
-      
-    
-    
-
-    
-    
-         
-         
-         
-
-         
-        
-        
-        
-        
-        
-        
-      
-      
-    
-  
-
-
-&lt;blockquote&gt;
-  &lt;p&gt;Over the past 24 hours I&amp;rsquo;ve been reflecting on my life &amp;amp; I&amp;rsquo;ve realized only one thing. I need a medieval battle axe.&lt;/p&gt;
-  &lt;footer&gt;
-    &lt;strong&gt;@allanbranch&lt;/strong&gt;
-    
-      
-        &lt;cite&gt;
-          &lt;a href=&#34;https://twitter.com/allanbranch/status/90766146063712256&#34; title=&#34;https://twitter.com/allanbranch/status/90766146063712256&#34;&gt;twitter.com/allanbranch/status/...&lt;/a&gt; 
-        &lt;/cite&gt;
-      
-    
-  &lt;/footer&gt;
-&lt;/blockquote&gt;
-&lt;/p&gt;
-&lt;h2 id=&#34;music&#34;&gt;music&lt;/h2&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;h2 id=&#34;gist&#34;&gt;gist&lt;/h2&gt;
-&lt;p&gt;We can embed the gist in our content via username and gist ID pulled from the URL:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;{{&amp;lt; gist spf13 7896402 &amp;gt;}}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Display:&lt;/p&gt;
-&lt;script type=&#34;application/javascript&#34; src=&#34;https://gist.github.com/spf13/7896402.js&#34;&gt;&lt;/script&gt;
-
-&lt;h2 id=&#34;expand&#34;&gt;expand&lt;/h2&gt;
-&lt;p&gt;The Expand shortcode displays an expandable/collapsible section of text on your page. Here is an example&lt;/p&gt;
-&lt;details&gt;
-  &lt;summary style=&#34;background-color:#f5f5f5;border:1px solid #ccc;padding:5px;&#34;&gt;
-    Is this learn theme rocks ?
-    
-  &lt;/summary&gt;
-  Yes !.
-&lt;/details&gt;
-
-&lt;h3 id=&#34;usage&#34;&gt;Usage&lt;/h3&gt;
-&lt;p&gt;this shortcode takes exactly one optional parameter to define the text that appears next to the expand/collapse icon. (default is “Click to expand”)&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;{{&amp;lt; expand &amp;quot;Is this learn theme rocks ?&amp;quot; &amp;gt;}}
-Yes !.
-{{&amp;lt; /expand &amp;gt;}}
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;youtube&#34;&gt;youtube&lt;/h2&gt;
-
-&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;
-  &lt;iframe src=&#34;https://www.youtube.com/embed/w7Ft2ymGmfc&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&#34;vimeo&#34;&gt;vimeo&lt;/h2&gt;
-
-&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;
-  &lt;iframe src=&#34;https://player.vimeo.com/video/146022717&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; title=&#34;vimeo video&#34; webkitallowfullscreen mozallowfullscreen allowfullscreen&gt;&lt;/iframe&gt;
- &lt;/div&gt;
-
-&lt;h2 id=&#34;youku&#34;&gt;youku&lt;/h2&gt;
-
-
-&lt;div style=&#34;position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden;&#34;&gt;
-    &lt;iframe src=&#34;https://player.youku.com/embed/XMzQ0ODUxMjM2NA?autoplay=0&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%;&#34; allowfullscreen frameborder=&#34;0&#34; title=&#34;YouKu Video&#34;&gt;
-    &lt;/iframe&gt;
-&lt;/div&gt;</description>
-      
-    </item>
-    
-    <item>
-      <title>Image Preview</title>
-      <link>http://localhost:1313/post/image-preview/</link>
-      <pubDate>Sat, 03 Mar 2018 16:01:23 +0800</pubDate>
-      
-      <guid>http://localhost:1313/post/image-preview/</guid>
-      
-        <description>&lt;p&gt;Thanks for &lt;a href=&#34;https://github.com/liwenyip/hugo-easy-gallery&#34;&gt;liwenyip/hugo-easy-gallery&lt;/a&gt; &amp;amp; &lt;a href=&#34;https://github.com/xianmin/hugo-theme-jane/pull/48&#34;&gt;Zebradil · Pull Request #48&lt;/a&gt; .&lt;/p&gt;
-&lt;p&gt;Now, we could use &lt;code&gt;{{&amp;lt; gallery &amp;gt;}}&lt;/code&gt; shortcode in hugo-theme-jane.&lt;/p&gt;
-&lt;h2 id=&#34;normal-image&#34;&gt;Normal Image&lt;/h2&gt;
-&lt;p&gt;This is an image in &lt;code&gt;static/image&lt;/code&gt; folder.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;![&lt;span style=&#34;color:#f92672&#34;&gt;This is an image in `static/image` folder.&lt;/span&gt;](&lt;span style=&#34;color:#a6e22e&#34;&gt;/image/example.jpg&lt;/span&gt;)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;-figure--shortcode&#34;&gt;&lt;code&gt;{{&amp;lt; figure &amp;gt;}}&lt;/code&gt; shortcode&lt;/h2&gt;
-&lt;h3 id=&#34;figure-image-with-title&#34;&gt;figure image with title&lt;/h3&gt;
-&lt;pre&gt;&lt;code&gt;{{&amp;lt; figure src=&amp;quot;/image/example.jpg&amp;quot; title=&amp;quot;figure image with title&amp;quot; &amp;gt;}}
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;figure-image-with-caption&#34;&gt;figure image with caption&lt;/h3&gt;
-&lt;pre&gt;&lt;code&gt;{{&amp;lt; figure src=&amp;quot;/image/example.jpg&amp;quot; caption=&amp;quot;figure image with caption figure image with caption figure image with caption figure image with caption figure image with caption&amp;quot; &amp;gt;}}
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;more--figure--shortcode-usage&#34;&gt;more &lt;code&gt;{{&amp;lt; figure &amp;gt;}}&lt;/code&gt; shortcode usage&lt;/h3&gt;
-&lt;p&gt;Specifying your image files:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;{{&amp;lt; figure src=&amp;quot;thumb.jpg&amp;quot; link=&amp;quot;image.jpg&amp;quot; &amp;gt;}}&lt;/code&gt; will use &lt;code&gt;thumb.jpg&lt;/code&gt; for thumbnail and &lt;code&gt;image.jpg&lt;/code&gt; for lightbox&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;{{&amp;lt; figure src=&amp;quot;image.jpg&amp;quot; &amp;gt;}}&lt;/code&gt; or &lt;code&gt;{{&amp;lt; figure link=&amp;quot;image.jpg&amp;quot; &amp;gt;}}&lt;/code&gt; will use &lt;code&gt;image.jpg&lt;/code&gt; for both thumbnail and lightbox&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;{{&amp;lt; figure link=&amp;quot;image.jpg&amp;quot; thumb=&amp;quot;-small&amp;quot; &amp;gt;}}&lt;/code&gt; will use &lt;code&gt;image-small.jpg&lt;/code&gt; for thumbnail and &lt;code&gt;image.jpg&lt;/code&gt; for lightbox&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Optional parameters:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;All the &lt;a href=&#34;https://gohugo.io/extras/shortcodes&#34;&gt;features/parameters&lt;/a&gt; of Hugo&amp;rsquo;s built-in &lt;code&gt;figure&lt;/code&gt; shortcode work as normal, i.e. src, link, title, caption, class, attr (attribution), attrlink, alt&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;size&lt;/code&gt; (e.g. &lt;code&gt;size=&amp;quot;1024x768&amp;quot;&lt;/code&gt;) pre-defines the image size for PhotoSwipe. Use this option if you don&amp;rsquo;t want to pre-load the linked image to determine its size.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;class&lt;/code&gt; allows you to set any custom classes you want on the &lt;code&gt;&amp;lt;figure&amp;gt;&lt;/code&gt; tag.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Optional parameters for standalone &lt;code&gt;{{&amp;lt; figure &amp;gt;}}&lt;/code&gt; shortcodes only (i.e. don&amp;rsquo;t use on &lt;code&gt;{{&amp;lt; figure &amp;gt;}}&lt;/code&gt; inside &lt;code&gt;{{&amp;lt; gallery &amp;gt;}}&lt;/code&gt; - strange things may happen if you do):&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;caption-position&lt;/code&gt; and &lt;code&gt;caption-effect&lt;/code&gt; work the same as for the &lt;code&gt;{{&amp;lt; gallery &amp;gt;}}&lt;/code&gt; shortcode (see below).&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;width&lt;/code&gt; defines the &lt;a href=&#34;https://www.w3schools.com/cssref/pr_dim_max-width.asp&#34;&gt;&lt;code&gt;max-width&lt;/code&gt;&lt;/a&gt; of the image displayed on the page. If using a thumbnail for a standalone figure, set this equal to your thumbnail&amp;rsquo;s native width to make the captions behave properly (or feel free to come up with a better solution and submit a pull request :-)). Also use this option if you don&amp;rsquo;t have a thumbnail and you don&amp;rsquo;t want the hi-res image to take up the entire width of the screen/container.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;class=&amp;quot;no-photoswipe&amp;quot;&lt;/code&gt; prevents a &lt;code&gt;&amp;lt;figure&amp;gt;&lt;/code&gt; from being loaded into PhotoSwipe. If you click on the figure you&amp;rsquo;ll instead a good ol&amp;rsquo; fashioned hyperlink to a bigger image (or - if you haven&amp;rsquo;t specified a bigger image - the same one).&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;-gallery--shortcode&#34;&gt;&lt;code&gt;{{&amp;lt; gallery &amp;gt;}}&lt;/code&gt; shortcode&lt;/h2&gt;
-&lt;h3 id=&#34;simple-gallery&#34;&gt;simple gallery&lt;/h3&gt;
-&lt;p&gt;To specify a directory of image files:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;{{&amp;lt; gallery dir=&amp;quot;/img/your-directory-of-images/&amp;quot; &amp;gt;}}
-&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
-&lt;li&gt;The images are automatically captioned with the file name.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;[image].jpg&lt;/code&gt; is used for the hi-res image, and &lt;code&gt;[image]-thumb.jpg&lt;/code&gt; is used for the thumbnails.&lt;/li&gt;
-&lt;li&gt;If &lt;code&gt;[image]-thumb.jpg&lt;/code&gt; doesn&amp;rsquo;t exist, then &lt;code&gt;[image].jpg&lt;/code&gt; will be used for both hi-res and thumbnail images.&lt;/li&gt;
-&lt;li&gt;The default thumbnail suffix is &lt;code&gt;-thumb&lt;/code&gt;, but you can specify a different one e.g. &lt;code&gt;thumb=&amp;quot;-small&amp;quot;&lt;/code&gt; or &lt;code&gt;thumb=&amp;quot;_150x150&amp;quot;&lt;/code&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;to-specify-individual-image-files&#34;&gt;To specify individual image files&lt;/h3&gt;
-&lt;pre&gt;&lt;code&gt;{{&amp;lt; gallery &amp;gt;}}
-  {{&amp;lt; figure src=&amp;quot;image1.jpg&amp;quot; &amp;gt;}}
-  {{&amp;lt; figure src=&amp;quot;image2.jpg&amp;quot; &amp;gt;}}
-  {{&amp;lt; figure src=&amp;quot;image3.jpg&amp;quot; &amp;gt;}}
-{{&amp;lt; /gallery &amp;gt;}}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Optional parameters:&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;caption-position&lt;/code&gt; - determines the captions&amp;rsquo; position over the image. Options:
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;bottom&lt;/code&gt; (default)&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;center&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;none&lt;/code&gt; hides captions on the page (they will only show in PhotoSwipe)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;caption-effect&lt;/code&gt; - determines if/how captions appear upon hover. Options:
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;slide&lt;/code&gt; (default)&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;fade&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;none&lt;/code&gt; (captions always visible)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;hover-effect&lt;/code&gt; - determines if/how images change upon hover. Options:
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;zoom&lt;/code&gt; (default)&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;grow&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;shrink&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;slideup&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;slidedown&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;none&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;hover-transition&lt;/code&gt; - determines if/how images change upon hover. Options:
-&lt;ul&gt;
-&lt;li&gt;not set - smooth transition (default)&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;none&lt;/code&gt; - hard transition&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;</description>
-      
-    </item>
-    
-    <item>
-      <title>Shortcodes Notice Preview</title>
-      <link>http://localhost:1313/post/shortcode-notice/</link>
-      <pubDate>Sat, 03 Mar 2018 16:01:23 +0800</pubDate>
-      
-      <guid>http://localhost:1313/post/shortcode-notice/</guid>
-      
-        <description>&lt;h2 id=&#34;normal-use&#34;&gt;normal use&lt;/h2&gt;
-&lt;p&gt;&lt;code&gt;Note&lt;/code&gt; example:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-shortcode&#34; data-lang=&#34;shortcode&#34;&gt;{{% notice note %}}
-A notice disclaimer
-{{% /notice %}}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Result:&lt;/strong&gt;&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;You could &lt;strong&gt;custom title&lt;/strong&gt; :&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-shortcode&#34; data-lang=&#34;shortcode&#34;&gt;{{% notice note 笔记 %}}
-A notice disclaimer
-{{% /notice %}}
-&lt;/code&gt;&lt;/pre&gt;&lt;!-- raw HTML omitted --&gt;
-&lt;h2 id=&#34;tip&#34;&gt;tip&lt;/h2&gt;
-&lt;pre&gt;&lt;code class=&#34;language-shortcode&#34; data-lang=&#34;shortcode&#34;&gt;{{% notice tip %}}
-A tip disclaimer
-{{% /tip %}}
-&lt;/code&gt;&lt;/pre&gt;&lt;!-- raw HTML omitted --&gt;
-&lt;h2 id=&#34;info&#34;&gt;info&lt;/h2&gt;
-&lt;pre&gt;&lt;code class=&#34;language-shortcode&#34; data-lang=&#34;shortcode&#34;&gt;{{% notice info %}}
-A info disclaimer
-{{% /notice %}}
-&lt;/code&gt;&lt;/pre&gt;&lt;!-- raw HTML omitted --&gt;
-&lt;h2 id=&#34;warning&#34;&gt;warning&lt;/h2&gt;
-&lt;pre&gt;&lt;code class=&#34;language-shortcode&#34; data-lang=&#34;shortcode&#34;&gt;{{% notice warning %}}
-A warning disclaimer
-{{% /notice %}}
-&lt;/code&gt;&lt;/pre&gt;&lt;!-- raw HTML omitted --&gt;
-</description>
       
     </item>
     
